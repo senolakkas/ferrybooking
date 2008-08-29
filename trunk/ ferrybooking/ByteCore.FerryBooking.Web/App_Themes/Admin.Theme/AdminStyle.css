@@ -1,0 +1,309 @@
+﻿Body
+{	
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #7387AE;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-size: 12px;
+}
+
+a 
+{
+	color:#283F86;
+}
+
+.PageTitle 
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #17307D;
+	padding-left: 22px;
+	border-top-width: 2px;
+	border-right-width: 2px;
+	border-bottom-width: 2px;
+	border-left-width: 0px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #0C2677;
+	border-right-color: #0C2677;
+	border-bottom-color: #0C2677;
+	border-left-color: #0C2677;
+	background-image: url(../../Images/Backgrounds/PageTitleBackground.jpg);
+	background-repeat: no-repeat;
+	background-position: right;
+	font-weight: bold;
+}
+.MainContentCell 
+{
+	padding: 22px;
+}
+.LeftMenuCell 
+{
+	padding-top: 12px;
+	padding-right: 6px;
+	padding-bottom: 12px;
+	padding-left: 6px;
+	background-image: url(../../Images/Backgrounds/LeftMenuBackground.jpg);
+	background-repeat: repeat-x;
+	background-position: top;
+}
+.FormTable 
+{
+	background-color: #F8F8F8;
+	padding-top: 12px;
+	padding-right: 8px;
+	padding-bottom: 8px;
+	padding-left: 12px;
+	border: 1px solid #9F9F9F;
+}
+.FormCellLabel 
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #666666;
+	white-space:nowrap;
+}
+.FormCellValue 
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	white-space:nowrap;
+}
+.Copyright, .Copyright:Link, .Copyright:Active, .Copyright:Visited 
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #E6EAF0;
+	text-decoration: none;
+	
+}
+.LeftMenuItem, .LeftMenuItem:Link, .LeftMenuItem:Active, .LeftMenuItem:Visited 
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+	padding-left: 4px;
+}
+
+.LeftMenuItem:Hover 
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+}
+
+.LeftMenuItem:hover 
+{
+	color: #304090;
+	background-color: #FFFFFF;
+	display: block;
+}
+
+
+.FormTableHeader 
+{
+	background-image: url(../../Images/Backgrounds/SubTitleBackground.jpg);
+	border: 1px solid #000000;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 12px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-repeat: repeat-y;
+	background-position: right;
+	background-color: #283F85;
+}
+.DataTableHeader {
+	background-image: url(../../Images/Backgrounds/SubTitleBackground.jpg);
+	background-repeat: repeat-y;
+	background-position: right;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 18px;
+	color: #FFFFFF;
+	background-color: #283F85;
+	border: 1px solid #000000;
+	text-align: left;
+	padding-left: 6px;
+	font-weight: bold;
+	padding-right: 6px;	
+}
+
+.DataTableHeader a{color: White;}
+
+
+.TopMenuLink, .TopMenuLink:Link, .TopMenuLink:visited, .TopMenuLink:Active 
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #364983;
+	font-weight: normal;
+	text-decoration: none;
+	padding-right: 12px;
+	padding-left: 12px;
+	background-color: #FFFFFF;
+}
+
+.TopMenuLink:Hover 
+{
+	text-decoration: underline;
+	background-color: #E6E6E6;
+}
+.DataTableCell 
+{
+	background-color: #F0F0F0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	padding-right: 6px;
+	padding-left: 6px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+.DataTableSelCell 
+{
+	background-color:Yellow;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 18px;
+	font-size: 11px;
+}
+
+.InsiteShadowCell 
+{
+	border: 1px solid #000033;
+}
+
+.PagerSyle
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;	
+	color: #283F86;
+	line-height: 22px;	
+}
+
+/* COMBO BOXES */
+select.cbo 
+{
+	border:1px solid #000066;
+	color:#333333;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	font-weight:normal;
+	padding-left:3px;
+}
+
+option 
+{
+	color:#333333;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	font-weight:normal;
+}
+
+/* TEXT BOXES */
+input.txt 
+{
+	background-color:#FFFFFF;
+	border:1px solid #000066;
+	color:#333333;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	font-weight:normal;
+	padding-left:3px;
+}
+
+
+input 
+{ 
+	font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px; border: 1px #555 solid; line-height: 14px;
+}	
+
+.GrdOutline 
+{
+	width:100%;
+	padding:1px;
+	border: gray 1px solid;
+}
+
+.OuterDataTableHeader 
+{
+	
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	line-height: 18px;
+	color: Black;
+	background-color:#D3D3D3;
+	border: 1px solid #000000;
+	text-align: left;
+	padding-left: 6px;
+	font-weight: bold;
+	padding-right: 6px;
+}
+
+.OuterDataTableCell 
+{
+	background-color: White;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	padding-right: 6px;
+	padding-left: 6px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+.OuterDataMainCell
+{
+	padding: 10px;	
+	padding-top: 0px;
+}
+
+.NoDataMessage
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+input.btn 
+{
+	background-color:#CCCCCC;
+	border-color:#999999 rgb(51, 51, 51) rgb(51, 51, 51) rgb(153, 153, 153);
+	border-style:solid;
+	border-width:1px;
+	color:#333333;
+	font-family:Arial,helvetica,sans-serif;
+	font-size:11px;
+	font-weight:bold;
+	margin:0px;
+	padding:0px 8px;
+}
+
+input.chk 
+{
+	border:0px none;
+}
+
+.hyperbutton 
+{
+	color:#283F86;
+}
+
+.EmptyData 
+{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;	
+	color: #283F86;
+	line-height: 22px;
+}
+
+.pnl 
+{
+	width:100%;
+	background-color:Green;
+}
