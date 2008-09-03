@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="ByteCore.FerryBooking.Core" namespace="ByteCore.FerryBooking.Core">
+  <class lazy="false" name="Season" table="Season" >
+    <id name="ID" type="System.Int32" column="SeasonID">
+        <generator class="identity"/>
+    </id>
+    <property name="OperatorId" column="OperatorId" type="System.Int32" not-null="false" />
+    <property name="StartMonth" column="StartMonth" type="System.Int32" not-null="false" />
+    <property name="StartDay" column="StartDay" type="System.Int32" not-null="false" />
+    <property name="EndMonth" column="EndMonth" type="System.Int32" not-null="false" />
+    <property name="EndDay" column="EndDay" type="System.Int32" not-null="false" />
+    <many-to-one name="Operator" column="OperatorId" class="Company"  update="false"  insert="false" />
+ </class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="ByteCore.FerryBooking.Core" namespace="ByteCore.FerryBooking.Core">
+  <class lazy="false" name="RouteOrderVehicleDetail" table="RouteOrderVehicleDetail" >
+    <id name="ID" type="System.Int32" column="RouteOrderVehicleDetailId">
+        <generator class="assigned"/>
+    </id>
+    <property name="VAPSettingID" column="VAPSettingID" type="System.Int32" not-null="false" />
+    <property name="VehVAPSettingID" column="Veh_VAPSettingID" type="System.Int32" not-null="false" />
+    <property name="RouteOrderDetailId" column="RouteOrderDetailId" type="System.Int32" not-null="false" />
+    <property name="Length" column="Length" type="System.Int32" not-null="false" />
+    <property name="LicensePlate" column="LicensePlate" type="System.String" not-null="false" length="50"/>
+    <property name="MakeModel" column="MakeModel" type="System.String" not-null="false" length="50"/>
+    <many-to-one name="RouteOrderDetail" column="RouteOrderDetailId" class="RouteOrderDetail"  update="false"  insert="false" />
+    <many-to-one name="VAPSetting" column="VAPSettingID" class="VehicleAdditionPriceSetting"  update="false"  insert="false" />
+    <many-to-one name="VehVAPSetting" column="Veh_VAPSettingID" class="VehicleAdditionPriceSetting"  update="false"  insert="false" />
+ </class>
+</hibernate-mapping>
