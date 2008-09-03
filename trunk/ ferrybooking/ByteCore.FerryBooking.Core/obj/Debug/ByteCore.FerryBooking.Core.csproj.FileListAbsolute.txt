@@ -1,1 +1,0 @@
-E:\Dev\ByteCore.FerryBooking\ByteCore.FerryBooking\ByteCore.FerryBooking.Core\obj\Debug\ResolveAssemblyReference.cache

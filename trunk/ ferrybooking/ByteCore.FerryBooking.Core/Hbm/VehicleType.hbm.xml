@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="ByteCore.FerryBooking.Core" namespace="ByteCore.FerryBooking.Core">
-  <joined-subclass lazy="false" name="VehicleType" extends="FareType" table="VehicleType" >
-    <key column="VehicleTypeId"/>
-    <property name="MinLegth" column="MinLegth" type="System.Int32" not-null="false" />
-    <property name="MaxLegth" column="MaxLegth" type="System.Int32" not-null="false" />
-    <property name="ByFootAmount" column="ByFootAmount" type="System.Decimal" not-null="false" />
- </joined-subclass>
-</hibernate-mapping>
