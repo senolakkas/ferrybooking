@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="ByteCore.FerryBooking.Core" namespace="ByteCore.FerryBooking.Core">
+  <class lazy="false" name="Route" table="Route" >
+    <id name="ID" type="System.Int32" column="RoutesID">
+        <generator class="identity"/>
+    </id>
+    <property name="OperatorId" column="OperatorId" type="System.Int32" not-null="false" />
+    <property name="DeparturePortId" column="DeparturePortId" type="System.String" not-null="false" length="5"/>
+    <property name="ArriavlPortId" column="ArriavlPortId" type="System.String" not-null="false" length="5"/>
+    <property name="IsActive" column="IsActive" type="System.Boolean" not-null="false" />
+    <many-to-one name="Operator" column="OperatorId" class="Company"  update="false"  insert="false" />
+    <many-to-one name="DeparturePort" column="DeparturePortId" class="Port"  update="false"  insert="false" />
+    <many-to-one name="ArriavlPort" column="ArriavlPortId" class="Port"  update="false"  insert="false" />
+    <bag name="Fares" table="Fare" inverse="true" lazy="true" cascade="none">
+      <key column="RoutesID" />
+      <one-to-many class="Fare"/>
+    </bag>
+ </class>
+</hibernate-mapping>

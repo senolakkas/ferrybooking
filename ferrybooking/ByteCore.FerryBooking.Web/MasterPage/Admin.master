@@ -1,0 +1,79 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Admin.master.cs" Inherits="Admin" EnableTheming="true" %>
+<%@ Register Src="../UserControls/LeftNavMenu.ascx" TagName="LeftNavMenu" TagPrefix="uc2" %>
+<%@ Register Src="../UserControls/Footer.ascx" TagName="Footer" TagPrefix="uc1" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>Washington Ferry Booking Management System</title>
+    <link href="../App_Themes/Admin.Theme/AdminStyle.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <table id="Table1" width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="17" height="12">
+                        <img id="Img1" src="../Images/Shadow/TopLeft.jpg" width="17" height="12" alt="img" /></td>
+                    <td background="../Images/Shadow/Top.jpg">
+                        <img id="Img2" src="../Images/spacer.gif" width="12" height="12" alt="img" /></td>
+                    <td width="17" height="12">
+                        <img id="Img3" src="../Images/Shadow/TopRight.jpg" width="17" height="12" alt="img" /></td>
+                </tr>
+                <tr>
+                    <td id="Td1" background="../Images/Shadow/Left.jpg">
+                        <img alt="img" id="Img4" src="../Images/spacer.gif" width="12" height="12" /></td>
+                    <td class="InsiteShadowCell">
+                        <table class="nonprint" width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+                            <tr>
+                                <td width="205">
+                                    <img id="imgLogo" width="189" height="41" hspace="0" vspace="2" runat="server" />
+                                </td>
+                                <td>&nbsp;</td>
+                                <td width="250" nowrap="nowrap">
+                                    <div align="right">
+                                        <asp:LinkButton ID="lbtnLogout" runat="server" CssClass="TopMenuLink" CausesValidation="False"
+                                            OnClick="lbtnLogout_Click" SkinID="NONE" >Logout</asp:LinkButton>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="180" valign="top" class="nonprint LeftMenuCell">
+                                    <!-- LEFT MENU BEGIN-->
+                                    <uc2:LeftNavMenu id="LeftNavMenu1" runat="server"></uc2:LeftNavMenu>
+                                    <!-- LEFT MENU END -->
+                                </td>
+                                <td bgcolor="#FFFFFF" valign="top">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                       <tr>
+                                            <td height="30" class="PageTitle">
+                                                &nbsp;
+                                                <asp:Label ID="lblPageTitle" runat="server"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="MainContentCell">
+                                                <!-- MAIN CONTENT BEGIN -->
+                                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                </asp:ContentPlaceHolder>
+                                                <!-- MAIN CENTENT END -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="nonprint" id="Td2" background="../Images/Shadow/Right.jpg">
+                        <img alt="img" id="Img9" src="../Images/spacer.gif" width="12" height="12" /></td>
+                </tr>
+                <tr>
+                    <td class="nonprint" colspan="3">
+                        <uc1:Footer ID="Footer2" runat="server" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>

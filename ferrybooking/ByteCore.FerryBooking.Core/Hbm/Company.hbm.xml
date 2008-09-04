@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="ByteCore.FerryBooking.Core" namespace="ByteCore.FerryBooking.Core">
+  <class lazy="false" name="Company" table="Company" >
+    <id name="ID" type="System.Int32" column="CompanyId">
+        <generator class="identity"/>
+    </id>
+    <property name="CurrencyId" column="CurrencyId" type="System.Int32" not-null="false" />
+    <property name="CompanyName" column="CompanyName" type="System.String" not-null="false" length="50"/>
+    <property name="CompanyShortName" column="CompanyShortName" type="System.String" not-null="false" length="10"/>
+    <property name="LogoImage" column="LogoImage" type="System.String" not-null="false" length="1000"/>
+    <property name="Terms" column="Terms" type="System.String" not-null="false" />
+    <property name="IsActive" column="IsActive" type="System.Boolean" not-null="false" />
+    <many-to-one name="Currency" column="CurrencyId" class="Currency"  update="false"  insert="false" />
+    <bag name="FareTypes" table="FareType" inverse="true" lazy="true" cascade="none">
+      <key column="OperatorId" />
+      <one-to-many class="FareType"/>
+    </bag>
+    <bag name="Routes" table="Route" inverse="true" lazy="true" cascade="none">
+      <key column="OperatorId" />
+      <one-to-many class="Route"/>
+    </bag>
+    <bag name="Seasons" table="Season" inverse="true" lazy="true" cascade="none">
+      <key column="OperatorId" />
+      <one-to-many class="Season"/>
+    </bag>
+    <bag name="VehicleAdditionPriceSettings" table="VehicleAdditionPriceSetting" inverse="true" lazy="true" cascade="none">
+      <key column="OperatorId" />
+      <one-to-many class="VehicleAdditionPriceSetting"/>
+    </bag>
+    <bag name="Vessels" table="Vessel" inverse="true" lazy="true" cascade="none">
+      <key column="OperatorId" />
+      <one-to-many class="Vessel"/>
+    </bag>
+ </class>
+</hibernate-mapping>
