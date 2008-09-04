@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{36FD963E-6CC6-4AD4-B2AD-EEF9CA3FF708}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ByteCore.FerryBooking.Data</RootNamespace>
+    <AssemblyName>ByteCore.FerryBooking.Data</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppSettingDao.cs" />
+    <Compile Include="BookingDao.cs" />
+    <Compile Include="CompanyDao.cs" />
+    <Compile Include="CountryDao.cs" />
+    <Compile Include="CurrencyDao.cs" />
+    <Compile Include="FareCategoryDao.cs" />
+    <Compile Include="FareDao.cs" />
+    <Compile Include="FareItemDao.cs" />
+    <Compile Include="FareTypeDao.cs" />
+    <Compile Include="NHibernateDaoFactory.cs" />
+    <Compile Include="PassengerTypeDao.cs" />
+    <Compile Include="PaymentDao.cs" />
+    <Compile Include="PaymentTypeDao.cs" />
+    <Compile Include="PortDao.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RouteDao.cs" />
+    <Compile Include="RouteOrderDao.cs" />
+    <Compile Include="RouteOrderDetailDao.cs" />
+    <Compile Include="RouteOrderPassengerDetailDao.cs" />
+    <Compile Include="RouteOrderVehicleDetailDao.cs" />
+    <Compile Include="ScheduleDao.cs" />
+    <Compile Include="SeasonDao.cs" />
+    <Compile Include="SpecialRequirementDao.cs" />
+    <Compile Include="VehicleAdditionPriceSettingDao.cs" />
+    <Compile Include="VehicleTypeDao.cs" />
+    <Compile Include="VesselDao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ByteCore.FerryBooking.Core\ByteCore.FerryBooking.Core.csproj">
+      <Project>{10C0641B-7D92-4B3A-84F4-34816BBC675B}</Project>
+      <Name>ByteCore.FerryBooking.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GreenTea\GreenTea.csproj">
+      <Project>{D5CA4611-DE8D-4095-BF21-7358148BB128}</Project>
+      <Name>GreenTea</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

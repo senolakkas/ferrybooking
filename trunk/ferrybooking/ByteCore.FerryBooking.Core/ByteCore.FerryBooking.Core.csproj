@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{10C0641B-7D92-4B3A-84F4-34816BBC675B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ByteCore.FerryBooking.Core</RootNamespace>
+    <AssemblyName>ByteCore.FerryBooking.Core</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
+    <Reference Include="Castle.MicroKernel, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
+    <Reference Include="Castle.Windsor, Version=1.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collection\AppSettingList.cs" />
+    <Compile Include="Collection\BookingList.cs" />
+    <Compile Include="Collection\CompanyList.cs" />
+    <Compile Include="Collection\CountryList.cs" />
+    <Compile Include="Collection\CurrencyList.cs" />
+    <Compile Include="Collection\FareCategoryList.cs" />
+    <Compile Include="Collection\FareItemList.cs" />
+    <Compile Include="Collection\FareList.cs" />
+    <Compile Include="Collection\FareTypeList.cs" />
+    <Compile Include="Collection\PassengerTypeList.cs" />
+    <Compile Include="Collection\PaymentList.cs" />
+    <Compile Include="Collection\PaymentTypeList.cs" />
+    <Compile Include="Collection\PortList.cs" />
+    <Compile Include="Collection\RouteList.cs" />
+    <Compile Include="Collection\RouteOrderDetailList.cs" />
+    <Compile Include="Collection\RouteOrderList.cs" />
+    <Compile Include="Collection\RouteOrderPassengerDetailList.cs" />
+    <Compile Include="Collection\RouteOrderVehicleDetailList.cs" />
+    <Compile Include="Collection\ScheduleList.cs" />
+    <Compile Include="Collection\SeasonList.cs" />
+    <Compile Include="Collection\SpecialRequirementList.cs" />
+    <Compile Include="Collection\VehicleAdditionPriceSettingList.cs" />
+    <Compile Include="Collection\VehicleTypeList.cs" />
+    <Compile Include="Collection\VesselList.cs" />
+    <Compile Include="DaoFactoryExposer.cs" />
+    <Compile Include="DataInterfaces\IAppSettingDao.cs" />
+    <Compile Include="DataInterfaces\IBookingDao.cs" />
+    <Compile Include="DataInterfaces\ICompanyDao.cs" />
+    <Compile Include="DataInterfaces\ICountryDao.cs" />
+    <Compile Include="DataInterfaces\ICurrencyDao.cs" />
+    <Compile Include="DataInterfaces\IDaoFactory.cs" />
+    <Compile Include="DataInterfaces\IFareCategoryDao.cs" />
+    <Compile Include="DataInterfaces\IFareDao.cs" />
+    <Compile Include="DataInterfaces\IFareItemDao.cs" />
+    <Compile Include="DataInterfaces\IFareTypeDao.cs" />
+    <Compile Include="DataInterfaces\IPassengerTypeDao.cs" />
+    <Compile Include="DataInterfaces\IPaymentDao.cs" />
+    <Compile Include="DataInterfaces\IPaymentTypeDao.cs" />
+    <Compile Include="DataInterfaces\IPortDao.cs" />
+    <Compile Include="DataInterfaces\IRouteDao.cs" />
+    <Compile Include="DataInterfaces\IRouteOrderDao.cs" />
+    <Compile Include="DataInterfaces\IRouteOrderDetailDao.cs" />
+    <Compile Include="DataInterfaces\IRouteOrderPassengerDetailDao.cs" />
+    <Compile Include="DataInterfaces\IRouteOrderVehicleDetailDao.cs" />
+    <Compile Include="DataInterfaces\IScheduleDao.cs" />
+    <Compile Include="DataInterfaces\ISeasonDao.cs" />
+    <Compile Include="DataInterfaces\ISpecialRequirementDao.cs" />
+    <Compile Include="DataInterfaces\IVehicleAdditionPriceSettingDao.cs" />
+    <Compile Include="DataInterfaces\IVehicleTypeDao.cs" />
+    <Compile Include="DataInterfaces\IVesselDao.cs" />
+    <Compile Include="Domain\AppSetting.cs" />
+    <Compile Include="Domain\Booking.cs" />
+    <Compile Include="Domain\Company.cs" />
+    <Compile Include="Domain\Country.cs" />
+    <Compile Include="Domain\Currency.cs" />
+    <Compile Include="Domain\Fare.cs" />
+    <Compile Include="Domain\FareCategory.cs" />
+    <Compile Include="Domain\FareItem.cs" />
+    <Compile Include="Domain\FareType.cs" />
+    <Compile Include="Domain\PassengerType.cs" />
+    <Compile Include="Domain\Payment.cs" />
+    <Compile Include="Domain\PaymentType.cs" />
+    <Compile Include="Domain\Port.cs" />
+    <Compile Include="Domain\Route.cs" />
+    <Compile Include="Domain\RouteOrder.cs" />
+    <Compile Include="Domain\RouteOrderDetail.cs" />
+    <Compile Include="Domain\RouteOrderPassengerDetail.cs" />
+    <Compile Include="Domain\RouteOrderVehicleDetail.cs" />
+    <Compile Include="Domain\Schedule.cs" />
+    <Compile Include="Domain\Season.cs" />
+    <Compile Include="Domain\SpecialRequirement.cs" />
+    <Compile Include="Domain\VehicleAdditionPriceSetting.cs" />
+    <Compile Include="Domain\VehicleType.cs" />
+    <Compile Include="Domain\Vessel.cs" />
+    <Compile Include="Dto\AppSettingDto.cs" />
+    <Compile Include="Dto\BookingDto.cs" />
+    <Compile Include="Dto\CompanyDto.cs" />
+    <Compile Include="Dto\CountryDto.cs" />
+    <Compile Include="Dto\CurrencyDto.cs" />
+    <Compile Include="Dto\FareCategoryDto.cs" />
+    <Compile Include="Dto\FareDto.cs" />
+    <Compile Include="Dto\FareItemDto.cs" />
+    <Compile Include="Dto\FareTypeDto.cs" />
+    <Compile Include="Dto\PassengerTypeDto.cs" />
+    <Compile Include="Dto\PaymentDto.cs" />
+    <Compile Include="Dto\PaymentTypeDto.cs" />
+    <Compile Include="Dto\PortDto.cs" />
+    <Compile Include="Dto\RouteDto.cs" />
+    <Compile Include="Dto\RouteOrderDetailDto.cs" />
+    <Compile Include="Dto\RouteOrderDto.cs" />
+    <Compile Include="Dto\RouteOrderPassengerDetailDto.cs" />
+    <Compile Include="Dto\RouteOrderVehicleDetailDto.cs" />
+    <Compile Include="Dto\ScheduleDto.cs" />
+    <Compile Include="Dto\SeasonDto.cs" />
+    <Compile Include="Dto\SpecialRequirementDto.cs" />
+    <Compile Include="Dto\VehicleAdditionPriceSettingDto.cs" />
+    <Compile Include="Dto\VehicleTypeDto.cs" />
+    <Compile Include="Dto\VesselDto.cs" />
+    <Compile Include="Logic\AppSettingLogic.cs" />
+    <Compile Include="Logic\BookingLogic.cs" />
+    <Compile Include="Logic\CompanyLogic.cs" />
+    <Compile Include="Logic\CountryLogic.cs" />
+    <Compile Include="Logic\CurrencyLogic.cs" />
+    <Compile Include="Logic\FareCategoryLogic.cs" />
+    <Compile Include="Logic\FareItemLogic.cs" />
+    <Compile Include="Logic\FareLogic.cs" />
+    <Compile Include="Logic\FareTypeLogic.cs" />
+    <Compile Include="Logic\PassengerTypeLogic.cs" />
+    <Compile Include="Logic\PaymentLogic.cs" />
+    <Compile Include="Logic\PaymentTypeLogic.cs" />
+    <Compile Include="Logic\PortLogic.cs" />
+    <Compile Include="Logic\RouteLogic.cs" />
+    <Compile Include="Logic\RouteOrderDetailLogic.cs" />
+    <Compile Include="Logic\RouteOrderLogic.cs" />
+    <Compile Include="Logic\RouteOrderPassengerDetailLogic.cs" />
+    <Compile Include="Logic\RouteOrderVehicleDetailLogic.cs" />
+    <Compile Include="Logic\ScheduleLogic.cs" />
+    <Compile Include="Logic\SeasonLogic.cs" />
+    <Compile Include="Logic\SpecialRequirementLogic.cs" />
+    <Compile Include="Logic\VehicleAdditionPriceSettingLogic.cs" />
+    <Compile Include="Logic\VehicleTypeLogic.cs" />
+    <Compile Include="Logic\VesselLogic.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Hbm\AppSetting.hbm.xml" />
+    <EmbeddedResource Include="Hbm\Booking.hbm.xml" />
+    <EmbeddedResource Include="Hbm\Company.hbm.xml" />
+    <EmbeddedResource Include="Hbm\Country.hbm.xml" />
+    <EmbeddedResource Include="Hbm\Currency.hbm.xml" />
+    <EmbeddedResource Include="Hbm\Fare.hbm.xml" />
+    <EmbeddedResource Include="Hbm\FareCategory.hbm.xml" />
+    <EmbeddedResource Include="Hbm\FareItem.hbm.xml" />
+    <EmbeddedResource Include="Hbm\FareType.hbm.xml" />
+    <EmbeddedResource Include="Hbm\PassengerType.hbm.xml" />
+    <EmbeddedResource Include="Hbm\Payment.hbm.xml" />
+    <EmbeddedResource Include="Hbm\PaymentType.hbm.xml" />
+    <EmbeddedResource Include="Hbm\Port.hbm.xml" />
+    <EmbeddedResource Include="Hbm\Route.hbm.xml" />
+    <EmbeddedResource Include="Hbm\RouteOrder.hbm.xml" />
+    <EmbeddedResource Include="Hbm\RouteOrderDetail.hbm.xml" />
+    <EmbeddedResource Include="Hbm\RouteOrderPassengerDetail.hbm.xml" />
+    <EmbeddedResource Include="Hbm\RouteOrderVehicleDetail.hbm.xml" />
+    <EmbeddedResource Include="Hbm\Schedule.hbm.xml" />
+    <EmbeddedResource Include="Hbm\Season.hbm.xml" />
+    <EmbeddedResource Include="Hbm\SpecialRequirement.hbm.xml" />
+    <EmbeddedResource Include="Hbm\VehicleAdditionPriceSetting.hbm.xml" />
+    <EmbeddedResource Include="Hbm\VehicleType.hbm.xml" />
+    <EmbeddedResource Include="Hbm\Vessel.hbm.xml" />
+    <Content Include="Lib\Castle.Core.dll" />
+    <Content Include="Lib\Castle.Core.xml" />
+    <Content Include="Lib\Castle.MicroKernel.dll" />
+    <Content Include="Lib\Castle.MicroKernel.xml" />
+    <Content Include="Lib\Castle.Windsor.dll" />
+    <Content Include="Lib\Castle.Windsor.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GreenTea\GreenTea.csproj">
+      <Project>{D5CA4611-DE8D-4095-BF21-7358148BB128}</Project>
+      <Name>GreenTea</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
