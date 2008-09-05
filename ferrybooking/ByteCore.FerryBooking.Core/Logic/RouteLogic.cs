@@ -25,10 +25,6 @@ namespace ByteCore.FerryBooking.Core
              //test SVN
          }
 
-         public void TestAgain()
-         {
-             //after 2
-         }
 
          public void WinsonTest3()
          {
