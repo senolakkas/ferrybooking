@@ -8,6 +8,9 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Route
      {
-
+         public string Winson()
+         {
+             return "";
+         }
      }
 }
