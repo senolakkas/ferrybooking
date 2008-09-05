@@ -18,25 +18,11 @@ namespace ByteCore.FerryBooking.Core
              return 0;
          }
 
-         public string Winson()
-         {
-             return "";
-         }
+
          public void Roger()
          {
              //test SVN
          }
 
-
-
-
-         public int Winson2()
-         {
-             return 0;
-         }
-         public int Winson2()
-         {
-             return 0;
-         }
      }
 }
