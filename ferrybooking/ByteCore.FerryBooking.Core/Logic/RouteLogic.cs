@@ -34,6 +34,11 @@ namespace ByteCore.FerryBooking.Core
          {
  
          }
+	 
+	 public void Roger2()
+	 {
+	     //roger2
+	 }
 
      }
 }
