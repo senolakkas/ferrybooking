@@ -8,6 +8,9 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Booking
      {
-
+         public void roger
+         {
+             //roger add code here
+         }
      }
 }
