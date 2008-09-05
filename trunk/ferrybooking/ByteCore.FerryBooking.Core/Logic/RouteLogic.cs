@@ -15,7 +15,8 @@ namespace ByteCore.FerryBooking.Core
 
          public int Winson2()
          {
-             return 0;
+	     //Roger found there is a bug in winson code and fixed it
+             return -1;
          }
 
 
