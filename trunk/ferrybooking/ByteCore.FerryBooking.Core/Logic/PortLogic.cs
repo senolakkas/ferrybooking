@@ -16,5 +16,25 @@ namespace ByteCore.FerryBooking.Core
 
              return new Port().GetList(oql);
          }
+
+         public void DoInsert(string portId, string portName)
+         {
+             Port port = new Port(portId);
+             port.PortName = PortName;
+             port.Create();
+         }
+
+         public void DoUpdate(string portId, string portName)
+         {
+             Port port= new Port().GetById(portId, true);
+             port.PortName = PortName;
+             port.Update();
+         }
+
+         public void DoDelete(string portId)
+         {
+             Port port = new Port().GetById(portId, false);
+             port.Delete();
+         }
      }
 }
