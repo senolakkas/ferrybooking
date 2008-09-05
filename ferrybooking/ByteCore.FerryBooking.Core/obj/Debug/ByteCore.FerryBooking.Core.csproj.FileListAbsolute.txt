@@ -20,3 +20,25 @@ E:\Dev\ByteCore.FerryBooking\ByteCore.FerryBooking\ByteCore.FerryBooking.Core\bi
 E:\Dev\ByteCore.FerryBooking\ByteCore.FerryBooking\ByteCore.FerryBooking.Core\bin\Debug\NHibernate.xml
 E:\Dev\ByteCore.FerryBooking\ByteCore.FerryBooking\ByteCore.FerryBooking.Core\bin\Debug\Castle.Core.xml
 E:\Dev\ByteCore.FerryBooking\ByteCore.FerryBooking\ByteCore.FerryBooking.Core\bin\Debug\GreenTea.pdb
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\ByteCore.FerryBooking.Core.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\ByteCore.FerryBooking.Core.pdb
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\Castle.Core.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\Castle.MicroKernel.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\Castle.Windsor.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\GreenTea.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\Castle.DynamicProxy2.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\log4net.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\Iesi.Collections.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\NHibernate.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\Castle.DynamicProxy.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\Castle.DynamicProxy2.xml
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\Castle.MicroKernel.xml
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\Iesi.Collections.xml
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\Castle.Windsor.xml
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\NHibernate.pdb
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\NHibernate.xml
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\Castle.Core.xml
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\bin\Debug\GreenTea.pdb
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\obj\Debug\ByteCore.FerryBooking.Core.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\ByteCore.FerryBooking.Core\obj\Debug\ByteCore.FerryBooking.Core.pdb
