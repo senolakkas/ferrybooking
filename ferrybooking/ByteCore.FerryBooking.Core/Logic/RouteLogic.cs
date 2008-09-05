@@ -12,5 +12,10 @@ namespace ByteCore.FerryBooking.Core
          {
              return "";
          }
+
+         public int Winson2()
+         {
+             return 0;
+         }
      }
 }
