@@ -18,10 +18,5 @@ namespace ByteCore.FerryBooking.Core
              //after 2
          }
 
-         public void TestAgain()
-         {
-             //after 2
-         }
-
      }
 }
