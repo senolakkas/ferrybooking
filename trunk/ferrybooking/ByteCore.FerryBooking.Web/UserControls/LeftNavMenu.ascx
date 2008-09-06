@@ -21,6 +21,14 @@
                     NavigateUrl="~/Admin/frmPort.aspx">Port</asp:HyperLink>
             </td>
         </tr>
+        <tr>
+            <td width="3">
+                <img src="../Images/LeftMenuItem.jpg" height="20" width="5"></td>
+            <td nowrap="nowrap">
+                <asp:HyperLink ID="HyperLink1" CssClass="LeftMenuItem" runat="server" 
+                    NavigateUrl="~/Admin/frmVessel.aspx">Vessel</asp:HyperLink>
+            </td>
+        </tr>
     </tbody>
 </table>
 <p>&nbsp;</p>
