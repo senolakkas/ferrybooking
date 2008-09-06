@@ -11,12 +11,15 @@ using System.Web.UI.HtmlControls;
 /// <summary>
 /// Summary description for BasePage
 /// </summary>
-public class BasePage
+namespace ByteCore.FerryBooking.Web
 {
-    public BasePage()
+    public class BasePage
     {
-        //
-        // TODO: Add constructor logic here
-        //
+        public BasePage()
+        {
+            //
+            // TODO: Add constructor logic here
+            //
+        }
     }
 }
