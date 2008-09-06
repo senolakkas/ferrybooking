@@ -8,6 +8,9 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Vessel
      {
-
+         public void Winson()
+         {
+             //1
+         }
      }
 }
