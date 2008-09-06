@@ -5,6 +5,7 @@
         <generator class="identity"/>
     </id>
     <property name="OperatorId" column="OperatorId" type="System.Int32" not-null="false" />
+    <property name="VesselCode" column="VesselCode" type="System.String" not-null="false" length="20"/>
     <property name="VesselName" column="VesselName" type="System.String" not-null="false" length="50"/>
     <many-to-one name="Operator" column="OperatorId" class="Company"  update="false"  insert="false" />
     <bag name="Schedules" table="Schedule" inverse="true" lazy="true" cascade="none">

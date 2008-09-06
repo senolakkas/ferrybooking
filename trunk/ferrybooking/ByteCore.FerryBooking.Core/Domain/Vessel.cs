@@ -15,6 +15,7 @@ namespace ByteCore.FerryBooking.Core
         {
             public static readonly string ID = "ID";
             public static readonly string OperatorId = "OperatorId";
+            public static readonly string VesselCode = "VesselCode";
             public static readonly string VesselName = "VesselName";
         }
         #endregion
@@ -22,6 +23,7 @@ namespace ByteCore.FerryBooking.Core
         #region Fields
         private IVesselDao _dao;
         private System.Int32? _OperatorId;
+        private System.String _VesselCode;
         private System.String _VesselName;
         private Company _Operator;
         private IList<Schedule> _Schedules = new List<Schedule>();
@@ -43,6 +45,11 @@ namespace ByteCore.FerryBooking.Core
          public virtual System.Int32? OperatorId {
              get { return _OperatorId; }
              set { _OperatorId = value;}
+         }
+
+         public virtual System.String VesselCode {
+             get { return _VesselCode; }
+             set { _VesselCode = value;}
          }
 
          public virtual System.String VesselName {

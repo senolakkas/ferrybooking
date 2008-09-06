@@ -9,6 +9,7 @@ namespace ByteCore.FerryBooking.Core
         #region Fields
         private System.Int32 _VesselId;
         private System.Int32? _OperatorId;
+        private System.String _VesselCode;
         private System.String _VesselName;
         #endregion
 
@@ -16,10 +17,11 @@ namespace ByteCore.FerryBooking.Core
         public VesselDto()
         {
         }
-        public VesselDto(Vessel vessel)
+        public VesselDto(Vessel vessel)  
         {
             _VesselId = vessel.ID;
             _OperatorId = vessel.OperatorId;
+            _VesselCode = vessel.VesselCode;
             _VesselName = vessel.VesselName;
         }
 
@@ -34,6 +36,11 @@ namespace ByteCore.FerryBooking.Core
          public virtual System.Int32? OperatorId {
              get { return _OperatorId; }
              set { _OperatorId = value;}
+         }
+
+         public virtual System.String VesselCode {
+             get { return _VesselCode; }
+             set { _VesselCode = value;}
          }
 
          public virtual System.String VesselName {

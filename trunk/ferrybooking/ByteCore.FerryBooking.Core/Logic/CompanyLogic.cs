@@ -8,6 +8,13 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Company
      {
+         public CompanyList GetAllList()
+         {
+             OQL oql = new OQL(typeof(Company));
+             oql.OrderBy(Company.Properties.CompanyName);
+             return new Company().GetList(oql);
+         }
+
          public CompanyList GetCompanyList(string companyName)
          {
              OQL oql = new OQL(typeof(Company));
