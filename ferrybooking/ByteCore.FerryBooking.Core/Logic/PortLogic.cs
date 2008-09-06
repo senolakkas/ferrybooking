@@ -14,26 +14,28 @@ namespace ByteCore.FerryBooking.Core
              if (!string.IsNullOrEmpty(portName))
                  oql.AddCondition(Condition.Like(Port.Properties.PortName, portName, LikeMode.Start));
 
+             oql.OrderBy(Port.Properties.ID);
+
              return new Port().GetList(oql);
          }
 
-         public void DoInsert(string portId, string portName)
+         public void DoInsert(string ID, string portName)
          {
-             Port port = new Port(portId);
-             port.PortName = PortName;
+             Port port = new Port(ID);
+             port.PortName = portName;
              port.Create();
          }
 
-         public void DoUpdate(string portId, string portName)
+         public void DoUpdate(string ID, string portName)
          {
-             Port port= new Port().GetById(portId, true);
-             port.PortName = PortName;
+             Port port= new Port().GetById(ID, true);
+             port.PortName = portName;
              port.Update();
          }
 
-         public void DoDelete(string portId)
+         public void DoDelete(string ID)
          {
-             Port port = new Port().GetById(portId, false);
+             Port port = new Port().GetById(ID, false);
              port.Delete();
          }
      }
