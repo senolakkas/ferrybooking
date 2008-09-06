@@ -21,7 +21,6 @@ namespace ByteCore.FerryBooking.Web.Admin
         {            
             if (!IsPostBack)
             {
-                //BindList();
                 this.FV_Operator.Visible = false;
             }
         }
@@ -33,6 +32,7 @@ namespace ByteCore.FerryBooking.Web.Admin
             //this.GV_OperatorList.DataSource = list;
             this.ODS_CompanyList.SelectParameters["companyName"].DefaultValue = this.txtOperatorName.Text.Trim();
             this.GV_OperatorList.DataBind();
+            this.lblMessage.Text = "";
         }
 
         private void BindCurrency()
