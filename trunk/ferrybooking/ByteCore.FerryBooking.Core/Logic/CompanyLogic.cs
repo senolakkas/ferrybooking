@@ -14,6 +14,8 @@ namespace ByteCore.FerryBooking.Core
              if (!string.IsNullOrEmpty(companyName))
                  oql.AddCondition(Condition.Like(Company.Properties.CompanyName, companyName, LikeMode.Start));
 
+             oql.OrderBy(Company.Properties.CompanyName);
+
              return new Company().GetList(oql);
          }
 
