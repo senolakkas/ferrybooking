@@ -21,12 +21,12 @@ namespace ByteCore.FerryBooking.Core
              return new Vessel().GetList(oql);
          }
 
-         public void DoInsert(string vesselCode, string vesselName, int operatorId)
+         public static void DoInsert(Vessel vessel)
          {
-             Vessel vessel = new Vessel();
-             vessel.VesselCode = vesselCode;
-             vessel.VesselName = vesselName;
-             vessel.OperatorId = operatorId;
+             //Vessel vessel = new Vessel();
+             //vessel.VesselCode = vesselCode;
+             //vessel.VesselName = vesselName;
+             //vessel.OperatorId = operatorId;
              vessel.Create();
              //vessel.FareTypes
          }

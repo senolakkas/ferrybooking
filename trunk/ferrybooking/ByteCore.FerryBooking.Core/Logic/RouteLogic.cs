@@ -8,33 +8,41 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Route
      {
-         public string Winson()
+         public RouteList GetRouteList(int operatorId)
          {
-             return "";
+             OQL oql = new OQL(typeof(Route));
+             if (operatorId != 0)
+                 oql.AddCondition(Condition.Eq(Route.Properties.OperatorId, operatorId));
+
+             oql.OrderBy(Route.Properties.DeparturePortId)
+                 .OrderBy(Route.Properties.ArriavlPortId);
+
+             return new Route().GetList(oql);
          }
 
-         public int Winson2()
+         public static void DoInsert(Route route)
          {
-	     //Roger found there is a bug in winson code and fixed it
-             return -1;
+             //Vessel vessel = new Vessel();
+             //vessel.VesselCode = vesselCode;
+             //vessel.VesselName = vesselName;
+             //vessel.OperatorId = operatorId;
+             route.Create();
+             //vessel.FareTypes
          }
 
-
-         public void Roger()
+         public void DoUpdate(int ID, int operatorId, string departurePortId, string arrivalPortId)
          {
-             //test SVN
+             Route route = new Route().GetById(ID, true);
+             route.OperatorId = operatorId;
+             route.DeparturePortId = departurePortId;
+             route.ArriavlPortId = arrivalPortId;
+             route.Update();
          }
 
-
-         public void WinsonTest3()
+         public void DoDelete(int ID)
          {
-            //change
+             Route route = new Route().GetById(ID, false);
+             route.Delete();
          }
-	 
-	 public void Roger2()
-	 {
-	     //roger2
-	 }
-
      }
 }
