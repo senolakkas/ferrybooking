@@ -8,6 +8,13 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Port
      {
+         public PortList GetAllList()
+         {
+             OQL oql = new OQL(typeof(Port));
+             oql.OrderBy(Port.Properties.PortName);
+             return new Port().GetList(oql);
+         }
+
          public PortList GetPortList(string portName)
          {
              OQL oql = new OQL(typeof(Port));
