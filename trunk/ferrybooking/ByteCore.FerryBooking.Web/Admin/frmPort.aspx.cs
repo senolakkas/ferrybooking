@@ -63,7 +63,7 @@ namespace ByteCore.FerryBooking.Web.Admin
                     UpdatePort(e.CommandArgument.ToString());
                     break;
                 case "DoCancel":
-                    this.FV_Port.ChangeMode(FormViewMode.ReadOnly);
+                    //this.FV_Port.ChangeMode(FormViewMode.ReadOnly);
                     this.FV_Port.Visible = false;
                     BindList();
                     break;
@@ -110,7 +110,7 @@ namespace ByteCore.FerryBooking.Web.Admin
 
         protected void GV_PortList_RowDeleted(object sender, GridViewDeletedEventArgs e)
         {
-            this.FV_Port.ChangeMode(FormViewMode.ReadOnly);
+            //this.FV_Port.ChangeMode(FormViewMode.ReadOnly);
             this.FV_Port.Visible = false;
             this.lblMessage.Text = "Delete successfully";
             this.lblMessage.ForeColor = Color.Green;

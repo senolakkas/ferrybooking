@@ -18,18 +18,18 @@
                         onselectedindexchanged="GV_OperatorList_SelectedIndexChanged" 
                         DataSourceID="ODS_CompanyList" onrowdeleted="GV_OperatorList_RowDeleted">
                     <Columns>
-                        <asp:BoundField DataField="CompanyName" HeaderText="Name" />
-                        <asp:BoundField DataField="CompanyShortName" HeaderText="Short Name" />
-                        <asp:TemplateField HeaderText="Currency">
-                            <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Currency.CurrencySymbol") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
                         <asp:CommandField SelectText="Edit" ShowSelectButton="True" />
                         <asp:TemplateField>
                             <ItemTemplate>
                                 <asp:LinkButton ID="lbtnDelete" runat="server" CausesValidation="False" CommandName="Delete"
                                 OnClientClick="return confirm('Are you sure you want to delete this record?');">Delete</asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="CompanyName" HeaderText="Name" />
+                        <asp:BoundField DataField="CompanyShortName" HeaderText="Short Name" />
+                        <asp:TemplateField HeaderText="Currency">
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Currency.CurrencySymbol") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

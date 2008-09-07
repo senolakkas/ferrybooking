@@ -18,10 +18,6 @@
                         onselectedindexchanged="GV_PortList_SelectedIndexChanged"
                         DataSourceID="ODS_PortList" onrowdeleted="GV_PortList_RowDeleted">
                     <Columns>
-                        <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" 
-                            SortExpression="ID" />
-                        <asp:BoundField DataField="PortName" HeaderText="PortName" 
-                            SortExpression="PortName" />
                         <asp:CommandField SelectText="Edit" ShowSelectButton="True" />
                         <asp:TemplateField>
                             <ItemTemplate>
@@ -29,6 +25,8 @@
                                 OnClientClick="return confirm('Are you sure you want to delete this record?');">Delete</asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:BoundField DataField="ID" HeaderText="Port Code" ReadOnly="True" />
+                        <asp:BoundField DataField="PortName" HeaderText="Port Name" />
                     </Columns>
                     <RowStyle CssClass="DataTableCell" />
                     <SelectedRowStyle CssClass="DataTableSelCell" />

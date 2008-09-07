@@ -73,7 +73,7 @@ namespace ByteCore.FerryBooking.Web.Admin
                     UpdateOperator(Convert.ToInt32(e.CommandArgument));
                     break;
                 case "DoCancel":
-                    this.FV_Operator.ChangeMode(FormViewMode.ReadOnly);
+                    //this.FV_Operator.ChangeMode(FormViewMode.ReadOnly);
                     this.FV_Operator.Visible = false;
                     BindList();
                     break;
@@ -170,7 +170,7 @@ namespace ByteCore.FerryBooking.Web.Admin
 
         protected void GV_OperatorList_RowDeleted(object sender, GridViewDeletedEventArgs e)
         {
-            this.FV_Operator.ChangeMode(FormViewMode.ReadOnly);
+            //this.FV_Operator.ChangeMode(FormViewMode.ReadOnly);
             this.FV_Operator.Visible = false;
             this.lblMessage.Text = "Delete successfully";
             this.lblMessage.ForeColor = Color.Green;
