@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage/Admin.master" AutoEventWireup="true" CodeBehind="frmCompany.aspx.cs" Inherits="ByteCore.FerryBooking.Web.Admin.frmCompany" Title="Operator Management" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage/Admin.master" AutoEventWireup="true" CodeBehind="frmCompany.aspx.cs" Inherits="ByteCore.FerryBooking.Web.frmCompany" Title="Operator Management" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table width="100%" border="0" cellpadding="0" cellspacing="4">
         <tr>

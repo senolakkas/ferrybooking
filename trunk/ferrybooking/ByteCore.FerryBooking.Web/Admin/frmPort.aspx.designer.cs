@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ByteCore.FerryBooking.Web.Admin {
+namespace ByteCore.FerryBooking.Web {
     
     
     public partial class frmPort {
