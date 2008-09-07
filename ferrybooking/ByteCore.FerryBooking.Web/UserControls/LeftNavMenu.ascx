@@ -29,6 +29,46 @@
                     NavigateUrl="~/Admin/frmVessel.aspx">Vessel</asp:HyperLink>
             </td>
         </tr>
+        <tr>
+            <td width="3">
+                <img src="../Images/LeftMenuItem.jpg" height="20" width="5"></td>
+            <td nowrap="nowrap">
+                <asp:HyperLink ID="HyperLink6" CssClass="LeftMenuItem" runat="server" 
+                    NavigateUrl="~/Admin/frmRoute.aspx">Route</asp:HyperLink>
+            </td>
+        </tr>
+        <tr>
+            <td width="3">
+                <img src="../Images/LeftMenuItem.jpg" height="20" width="5"></td>
+            <td nowrap="nowrap">
+                <asp:HyperLink ID="HyperLink2" CssClass="LeftMenuItem" runat="server" 
+                    NavigateUrl="~/Admin/frmFare.aspx">Fare</asp:HyperLink>
+            </td>
+        </tr>
+        <tr>
+            <td width="3">
+                <img src="../Images/LeftMenuItem.jpg" height="20" width="5"></td>
+            <td nowrap="nowrap">
+                <asp:HyperLink ID="HyperLink3" CssClass="LeftMenuItem" runat="server" 
+                    NavigateUrl="~/Admin/frmSchedule.aspx">Schedule</asp:HyperLink>
+            </td>
+        </tr>
+        <tr>
+            <td width="3">
+                <img src="../Images/LeftMenuItem.jpg" height="20" width="5"></td>
+            <td nowrap="nowrap">
+                <asp:HyperLink ID="HyperLink4" CssClass="LeftMenuItem" runat="server" 
+                    NavigateUrl="~/Admin/frmBooking.aspx">Booking</asp:HyperLink>
+            </td>
+        </tr>
+        <tr>
+            <td width="3">
+                <img src="../Images/LeftMenuItem.jpg" height="20" width="5"></td>
+            <td nowrap="nowrap">
+                <asp:HyperLink ID="HyperLink5" CssClass="LeftMenuItem" runat="server" 
+                    NavigateUrl="~/Admin/frmImportDumpFile.aspx">Import DumpFile</asp:HyperLink>
+            </td>
+        </tr>
     </tbody>
 </table>
 <p>&nbsp;</p>

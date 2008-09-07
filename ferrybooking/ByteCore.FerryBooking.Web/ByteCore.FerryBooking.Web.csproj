@@ -102,6 +102,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\frmRoute.aspx.cs">
+      <DependentUpon>frmRoute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\frmRoute.aspx.designer.cs">
+      <DependentUpon>frmRoute.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\frmVessel.aspx.cs">
       <DependentUpon>frmVessel.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -123,9 +130,13 @@
     <Compile Include="Admin\frmCompany.aspx.designer.cs">
       <DependentUpon>frmCompany.aspx</DependentUpon>
     </Compile>
-    <Content Include="App_Code\BasePage.cs" />
-    <Content Include="App_Code\CustomHttpApplication.cs" />
-    <Content Include="App_Code\Enums.cs" />
+    <Compile Include="App_Code\BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Code\CustomHttpApplication.cs" />
+    <Compile Include="App_Code\Enums.cs" />
+    <Compile Include="App_Code\ExcelReader.cs" />
+    <Compile Include="App_Code\ExportExcel.cs" />
     <Compile Include="MasterPage\Admin.master.cs">
       <DependentUpon>Admin.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -160,6 +171,7 @@
     <Content Include="MasterPage\Admin.master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\frmRoute.aspx" />
     <Content Include="Admin\frmVessel.aspx" />
     <Content Include="Admin\frmPort.aspx" />
     <Content Include="App_Themes\Admin.Theme\AdminSkin.skin" />

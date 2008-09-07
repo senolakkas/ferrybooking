@@ -13,9 +13,9 @@ using System.Xml.Linq;
 using ByteCore.FerryBooking.Core;
 using System.Drawing;
 
-namespace ByteCore.FerryBooking.Web.Admin
+namespace ByteCore.FerryBooking.Web
 {
-    public partial class frmCompany : System.Web.UI.Page
+    public partial class frmCompany : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {            

@@ -13,7 +13,7 @@ using System.Web.UI.HtmlControls;
 /// </summary>
 namespace ByteCore.FerryBooking.Web
 {
-    public class BasePage
+    public class BasePage : System.Web.UI.Page
     {
         public BasePage()
         {
