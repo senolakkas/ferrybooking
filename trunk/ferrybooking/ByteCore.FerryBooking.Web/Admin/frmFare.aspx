@@ -17,7 +17,7 @@
                 <br />
 &nbsp;Route:
                 <asp:DropDownList ID="ddlRoute" runat="server" DataSourceID="ODS_RouteList" 
-                    DataTextField="DeparturePortId" DataValueField="ID">
+                    DataTextField="FullName" DataValueField="ID">
                 </asp:DropDownList>
                 <br />
                 Date:
@@ -65,7 +65,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Route">
                             <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Route.FullName") %>'></asp:Label>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Routes.FullName") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="StartDate" HeaderText="Start Date" />
