@@ -591,7 +591,7 @@ namespace ByteCore.FerryBooking.Web
         public
 
         #region Dispose / Destructor
- void Dispose()
+        void Dispose()
         {
             if (_oleConn != null)
             {
