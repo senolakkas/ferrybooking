@@ -8,6 +8,14 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Route
      {
+         public string FullName
+         {
+             get
+             {
+                 return this.DeparturePortId + " - " + this.ArriavlPortId;
+             }
+         }
+
          public RouteList GetRouteList(int operatorId)
          {
              OQL oql = new OQL(typeof(Route));
