@@ -28,14 +28,11 @@ namespace ByteCore.FerryBooking.Core
 
          public FareList GetFareList(int operatorId, int routeId, string startDate, string endDate)
          {
-             //TODO: Add query by Company
-             OQL oql = new OQL(typeof(Fare));
-             if (routeId != 0)
-                 oql.AddCondition(Condition.Eq(Fare.Properties.RoutesID, routeId));
-             //oql.AddCondition(Condition.Ge(Fare.Properties.StartDate, startDate));
-             //oql.AddCondition(Condition.Le(Fare.Properties.EndDate, endDate));
-             oql.OrderBy(Fare.Properties.StartDate, OrderByDirect.Desc).OrderBy(Fare.Properties.EndDate, OrderByDirect.Desc);
-
+             OQL oql = new OQL(typeof(Fare))
+               .AddAssociation("Routes", "r")
+               .AddCondition(Condition.Eq("r.OperatorId", operatorId))
+               .AddCondition(Condition.Eq(Fare.Properties.RoutesID, routeId));
+            
              return new Fare().GetList(oql);
          }
 

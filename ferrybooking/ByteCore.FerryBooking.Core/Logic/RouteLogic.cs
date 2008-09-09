@@ -12,7 +12,7 @@ namespace ByteCore.FerryBooking.Core
          {
              get
              {
-                 return this.DeparturePortId + " - " + this.ArriavlPortId;
+                 return this.DeparturePortId + " - " + this.ArriavlPortId + "(" + this.Operator.CompanyShortName + ")";
              }
          }
 
