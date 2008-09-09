@@ -11,4 +11,10 @@ namespace ByteCore.FerryBooking.Web
         Passenger, 
         AddOn
     }
+
+    public enum Gender
+    {
+        Male,
+        Female
+    }
 }
