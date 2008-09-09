@@ -30,10 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AjaxControlToolkit, Version=3.0.11119.25533, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>D:\AjaxControlToolkit-Framework3.5\Binaries\AjaxControlToolkit.dll</HintPath>
-    </Reference>
+    <Reference Include="AjaxControlToolkit, Version=3.0.11119.25533, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
     <Reference Include="Castle.DynamicProxy2, Version=2.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL" />
     <Reference Include="System" />
@@ -198,6 +195,7 @@
     <Content Include="Admin\frmVessel.aspx" />
     <Content Include="Admin\frmPort.aspx" />
     <Content Include="App_Themes\Admin.Theme\AdminSkin.skin" />
+    <Content Include="Lib\AjaxControlToolkit.dll" />
     <Content Include="Lib\Infragistics2.WebUI.WebDateChooser.v7.1.dll" />
   </ItemGroup>
   <ItemGroup>
