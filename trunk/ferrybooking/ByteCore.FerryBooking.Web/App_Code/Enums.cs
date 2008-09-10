@@ -4,12 +4,12 @@ using System.Text;
 
 namespace ByteCore.FerryBooking.Web
 {
-    public enum FareCategory
+    public enum EnumFareCategory
     {
-        Accommodation, 
-        Vehicle, 
-        Passenger, 
-        AddOn
+        CABIN,
+        CARDECK,
+        PASSAGE, 
+        ADDON
     }
 
     public enum Gender
