@@ -65,5 +65,19 @@ namespace ByteCore.FerryBooking.Core
              Company company = new Company().GetById(ID, false);
              company.Delete();
          }
+
+         public static Company GetCompanyByShortName(string shortName)
+         {
+             OQL oql = new OQL(typeof(Company));
+             if (string.IsNullOrEmpty(shortName))
+                 return null;
+
+             oql.AddCondition(Condition.Eq(Company.Properties.CompanyShortName, shortName));
+             CompanyList list = new Company().GetList(oql);
+             if (list.Count == 1)
+                 return list[0];
+             else
+                 return null;
+         }
      }
 }

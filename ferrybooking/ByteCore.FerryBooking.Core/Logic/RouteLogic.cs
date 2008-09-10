@@ -30,12 +30,7 @@ namespace ByteCore.FerryBooking.Core
 
          public static void DoInsert(Route route)
          {
-             //Vessel vessel = new Vessel();
-             //vessel.VesselCode = vesselCode;
-             //vessel.VesselName = vesselName;
-             //vessel.OperatorId = operatorId;
              route.Create();
-             //vessel.FareTypes
          }
 
          public void DoUpdate(int ID, int operatorId, string departurePortId, string arrivalPortId)
@@ -51,6 +46,23 @@ namespace ByteCore.FerryBooking.Core
          {
              Route route = new Route().GetById(ID, false);
              route.Delete();
+         }
+
+         public static Route GetRouteByPortId(string depPortId, string arrPortId, int operatorId)
+         {
+             OQL oql = new OQL(typeof(Route));
+             if (string.IsNullOrEmpty(depPortId) || string.IsNullOrEmpty(arrPortId) || operatorId <= 0)
+                 return null;
+             
+             oql.AddCondition(Condition.Eq(Route.Properties.OperatorId, operatorId));
+             oql.AddCondition(Condition.Eq(Route.Properties.DeparturePortId, depPortId));
+             oql.AddCondition(Condition.Eq(Route.Properties.ArriavlPortId, arrPortId));
+
+             RouteList list = new Route().GetList(oql);
+             if (list.Count == 1)
+                 return list[0];
+             else
+                 return null;
          }
      }
 }

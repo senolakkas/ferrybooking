@@ -26,5 +26,28 @@ namespace ByteCore.FerryBooking.Core
                  return this.FareTypeName + "(" + this.FareTypeDescription + ")";
              }
          }
+
+         public static FareType GetFareTypeByValue(int operatorId, int categoryId, string fareTypeName, string fareTypeDesc)
+         {
+             OQL oql = new OQL(typeof(FareType));
+             if (string.IsNullOrEmpty(fareTypeName) || string.IsNullOrEmpty(fareTypeDesc) || operatorId <= 0 || categoryId <= 0)
+                 return null;
+
+             oql.AddCondition(Condition.Eq(FareType.Properties.OperatorId, operatorId));
+             oql.AddCondition(Condition.Eq(FareType.Properties.CategoryId, categoryId));
+             oql.AddCondition(Condition.Eq(FareType.Properties.FareTypeName, fareTypeName));
+             oql.AddCondition(Condition.Eq(FareType.Properties.FareTypeDescription, fareTypeDesc));
+
+             FareTypeList list = new FareType().GetList(oql);
+             if (list.Count == 1)
+                 return list[0];
+             else
+                 return null;
+         }
+
+         public static void DoInsert(FareType fareType)
+         {
+             fareType.Create();
+         }
      }
 }
