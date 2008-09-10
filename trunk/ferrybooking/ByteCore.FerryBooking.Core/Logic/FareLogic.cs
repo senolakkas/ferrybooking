@@ -36,7 +36,7 @@ namespace ByteCore.FerryBooking.Core
              return new Fare().GetList(oql);
          }
 
-         public void DoInsert(Fare fare)
+         public static void DoInsert(Fare fare)
          {
              fare.Create();
          }
@@ -50,6 +50,20 @@ namespace ByteCore.FerryBooking.Core
          {
              Fare fare = new Fare().GetById(ID, false);
              fare.Delete();
+         }
+
+         public static Fare GetFareByRouteAndDateRange(int routeId, DateTime startDate, DateTime endDate)
+         {
+             OQL oql = new OQL(typeof(Fare));
+             oql.AddCondition(Condition.Eq(Fare.Properties.RoutesID, routeId));
+             oql.AddCondition(Condition.Eq(Fare.Properties.StartDate, startDate));
+             oql.AddCondition(Condition.Eq(Fare.Properties.EndDate, endDate));
+
+             FareList list = new Fare().GetList(oql);
+             if (list.Count == 1)
+                 return list[0];
+             else
+                 return null;
          }
      }
 }
