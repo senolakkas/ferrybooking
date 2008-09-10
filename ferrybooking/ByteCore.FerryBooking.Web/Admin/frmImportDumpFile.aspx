@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Panel ID="pnlFareDump" runat="server">
+                <asp:Panel ID="pnlFareDump" runat="server" Visible="False">
                     <asp:Label ID="lblFare" runat="server" Text="Please select an Excel file to import:"></asp:Label>
                     &nbsp;
                     <asp:FileUpload ID="FU_Fare" runat="server" />
@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td>
-                <asp:Panel ID="pnlScheduleDump" runat="server">
+                <asp:Panel ID="pnlScheduleDump" runat="server" Visible="False">
                     <asp:Label ID="Label2" runat="server" Text="Please select an Excel file to import:"></asp:Label>
                     &nbsp;
                     <asp:FileUpload ID="FU_Schedule" runat="server" />
