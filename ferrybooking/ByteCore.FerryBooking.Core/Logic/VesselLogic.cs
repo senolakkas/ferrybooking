@@ -8,6 +8,13 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Vessel
      {
+         public VesselList GetAllList()
+         {
+             OQL oql = new OQL(typeof(Vessel));
+             oql.OrderBy(Vessel.Properties.VesselCode);
+             return new Vessel().GetList(oql);
+         }
+
          public VesselList GetVesselList(int operatorId, string vesselCode)
          {
              OQL oql = new OQL(typeof(Vessel));
@@ -44,6 +51,16 @@ namespace ByteCore.FerryBooking.Core
          {
              Vessel vessel = new Vessel().GetById(ID, false);
              vessel.Delete();
+         }
+
+         public static Vessel GetVesselByCode(string vesselCode)
+         {
+             OQL oql = new OQL(typeof(Vessel));
+             oql.AddCondition(Condition.Eq(Vessel.Properties.VesselCode, vesselCode));
+             VesselList list = new Vessel().GetList(oql);
+             if (list.Count == 1)
+                 return list[0];
+             return null;
          }
      }
 }

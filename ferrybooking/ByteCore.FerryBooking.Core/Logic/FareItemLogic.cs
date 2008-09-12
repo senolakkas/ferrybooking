@@ -8,6 +8,9 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class FareItem
      {
-
+         public static void DoInsert(FareItem fareItem)
+         {
+             fareItem.Create();
+         }
      }
 }

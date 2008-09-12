@@ -8,6 +8,15 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Fare
      {
+         public string FullName
+         {
+             get
+             {
+                 return this.Routes.DeparturePortId + " - " + this.Routes.ArriavlPortId
+                     + " (" + this.StartDate.Value.ToString("MMM d, yyyy") + " - " + this.EndDate.Value.ToString("MMM d, yyyy") + ")";
+             }         
+         }
+
          public Company company
          {
              get
@@ -23,7 +32,9 @@ namespace ByteCore.FerryBooking.Core
 
          public FareList GetAllList()
          {
-             return new Fare().GetList();
+             OQL oql = new OQL(typeof(Fare));
+             oql.OrderBy(Fare.Properties.RoutesID).OrderBy(Fare.Properties.StartDate);
+             return new Fare().GetList(oql);
          }
 
          public FareList GetFareList(int operatorId, int routeId, string startDate, string endDate)
@@ -61,6 +72,20 @@ namespace ByteCore.FerryBooking.Core
 
              FareList list = new Fare().GetList(oql);
              if (list.Count == 1)
+                 return list[0];
+             else
+                 return null;
+         }
+
+         public static Fare GetFareForSchedule(int routeId, DateTime depDateTime)
+         {
+             OQL oql = new OQL(typeof(Fare));
+             oql.AddCondition(Condition.Eq(Fare.Properties.RoutesID, routeId));
+             oql.AddCondition(Condition.Le(Fare.Properties.StartDate, depDateTime));
+             oql.AddCondition(Condition.Ge(Fare.Properties.EndDate, depDateTime));
+
+             FareList list = new Fare().GetList(oql);
+             if (list.Count >= 1)
                  return list[0];
              else
                  return null;
