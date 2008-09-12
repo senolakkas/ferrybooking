@@ -8,6 +8,9 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class PassengerType
      {
-
+         public static void DoInsert(PassengerType passengerType)
+         {
+             passengerType.Create();
+         }
      }
 }
