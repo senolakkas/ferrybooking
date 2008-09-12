@@ -103,6 +103,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\frmSchedule.aspx.cs">
+      <DependentUpon>frmSchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\frmSchedule.aspx.designer.cs">
+      <DependentUpon>frmSchedule.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\frmFare.aspx.cs">
       <DependentUpon>frmFare.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -189,6 +196,7 @@
     <Content Include="MasterPage\Admin.master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\frmSchedule.aspx" />
     <Content Include="Admin\frmFare.aspx" />
     <Content Include="Admin\frmImportDumpFile.aspx" />
     <Content Include="Admin\frmRoute.aspx" />
