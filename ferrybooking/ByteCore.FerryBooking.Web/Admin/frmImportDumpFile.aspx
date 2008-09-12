@@ -34,7 +34,8 @@
                     &nbsp;
                     <asp:FileUpload ID="FU_Schedule" runat="server" />
                     <br />
-                    <asp:Button ID="btnImportSchedule" runat="server" Text="Import Schedule" />
+                    <asp:Button ID="btnImportSchedule" runat="server" Text="Import Schedule" 
+                        onclick="btnImportSchedule_Click" />
                 </asp:Panel>
             </td>
         </tr>
@@ -44,8 +45,8 @@
         <tr>
             <td>
                 <div class="GrdOutline">
-                    <asp:GridView ID="GV_Result" runat="server" AutoGenerateColumns="False" Width="100%"
-                        AllowPaging="True" AllowSorting="True">
+                    <asp:GridView ID="GV_Result" runat="server" AutoGenerateColumns="False" 
+                        Width="100%">
                         <Columns>
                             <asp:TemplateField HeaderText="Row #">
                                 <ItemTemplate>
