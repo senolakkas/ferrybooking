@@ -8,14 +8,18 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Booking
      {
-         public void Roger()
+         public BookingList GetBookingList(int status, DateTime startDate, DateTime endDate)
          {
-             //test SVN
-         }
+             OQL oql = new OQL(typeof(Booking));
+             if (status != -1)
+                 oql.AddCondition(Condition.Eq(Booking.Properties.Status, status));
 
-         public void TestAgain()
-         {
-             //after 2
+             oql.AddCondition(Condition.Ge(Booking.Properties.BookingDate, startDate));
+             oql.AddCondition(Condition.Le(Booking.Properties.BookingDate, endDate));
+
+             oql.OrderBy(Booking.Properties.BookingDate, OrderByDirect.Desc);
+
+             return new Booking().GetList(oql);
          }
 
      }

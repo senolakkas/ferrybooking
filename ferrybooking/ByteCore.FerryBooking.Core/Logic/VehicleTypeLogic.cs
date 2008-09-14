@@ -13,5 +13,10 @@ namespace ByteCore.FerryBooking.Core
              vehicleType.Create();
          }
 
+         public static VehicleType GetByVehicleTypeId(int vehicleTypeId)
+         {
+             return new VehicleType().GetById(vehicleTypeId, false);
+         }
+
      }
 }

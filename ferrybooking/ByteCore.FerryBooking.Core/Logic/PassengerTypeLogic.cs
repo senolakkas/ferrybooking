@@ -12,5 +12,10 @@ namespace ByteCore.FerryBooking.Core
          {
              passengerType.Create();
          }
+
+         public static PassengerType GetByPassengerTypeId(int passengerTypeId)
+         {
+             return new PassengerType().GetById(passengerTypeId, false);
+         }
      }
 }
