@@ -17,4 +17,11 @@ namespace ByteCore.FerryBooking.Web
         Male,
         Female
     }
+
+    public enum BookingStatus
+    {
+        Complete=1,
+        Pending=2,
+        Fail=3
+    }
 }
