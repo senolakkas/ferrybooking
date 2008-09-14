@@ -61,6 +61,8 @@ namespace ByteCore.FerryBooking.Core
              RouteList list = new Route().GetList(oql);
              if (list.Count == 1)
                  return list[0];
+             else if (list.Count > 1)
+                 throw new Exception("Duplicate route with same operator, departure port and arrival port found.");
              else
                  return null;
          }

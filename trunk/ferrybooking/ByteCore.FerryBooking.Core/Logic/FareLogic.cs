@@ -73,6 +73,8 @@ namespace ByteCore.FerryBooking.Core
              FareList list = new Fare().GetList(oql);
              if (list.Count == 1)
                  return list[0];
+             else if (list.Count > 1)
+                 throw new Exception("Duplicate fare record found.");
              else
                  return null;
          }
@@ -81,8 +83,8 @@ namespace ByteCore.FerryBooking.Core
          {
              OQL oql = new OQL(typeof(Fare));
              oql.AddCondition(Condition.Eq(Fare.Properties.RoutesID, routeId));
-             oql.AddCondition(Condition.Le(Fare.Properties.StartDate, depDateTime));
-             oql.AddCondition(Condition.Ge(Fare.Properties.EndDate, depDateTime));
+             oql.AddCondition(Condition.Ge(Fare.Properties.StartDate, depDateTime));
+             oql.AddCondition(Condition.Le(Fare.Properties.EndDate, depDateTime));
 
              FareList list = new Fare().GetList(oql);
              if (list.Count >= 1)

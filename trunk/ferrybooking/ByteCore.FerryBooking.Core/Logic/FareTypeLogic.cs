@@ -27,16 +27,16 @@ namespace ByteCore.FerryBooking.Core
              }
          }
 
-         public static FareType GetFareTypeByValue(int operatorId, int categoryId, string fareTypeName, string fareTypeDesc)
+         public static FareType GetFareTypeByValue(int operatorId, int categoryId, string fareTypeName)
          {
              OQL oql = new OQL(typeof(FareType));
-             if (string.IsNullOrEmpty(fareTypeName) || string.IsNullOrEmpty(fareTypeDesc) || operatorId <= 0 || categoryId <= 0)
+             if (string.IsNullOrEmpty(fareTypeName) || operatorId <= 0 || categoryId <= 0)
                  return null;
 
              oql.AddCondition(Condition.Eq(FareType.Properties.OperatorId, operatorId));
              oql.AddCondition(Condition.Eq(FareType.Properties.CategoryId, categoryId));
              oql.AddCondition(Condition.Eq(FareType.Properties.FareTypeName, fareTypeName));
-             oql.AddCondition(Condition.Eq(FareType.Properties.FareTypeDescription, fareTypeDesc));
+             //oql.AddCondition(Condition.Eq(FareType.Properties.FareTypeDescription, fareTypeDesc));
 
              FareTypeList list = new FareType().GetList(oql);
              if (list.Count == 1)
