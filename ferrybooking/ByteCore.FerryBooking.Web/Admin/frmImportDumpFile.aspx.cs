@@ -121,7 +121,7 @@ namespace ByteCore.FerryBooking.Web
                     ap.DoInsert(arrPortId, arrPortId);
                 }
             }
-
+            //return dtErrInfo;
             //Select distinct column “Dep” and “Arr” from Route table, if not exist, insert into Route table
             Company c = Company.GetCompanyByShortName("AMHS");
             int operatorId = c.ID;
@@ -143,7 +143,7 @@ namespace ByteCore.FerryBooking.Web
                     Route.DoInsert(newRoute);
                 }
             }
-
+            //return dtErrInfo;
             //Create a record in Fare table (RouteID, StartDate, EndDate)
             foreach (DataRow row in dt.Rows)
             {
@@ -165,6 +165,11 @@ namespace ByteCore.FerryBooking.Web
                     if (string.IsNullOrEmpty(depPortId) || string.IsNullOrEmpty(arrPortId))
                         continue;
                     Route r = Route.GetRouteByPortId(depPortId, arrPortId, operatorId);
+                    if (r == null)
+                    {
+                        dtErrInfo.Rows.Add(new object[] { rowNumber, "Route", "Null", " Route not found" });
+                        continue;
+                    }
                     Fare existingFare = Fare.GetFareByRouteAndDateRange(r.ID, startDate, endDate);
                     if (existingFare == null)
                     {
@@ -182,6 +187,12 @@ namespace ByteCore.FerryBooking.Web
 
                     string strCategory = row["Category"].ToString();
                     FareCategory fareCategory = FareCategory.GetCategoryByName(strCategory);
+                    if (fareCategory == null)
+                    {
+                        dtErrInfo.Rows.Add(new object[] { rowNumber, "Fare Category", "Null", " Fare Category not found" });
+                        continue;
+                    } 
+
                     int categoryId = fareCategory.ID;
                     string strFacility = row["Facility"].ToString();
                     string strDescription = row["Description"].ToString();
@@ -197,13 +208,13 @@ namespace ByteCore.FerryBooking.Web
                         string strAmount = row["Amount"].ToString();
                         string strByFootAmount = row["Byfootamt"].ToString();
                         decimal.TryParse(strByFootAmount, out byFootAmount);
-                        FareType existingFareType = FareType.GetFareTypeByValue(operatorId, categoryId, strFacility, strDescription);
+                        FareType existingFareType = FareType.GetFareTypeByValue(operatorId, categoryId, strFacility);
                         if (existingFareType == null)
                         {
-                            if (int.TryParse(strMinLength, out minLength)
-                                && int.TryParse(strMaxLength, out maxLength)
-                                && decimal.TryParse(strAmount, out amount))
+                            if (decimal.TryParse(strAmount, out amount))
                             {
+                                int.TryParse(strMinLength, out minLength);
+                                int.TryParse(strMaxLength, out maxLength);
                                 FareType newFareType = new FareType();
                                 newFareType.OperatorId = operatorId;
                                 newFareType.CategoryId = categoryId;
@@ -234,19 +245,22 @@ namespace ByteCore.FerryBooking.Web
                             case "VAN":
                             case "RV":
                                 //TODO: Check duplicate
-                                VehicleType newVehicleType = new VehicleType(fareTypeId);
-                                newVehicleType.MinLegth = minLength;
-                                newVehicleType.MaxLegth = maxLength;
-                                newVehicleType.ByFootAmount = byFootAmount;
-                                VehicleType.DoInsert(newVehicleType);
-
+                                if (VehicleType.GetByVehicleTypeId(fareTypeId) == null)
+                                {
+                                    VehicleType newVehicleType = new VehicleType(fareTypeId);
+                                    newVehicleType.MinLegth = minLength;
+                                    newVehicleType.MaxLegth = maxLength;
+                                    newVehicleType.ByFootAmount = byFootAmount;
+                                    VehicleType.DoInsert(newVehicleType);
+                                }
+                                newFareItem = new FareItem();
                                 newFareItem.FareTypeId = fareTypeId;
                                 newFareItem.FareId = fareId;
                                 newFareItem.RangeStart = minLength;
                                 newFareItem.RangeEnd = maxLength;
                                 newFareItem.Amount = amount;
                                 newFareItem.ByFootAmount = byFootAmount;
-                                FareItem.DoInsert(newFareItem);
+                                FareItem.DoInsert(newFareItem);                                
                                 break;
                             case "ADT":
                             case "CHD":
@@ -275,23 +289,26 @@ namespace ByteCore.FerryBooking.Web
                                     default:
                                         break;
                                 }
-                                PassengerType newPassegerType = new PassengerType(fareTypeId);
-                                if (minLength == 0)
+                                if (PassengerType.GetByPassengerTypeId(fareTypeId) == null)
                                 {
-                                    minLength = defaultMinAge;
-                                    newPassegerType.MinAge = defaultMinAge;
+                                    PassengerType newPassegerType = new PassengerType(fareTypeId);
+                                    if (minLength == 0)
+                                    {
+                                        minLength = defaultMinAge;
+                                        newPassegerType.MinAge = defaultMinAge;
+                                    }
+                                    else
+                                        newPassegerType.MinAge = minLength;
+                                    if (maxLength == 0)
+                                    {
+                                        maxLength = defaultMaxAge;
+                                        newPassegerType.MaxAge = defaultMaxAge;
+                                    }
+                                    else
+                                        newPassegerType.MaxAge = maxLength;
+                                    PassengerType.DoInsert(newPassegerType);
                                 }
-                                else
-                                    newPassegerType.MinAge = minLength;
-                                if (maxLength == 0)
-                                {
-                                    maxLength = defaultMaxAge;
-                                    newPassegerType.MaxAge = defaultMaxAge;
-                                }
-                                else
-                                    newPassegerType.MaxAge = maxLength;
-                                PassengerType.DoInsert(newPassegerType);
-
+                                newFareItem = new FareItem();
                                 newFareItem.FareTypeId = fareTypeId;
                                 newFareItem.FareId = fareId;
                                 newFareItem.RangeStart = minLength;
@@ -303,6 +320,7 @@ namespace ByteCore.FerryBooking.Web
                             case "PET":
                             case "BIKE":
                             case "KYK":
+                                newFareItem = new FareItem();
                                 newFareItem.FareTypeId = fareTypeId;
                                 newFareItem.FareId = fareId;
                                 newFareItem.RangeStart = minLength;
@@ -312,6 +330,7 @@ namespace ByteCore.FerryBooking.Web
                                 FareItem.DoInsert(newFareItem);
                                 break;
                             default: //include all accommodation fare
+                                newFareItem = new FareItem();
                                 newFareItem.FareTypeId = fareTypeId;
                                 newFareItem.FareId = fareId;
                                 newFareItem.RangeStart = minLength;
@@ -333,12 +352,6 @@ namespace ByteCore.FerryBooking.Web
                     dtErrInfo.Rows.Add(new object[] { rowNumber, "StartDate/EndDate", "Null", " StartDate/EndDate is worng format or value" });
                     continue;
                 }
-            }
-
-
-            foreach (DataRow row in dt.Rows)
-            {
- 
             }
 
             return dtErrInfo;
