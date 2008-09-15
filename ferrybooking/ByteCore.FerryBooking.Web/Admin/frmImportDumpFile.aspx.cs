@@ -108,6 +108,8 @@ namespace ByteCore.FerryBooking.Web
             {
                 string depPortId = row["Dep"].ToString();
                 string arrPortId = row["Arr"].ToString();
+                if (string.IsNullOrEmpty(depPortId) || string.IsNullOrEmpty(arrPortId))
+                    continue;
                 Port dport = new Port().GetById(depPortId, false);
                 if (dport == null)
                 {
@@ -119,20 +121,14 @@ namespace ByteCore.FerryBooking.Web
                 {
                     Port ap = new Port();
                     ap.DoInsert(arrPortId, arrPortId);
-                }
-            }
-            //return dtErrInfo;
-            //Select distinct column “Dep” and “Arr” from Route table, if not exist, insert into Route table
-            Company c = Company.GetCompanyByShortName("AMHS");
-            int operatorId = c.ID;
-            foreach (DataRow row in dt.Rows)
-            {
-                string depPortId = row["Dep"].ToString();
-                string arrPortId = row["Arr"].ToString();
-                if (string.IsNullOrEmpty(depPortId) || string.IsNullOrEmpty(arrPortId))
-                    continue;
+                }            
 
+                //Select distinct column “Dep” and “Arr” from Route table, if not exist, insert into Route table
+                Company c = Company.GetCompanyByShortName("AMHS");
+                int operatorId = c.ID;
+           
                 Route r = Route.GetRouteByPortId(depPortId, arrPortId, operatorId);
+                int routeId;
                 if (r == null)
                 {
                     Route newRoute = new Route();
@@ -141,12 +137,14 @@ namespace ByteCore.FerryBooking.Web
                     newRoute.ArriavlPortId = arrPortId;
                     newRoute.IsActive = true;
                     Route.DoInsert(newRoute);
+                    routeId = newRoute.ID;
                 }
-            }
-            //return dtErrInfo;
-            //Create a record in Fare table (RouteID, StartDate, EndDate)
-            foreach (DataRow row in dt.Rows)
-            {
+                else
+                {
+                    routeId = r.ID;
+                }
+        
+                //Create a record in Fare table (RouteID, StartDate, EndDate)
                 string strStartDate = row["Startdate"].ToString();
                 string strEndDate = row["Enddate"].ToString();
                 DateTime startDate = DateTime.MaxValue;
@@ -159,22 +157,12 @@ namespace ByteCore.FerryBooking.Web
 
                 if (DateTime.TryParse(strStartDate, out startDate) && DateTime.TryParse(strEndDate, out endDate))
                 {
-                    string depPortId = row["Dep"].ToString();
-                    string arrPortId = row["Arr"].ToString();
                     int fareId;
-                    if (string.IsNullOrEmpty(depPortId) || string.IsNullOrEmpty(arrPortId))
-                        continue;
-                    Route r = Route.GetRouteByPortId(depPortId, arrPortId, operatorId);
-                    if (r == null)
-                    {
-                        dtErrInfo.Rows.Add(new object[] { rowNumber, "Route", "Null", " Route not found" });
-                        continue;
-                    }
-                    Fare existingFare = Fare.GetFareByRouteAndDateRange(r.ID, startDate, endDate);
+                    Fare existingFare = Fare.GetFareByRouteAndDateRange(routeId, startDate, endDate);
                     if (existingFare == null)
                     {
                         Fare newFare = new Fare();
-                        newFare.RoutesID = r.ID;
+                        newFare.RoutesID = routeId;
                         newFare.StartDate = startDate;
                         newFare.EndDate = endDate;
                         Fare.DoInsert(newFare);
