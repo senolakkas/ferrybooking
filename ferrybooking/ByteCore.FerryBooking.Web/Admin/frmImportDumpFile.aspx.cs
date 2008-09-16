@@ -196,90 +196,52 @@ namespace ByteCore.FerryBooking.Web
                         string strAmount = row["Amount"].ToString();
                         string strByFootAmount = row["Byfootamt"].ToString();
                         decimal.TryParse(strByFootAmount, out byFootAmount);
-                        FareType existingFareType = FareType.GetFareTypeByValue(operatorId, categoryId, strFacility);
+                        FareType existingFareType = FareType.GetFareTypeByValue(operatorId, categoryId, strFacility, strDescription);
                         if (existingFareType == null)
                         {
                             if (decimal.TryParse(strAmount, out amount))
                             {
                                 int.TryParse(strMinLength, out minLength);
                                 int.TryParse(strMaxLength, out maxLength);
-                                FareType newFareType = new FareType();
-                                newFareType.OperatorId = operatorId;
-                                newFareType.CategoryId = categoryId;
-                                newFareType.FareTypeName = strFacility;
-                                newFareType.FareTypeDescription = strDescription;
-                                FareType.DoInsert(newFareType);
-
-                                fareTypeId = newFareType.ID;
-                            }
-                            else
-                            {
-                                dtErrInfo.Rows.Add(new object[] { rowNumber, "Minlength/Maxlength/Amount", "Null", "Minlength/Maxlength/Amount is worng format or value" });
-                                continue;
-                            }
-                        }
-                        else
-                        {
-                            int.TryParse(strMinLength, out minLength);
-                            int.TryParse(strMaxLength, out maxLength);
-                            decimal.TryParse(strAmount, out amount);
-                            fareTypeId = existingFareType.ID;
-                        }
-
-                        FareItem newFareItem = new FareItem();
-                        switch (strFacility.ToUpper())
-                        {
-                            case "CAR":
-                            case "VAN":
-                            case "RV":
-                                //TODO: Check duplicate
-                                if (VehicleType.GetByVehicleTypeId(fareTypeId) == null)
+                                if (strCategory == EnumFareCategory.CARDECK.ToString())
                                 {
-                                    VehicleType newVehicleType = new VehicleType(fareTypeId);
+                                    VehicleType newVehicleType = new VehicleType();
+                                    newVehicleType.OperatorId = operatorId;
+                                    newVehicleType.CategoryId = categoryId;
+                                    newVehicleType.FareTypeName = strFacility;
+                                    newVehicleType.FareTypeDescription = strDescription;
                                     newVehicleType.MinLegth = minLength;
                                     newVehicleType.MaxLegth = maxLength;
                                     newVehicleType.ByFootAmount = byFootAmount;
                                     VehicleType.DoInsert(newVehicleType);
+                                    fareTypeId = newVehicleType.ID;
                                 }
-                                newFareItem = new FareItem();
-                                newFareItem.FareTypeId = fareTypeId;
-                                newFareItem.FareId = fareId;
-                                newFareItem.RangeStart = minLength;
-                                newFareItem.RangeEnd = maxLength;
-                                newFareItem.Amount = amount;
-                                newFareItem.ByFootAmount = byFootAmount;
-                                FareItem.DoInsert(newFareItem);                                
-                                break;
-                            case "ADT":
-                            case "CHD":
-                            case "SRC":
-                            case "UND":
-                                int defaultMinAge = 0;
-                                int defaultMaxAge = 0;
-                                switch (strFacility.ToUpper())
+                                else if (strCategory == EnumFareCategory.PASSAGE.ToString())
                                 {
-                                    case "ADT":
-                                        defaultMinAge = 12;
-                                        defaultMaxAge = 65;
-                                        break;
-                                    case "CHD":
-                                        defaultMinAge = 6;
-                                        defaultMaxAge = 12;
-                                        break;
-                                    case "SRC":
-                                        defaultMinAge = 65;
-                                        defaultMaxAge = 99;
-                                        break;
-                                    case "UND":
-                                        defaultMinAge = 0;
-                                        defaultMaxAge = 6;
-                                        break;
-                                    default:
-                                        break;
-                                }
-                                if (PassengerType.GetByPassengerTypeId(fareTypeId) == null)
-                                {
-                                    PassengerType newPassegerType = new PassengerType(fareTypeId);
+                                    int defaultMinAge = 0;
+                                    int defaultMaxAge = 0;
+                                    switch (strFacility.ToUpper())
+                                    {
+                                        case "ADT":
+                                            defaultMinAge = 12;
+                                            defaultMaxAge = 65;
+                                            break;
+                                        case "CHD":
+                                            defaultMinAge = 6;
+                                            defaultMaxAge = 12;
+                                            break;
+                                        case "SRC":
+                                            defaultMinAge = 65;
+                                            defaultMaxAge = 99;
+                                            break;
+                                        case "UND":
+                                            defaultMinAge = 0;
+                                            defaultMaxAge = 6;
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    PassengerType newPassegerType = new PassengerType();
                                     if (minLength == 0)
                                     {
                                         minLength = defaultMinAge;
@@ -295,39 +257,42 @@ namespace ByteCore.FerryBooking.Web
                                     else
                                         newPassegerType.MaxAge = maxLength;
                                     PassengerType.DoInsert(newPassegerType);
+                                    fareTypeId = newPassegerType.ID;
                                 }
-                                newFareItem = new FareItem();
-                                newFareItem.FareTypeId = fareTypeId;
-                                newFareItem.FareId = fareId;
-                                newFareItem.RangeStart = minLength;
-                                newFareItem.RangeEnd = maxLength;
-                                newFareItem.Amount = amount;
-                                newFareItem.ByFootAmount = byFootAmount;
-                                FareItem.DoInsert(newFareItem);
-                                break;
-                            case "PET":
-                            case "BIKE":
-                            case "KYK":
-                                newFareItem = new FareItem();
-                                newFareItem.FareTypeId = fareTypeId;
-                                newFareItem.FareId = fareId;
-                                newFareItem.RangeStart = minLength;
-                                newFareItem.RangeEnd = maxLength;
-                                newFareItem.Amount = amount;
-                                newFareItem.ByFootAmount = byFootAmount;
-                                FareItem.DoInsert(newFareItem);
-                                break;
-                            default: //include all accommodation fare
-                                newFareItem = new FareItem();
-                                newFareItem.FareTypeId = fareTypeId;
-                                newFareItem.FareId = fareId;
-                                newFareItem.RangeStart = minLength;
-                                newFareItem.RangeEnd = maxLength;
-                                newFareItem.Amount = amount;
-                                newFareItem.ByFootAmount = byFootAmount;
-                                FareItem.DoInsert(newFareItem);
-                                break;
+                                else
+                                {
+                                    FareType newFareType = new FareType();
+                                    newFareType.OperatorId = operatorId;
+                                    newFareType.CategoryId = categoryId;
+                                    newFareType.FareTypeName = strFacility;
+                                    newFareType.FareTypeDescription = strDescription;
+                                    FareType.DoInsert(newFareType);
+                                    fareTypeId = newFareType.ID;
+                                }
+                            }
+                            else
+                            {
+                                dtErrInfo.Rows.Add(new object[] { rowNumber, "Minlength/Maxlength/Amount", "Null", "Minlength/Maxlength/Amount is worng format or value" });
+                                continue;
+                            }
                         }
+                        else
+                        {
+                            int.TryParse(strMinLength, out minLength);
+                            int.TryParse(strMaxLength, out maxLength);
+                            decimal.TryParse(strAmount, out amount);
+                            fareTypeId = existingFareType.ID;
+                        }
+
+                        //TODO: Check duplicate
+                        FareItem newFareItem = new FareItem();
+                        newFareItem.FareTypeId = fareTypeId;
+                        newFareItem.FareId = fareId;
+                        newFareItem.RangeStart = minLength;
+                        newFareItem.RangeEnd = maxLength;
+                        newFareItem.Amount = amount;
+                        newFareItem.ByFootAmount = byFootAmount;
+                        FareItem.DoInsert(newFareItem);
                     }
                     else
                     {
