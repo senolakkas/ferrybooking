@@ -85,7 +85,7 @@ namespace GreenTea.OQL
 
         public OQL AddAssociation(string associationName)
         {
-           return AddAssociation(associationName,null);
+            return AddAssociation(associationName, associationName);
         }
 
         public OQL AddAssociation(string associationName, string alias)
