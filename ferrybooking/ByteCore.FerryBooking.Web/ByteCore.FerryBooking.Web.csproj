@@ -169,6 +169,13 @@
     <Compile Include="App_Code\Enums.cs" />
     <Compile Include="App_Code\ExcelReader.cs" />
     <Compile Include="App_Code\ExportExcel.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="MasterPage\Admin.master.cs">
       <DependentUpon>Admin.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -211,6 +218,7 @@
     <Content Include="Admin\frmVessel.aspx" />
     <Content Include="Admin\frmPort.aspx" />
     <Content Include="App_Themes\Admin.Theme\AdminSkin.skin" />
+    <Content Include="Default.aspx" />
     <Content Include="Lib\AjaxControlToolkit.dll" />
     <Content Include="Lib\Infragistics2.WebUI.WebDateChooser.v7.1.dll" />
   </ItemGroup>
