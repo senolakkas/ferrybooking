@@ -242,6 +242,10 @@ namespace ByteCore.FerryBooking.Web
                                             break;
                                     }
                                     PassengerType newPassegerType = new PassengerType();
+                                    newPassegerType.OperatorId = operatorId;
+                                    newPassegerType.CategoryId = categoryId;
+                                    newPassegerType.FareTypeName = strFacility;
+                                    newPassegerType.FareTypeDescription = strDescription;
                                     if (minLength == 0)
                                     {
                                         minLength = defaultMinAge;
