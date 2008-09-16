@@ -273,7 +273,7 @@ namespace GreenTea.DAO
                     }
                     else
                     {
-                        columnName = (sc.PropertyName.Split('.'))[1];
+                        columnName = (sc.PropertyName.Split('.'))[0]+"_"+(sc.PropertyName.Split('.'))[1];
                     }
                 }
 
