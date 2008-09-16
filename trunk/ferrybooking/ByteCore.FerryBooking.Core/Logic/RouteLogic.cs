@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using GreenTea.Utils;
 using GreenTea.OQL;
 using GreenTea.DAO;
+using System.Data;
+using System.Collections;
 
 namespace ByteCore.FerryBooking.Core
 {
@@ -26,6 +28,50 @@ namespace ByteCore.FerryBooking.Core
                  .OrderBy(Route.Properties.ArriavlPortId);
 
              return new Route().GetList(oql);
+         }
+
+         public DataTable GetRouteTable()
+         {
+             OQL oql = new OQL(typeof(Route));
+             oql.AddAssociation("Operator");
+             oql.AddAssociation("DeparturePort");
+             oql.AddAssociation("ArriavlPort");
+             oql.SelectProperty(Route.Properties.ID);
+             oql.SelectProperty("Operator." + Company.Properties.CompanyShortName);
+             oql.SelectProperty("DeparturePort." + Port.Properties.PortName);
+             oql.SelectProperty("ArriavlPort." + Port.Properties.PortName);
+             oql.AddCondition(Condition.Disjunction()
+                    .AddCondition(Condition.IsNull(Route.Properties.IsActive))
+                    .AddCondition(Condition.Eq(Route.Properties.IsActive, true))
+                    );
+             oql.OrderBy("DeparturePort." + Port.Properties.PortName)
+                 .OrderBy("ArriavlPort." + Port.Properties.PortName);
+             DataTable dt = Dao.GetTable(oql);
+             return dt;
+         }
+
+         public List<KeyValuePair<int, string>> GetKeyValueList()
+         {
+             DataTable dt = this.GetRouteTable();
+             List<KeyValuePair<int, string>> routeList = new List<KeyValuePair<int, string>>();
+             Hashtable ht = new Hashtable();
+             for (int i = 0; i < dt.Rows.Count; i++)
+             {
+                 string value = dt.Rows[i]["DeparturePort_PortName"].ToString() + " - " + dt.Rows[i]["ArriavlPort_PortName"].ToString();
+                 KeyValuePair<int, string> kv;
+                 if (!ht.ContainsKey(value))
+                 {
+                     kv = new KeyValuePair<int, string>(Convert.ToInt32(dt.Rows[i]["ID"]), value);
+                     ht.Add(value, value);
+                 }
+                 else
+                 {
+                     kv = new KeyValuePair<int, string>(Convert.ToInt32(dt.Rows[i]["ID"]),value + " (" + dt.Rows[i]["Operator_CompanyShortName"].ToString() + ")");
+                 }
+                 
+                 routeList.Add(kv);
+             }
+             return routeList;
          }
 
          public static void DoInsert(Route route)
