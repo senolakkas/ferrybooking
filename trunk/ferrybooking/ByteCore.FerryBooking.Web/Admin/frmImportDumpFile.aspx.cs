@@ -288,15 +288,17 @@ namespace ByteCore.FerryBooking.Web
                             fareTypeId = existingFareType.ID;
                         }
 
-                        //TODO: Check duplicate
-                        FareItem newFareItem = new FareItem();
-                        newFareItem.FareTypeId = fareTypeId;
-                        newFareItem.FareId = fareId;
-                        newFareItem.RangeStart = minLength;
-                        newFareItem.RangeEnd = maxLength;
-                        newFareItem.Amount = amount;
-                        newFareItem.ByFootAmount = byFootAmount;
-                        FareItem.DoInsert(newFareItem);
+                        if (FareItem.GetFareItemByValues(fareTypeId, fareId, minLength, maxLength, amount) == null)
+                        {
+                            FareItem newFareItem = new FareItem();
+                            newFareItem.FareTypeId = fareTypeId;
+                            newFareItem.FareId = fareId;
+                            newFareItem.RangeStart = minLength;
+                            newFareItem.RangeEnd = maxLength;
+                            newFareItem.Amount = amount;
+                            newFareItem.ByFootAmount = byFootAmount;
+                            FareItem.DoInsert(newFareItem);
+                        }
                     }
                     else
                     {
@@ -433,20 +435,23 @@ namespace ByteCore.FerryBooking.Web
                                 int routeId = r.ID;
                                 string strDepDatetime = row["Departs"].ToString();
                                 string strArrDatetime = row["Arrives"].ToString();
-                                DateTime depDatetime=DateTime.MinValue;
-                                DateTime arrDatetime=DateTime.MinValue;
+                                DateTime depDatetime = DateTime.MinValue;
+                                DateTime arrDatetime = DateTime.MinValue;
                                 if (DateTime.TryParse(strDepDatetime, out depDatetime)
                                     && DateTime.TryParse(strArrDatetime, out arrDatetime))
                                 {
                                     Fare availableFare = Fare.GetFareForSchedule(routeId, depDatetime);
                                     if (availableFare != null)
                                     {
-                                        Schedule newSchedule = new Schedule();
-                                        newSchedule.VesselId = vessel.ID;
-                                        newSchedule.FareId = availableFare.ID;
-                                        newSchedule.SailingTime = depDatetime;
-                                        newSchedule.ArrivalTime = arrDatetime;
-                                        Schedule.DoInsert(newSchedule);
+                                        if (Schedule.GetScheduleByValues(vessel.ID, availableFare.ID, depDatetime, arrDatetime) == null)
+                                        {
+                                            Schedule newSchedule = new Schedule();
+                                            newSchedule.VesselId = vessel.ID;
+                                            newSchedule.FareId = availableFare.ID;
+                                            newSchedule.SailingTime = depDatetime;
+                                            newSchedule.ArrivalTime = arrDatetime;
+                                            Schedule.DoInsert(newSchedule);
+                                        }
                                     }
                                     else
                                     {
@@ -466,11 +471,16 @@ namespace ByteCore.FerryBooking.Web
                                 continue;
                             }
                         }
-                        else 
+                        else
                         {
                             dtErrInfo.Rows.Add(new object[] { rowNumber, "Dep/Arr Port", "Null", "Dep/Arr Port is worng format or value" });
                             continue;
                         }
+                    }
+                    else
+                    {
+                        dtErrInfo.Rows.Add(new object[] { rowNumber, "Vessel", "Null", "Vessel is worng format or value" });
+                        continue;
                     }
                 }
                 else
