@@ -20,11 +20,17 @@ namespace ByteCore.FerryBooking.Core
              return new Schedule().GetList(oql);
          }
 
-         public ScheduleList GetScheduleList(int vesselId, int fareId, string sailingTime, string arrivalTime)
+         public ScheduleList GetScheduleList(int vesselId, int fareId, DateTime startTime, DateTime endTime)
          {
-             OQL oql = new OQL(typeof(Schedule))               
-               .AddCondition(Condition.Eq(Schedule.Properties.VesselId, vesselId))
-               .AddCondition(Condition.Eq(Schedule.Properties.FareId, fareId));
+             OQL oql = new OQL(typeof(Schedule));
+             if (vesselId != 0)
+                 oql.AddCondition(Condition.Eq(Schedule.Properties.VesselId, vesselId));
+             if (fareId!=0)
+                 oql.AddCondition(Condition.Eq(Schedule.Properties.FareId, fareId));
+             oql.AddCondition(Condition.Ge(Schedule.Properties.SailingTime, startTime));
+             oql.AddCondition(Condition.Le(Schedule.Properties.SailingTime, endTime));
+
+             oql.OrderBy(Schedule.Properties.SailingTime, OrderByDirect.Desc);
 
              return new Schedule().GetList(oql);
          }

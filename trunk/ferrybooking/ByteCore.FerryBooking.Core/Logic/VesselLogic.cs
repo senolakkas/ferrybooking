@@ -8,6 +8,14 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Vessel
      {
+         public string FullName
+         {
+             get 
+             {
+                 return this.VesselName + " - " + this.VesselCode + "(" + this.Operator.CompanyShortName + ")";
+             }
+         }
+
          public VesselList GetAllList()
          {
              OQL oql = new OQL(typeof(Vessel));

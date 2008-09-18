@@ -12,9 +12,9 @@ namespace ByteCore.FerryBooking.Core
          {
              get
              {
-                 return this.Routes.DeparturePortId + " - " + this.Routes.ArriavlPortId
+                 return this.Routes.DeparturePort.PortName + " - " + this.Routes.ArriavlPort.PortName
                      + " (" + this.StartDate.Value.ToString("MMM d, yyyy") + " - " + this.EndDate.Value.ToString("MMM d, yyyy") + ")";
-             }         
+             }
          }
 
          public Company company
