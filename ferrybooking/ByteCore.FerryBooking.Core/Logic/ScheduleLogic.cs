@@ -34,5 +34,22 @@ namespace ByteCore.FerryBooking.Core
              Schedule schedule = new Schedule().GetById(ID, false);
              schedule.Delete();
          }
+
+         public static Schedule GetScheduleByValues(int vesselId, int fareId, DateTime sailingTime, DateTime arrivalTime)
+         {
+             OQL oql = new OQL(typeof(Schedule));
+             oql.AddCondition(Condition.Eq(Schedule.Properties.VesselId, vesselId));
+             oql.AddCondition(Condition.Eq(Schedule.Properties.FareId, fareId));
+             oql.AddCondition(Condition.Eq(Schedule.Properties.SailingTime, sailingTime));
+             oql.AddCondition(Condition.Eq(Schedule.Properties.ArrivalTime, arrivalTime));
+
+             ScheduleList list = new Schedule().GetList(oql);
+             if (list.Count == 1)
+                 return list[0];
+             else if (list.Count > 1)
+                 throw new Exception("Duplicate Schedule Found");
+             else
+                 return null;
+         }
      }
 }
