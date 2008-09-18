@@ -122,24 +122,6 @@ namespace ByteCore.FerryBooking.Web {
         protected global::System.Web.UI.WebControls.Button btnSearch;
         
         /// <summary>
-        /// ODS_VesselList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ODS_VesselList;
-        
-        /// <summary>
-        /// ODS_FareList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ODS_FareList;
-        
-        /// <summary>
         /// GV_ScheduleList control.
         /// </summary>
         /// <remarks>
@@ -147,15 +129,6 @@ namespace ByteCore.FerryBooking.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GV_ScheduleList;
-        
-        /// <summary>
-        /// ODS_ScheduleList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ODS_ScheduleList;
         
         /// <summary>
         /// btnAdd control.
