@@ -9,15 +9,12 @@
                 </asp:ScriptManager>
                 <asp:Label ID="lblOperator" runat="server" Text="Vessel:"></asp:Label>
                 &nbsp;<asp:DropDownList ID="ddlVessel" runat="server" 
-                    DataSourceID="ODS_VesselList" DataTextField="VesselCode" 
-                    DataValueField="ID" AutoPostBack="True" 
-                    onselectedindexchanged="ddlVessel_SelectedIndexChanged1">
+                    onselectedindexchanged="ddlVessel_SelectedIndexChanged1" Width="300px">
                 </asp:DropDownList>
 &nbsp;
                 <br />
-                &nbsp;<asp:Label ID="lblOperator0" runat="server" Text="Fare:"></asp:Label>
-                <asp:DropDownList ID="ddlFare" runat="server" DataSourceID="ODS_FareList" 
-                    DataTextField="FullName" DataValueField="ID">
+                <asp:Label ID="lblOperator0" runat="server" Text="Fare:"></asp:Label>
+                <asp:DropDownList ID="ddlFare" runat="server" Width="300px">
                 </asp:DropDownList>
                 <br />
                 Date:
@@ -34,13 +31,6 @@
                 <br />
                 <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" 
                     Text="Search" CausesValidation="False" />
-                <asp:ObjectDataSource ID="ODS_VesselList" runat="server" 
-                    SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Vessel">
-                </asp:ObjectDataSource>
-                <asp:ObjectDataSource ID="ODS_FareList" runat="server" 
-                    OldValuesParameterFormatString="original_{0}" SelectMethod="GetAllList" 
-                    TypeName="ByteCore.FerryBooking.Core.Fare">
-                </asp:ObjectDataSource>
             </td>
         </tr>
         <tr>
@@ -48,9 +38,10 @@
                 <br />
                 <div class="GrdOutline">
                 <asp:GridView ID="GV_ScheduleList" runat="server" AutoGenerateColumns="False" 
-                        Width="100%" AllowPaging="True" AllowSorting="True" DataKeyNames="ID" 
+                        Width="100%" AllowPaging="True" DataKeyNames="ID" 
                         onselectedindexchanged="GV_ScheduleList_SelectedIndexChanged" 
-                        DataSourceID="ODS_ScheduleList" onrowdeleted="GV_ScheduleList_RowDeleted">
+                        onrowdeleted="GV_ScheduleList_RowDeleted" 
+                        onpageindexchanging="GV_ScheduleList_PageIndexChanging">
                     <Columns>
                         <asp:CommandField SelectText="Edit" ShowSelectButton="True" />
                         <asp:TemplateField>
@@ -76,23 +67,6 @@
                     <SelectedRowStyle CssClass="DataTableSelCell" />
                     <HeaderStyle CssClass="DataTableHeader" />
                 </asp:GridView>
-                    <asp:ObjectDataSource ID="ODS_ScheduleList" runat="server" 
-                        DeleteMethod="DoDelete" SelectMethod="GetScheduleList" 
-                        TypeName="ByteCore.FerryBooking.Core.Schedule">
-                        <DeleteParameters>
-                            <asp:Parameter Name="ID" Type="Int32" />
-                        </DeleteParameters>
-                        <SelectParameters>
-                            <asp:ControlParameter ControlID="ddlVessel" Name="vesselId" 
-                                PropertyName="SelectedValue" Type="Int32" />
-                            <asp:ControlParameter ControlID="ddlFare" Name="fareId" 
-                                PropertyName="SelectedValue" Type="Int32" />
-                            <asp:ControlParameter ControlID="txtStartDate" Name="sailingTime" 
-                                PropertyName="Text" Type="String" />
-                            <asp:ControlParameter ControlID="txtEndDate" Name="arrivalTime" PropertyName="Text" 
-                                Type="String" />
-                        </SelectParameters>
-                    </asp:ObjectDataSource>
                 </div>
             </td>
         </tr>
