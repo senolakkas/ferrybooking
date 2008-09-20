@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage/Admin.master" AutoEventWireup="true" CodeBehind="frmSchedule.aspx.cs" Inherits="ByteCore.FerryBooking.Web.frmSchedule" Title="Schedule Management" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table width="100%" border="0" cellpadding="0" cellspacing="4">
@@ -79,7 +78,114 @@
         </tr>
         <tr>
             <td>
-                &nbsp;</td>
+                <asp:FormView ID="FV_Schedule" runat="server" Width="500px" 
+                    onitemcommand="FV_Schedule_ItemCommand" DataSourceID="ODS_ScheduleEdit" 
+                    DataKeyNames="ID">
+                    <InsertItemTemplate>
+                        <table class="FormCellLabel" width="500px" border="0" cellpadding="2" cellspacing="0">
+                            <tr>
+                                <td colspan="2" class="FormTableHeader">
+                                    <asp:Label ID="lblHeader" runat="server">Add Schedule</asp:Label></td>
+                            </tr>
+                            <tr class="FormTable">
+                                <td>
+                                    Vessel:</td>
+                                <td>
+                                    <asp:DropDownList ID="ddlVessel" runat="server" Width="300px"></asp:DropDownList>
+                                </td>
+                            </tr>  
+                            <tr class="FormTable">
+                                <td>
+                                    Fare:</td>
+                                <td>
+                                    <asp:DropDownList ID="ddlFare" runat="server" Width="300px"></asp:DropDownList>
+                                    </td>
+                            </tr>                              
+                            <tr class="FormTable">
+                                <td>
+                                    Sailing Time:</td>
+                                <td>
+                                    <asp:TextBox ID="txtSailingTime" runat="server" Width="150px"></asp:TextBox>
+                                    &nbsp;(i.e. 2008/09/18 14:30:00)</td>
+                            </tr>
+                            <tr class="FormTable">
+                                <td>
+                                    Arrival Time:</td>
+                                <td>
+                                    <asp:TextBox ID="txtArrivalTime" runat="server" Width="150px"></asp:TextBox>
+                                    &nbsp;(i.e. 2008/09/19 18:30:00)</td>
+                            </tr>
+                            <tr class="FormTable">
+                                <td>
+                                </td>
+                                <td>
+                                    <asp:LinkButton ID="btnInsert" runat="server" CausesValidation="True" CommandName="DoInsert"
+                                        Text="Insert"></asp:LinkButton>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <asp:LinkButton ID="btnCancelInsert" runat="server" CausesValidation="False" CommandName="DoCancel"
+                                        Text="Cancel"></asp:LinkButton></td>
+                            </tr>
+                        </table>
+                    </InsertItemTemplate>
+                    <EditItemTemplate>
+                        <table class="FormCellLabel" width="500px" border="0" cellpadding="2" cellspacing="0">
+                            <tr>
+                                <td colspan="2" class="FormTableHeader">
+                                    <asp:Label ID="lblHeader0" runat="server">Edit Schedule</asp:Label></td>
+                            </tr>
+                            <tr class="FormTable">
+                                <td>
+                                    Vessel:</td>
+                                <td>
+                                    <asp:DropDownList ID="ddlVessel" runat="server" Width="300px" >
+                                    </asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr class="FormTable">
+                                <td>
+                                    Fare:</td>
+                                <td>
+                                    <asp:DropDownList ID="ddlFare" runat="server" Width="300px" >
+                                    </asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr class="FormTable">
+                                <td>
+                                    Sailing Time:</td>
+                                <td>
+                                    <asp:TextBox ID="txtSailingTime" runat="server" Width="150px"></asp:TextBox>
+                                    &nbsp;(i.e. 2008/09/18 14:30:00)</td>
+                            </tr>
+                            <tr class="FormTable">
+                                <td>
+                                    Arrival Time:</td>
+                                <td>
+                                    <asp:TextBox ID="txtArrivalTime" runat="server" Width="150px"></asp:TextBox>
+                                    &nbsp;(i.e. 2008/09/19 18:30:00)</td>
+                            </tr>
+                            <tr class="FormTable">
+                                <td>
+                                </td>
+                                <td>
+                                    <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="DoUpdate" CommandArgument='<%# Eval("ID") %>' 
+                                        Text="Update"></asp:LinkButton>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="DoCancel"
+                                        Text="Cancel"></asp:LinkButton>
+                                </td>
+                            </tr>
+                        </table>
+                    </EditItemTemplate>
+                </asp:FormView>
+                <asp:ObjectDataSource ID="ODS_ScheduleEdit" runat="server" 
+                    SelectMethod="GetById" TypeName="ByteCore.FerryBooking.Core.Schedule">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="GV_ScheduleList" Name="id" 
+                            PropertyName="SelectedValue" Type="Int32" />
+                        <asp:Parameter DefaultValue="false" Name="shouldLock" Type="Boolean" />
+                    </SelectParameters>
+                </asp:ObjectDataSource>
+            </td>
         </tr>
     </table>
 </asp:Content>
