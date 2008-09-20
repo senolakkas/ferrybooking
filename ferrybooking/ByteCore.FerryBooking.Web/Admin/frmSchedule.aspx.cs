@@ -24,6 +24,7 @@ namespace ByteCore.FerryBooking.Web
             {
                 BindControls();
                 BindList();
+                this.FV_Schedule.Visible = false;
             }
         }
 
@@ -78,17 +79,25 @@ namespace ByteCore.FerryBooking.Web
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
+            this.FV_Schedule.ChangeMode(FormViewMode.Insert);
+            this.FV_Schedule.Visible = true;
             BindList();
         }
 
         protected void GV_ScheduleList_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.ODS_ScheduleEdit.SelectParameters["id"].DefaultValue = this.GV_ScheduleList.SelectedValue.ToString();
+            this.FV_Schedule.DataBind();
+            this.FV_Schedule.ChangeMode(FormViewMode.Edit);
+            this.FV_Schedule.Visible = true;
             BindList();
-
         }
 
         protected void GV_ScheduleList_RowDeleted(object sender, GridViewDeletedEventArgs e)
         {
+            this.FV_Schedule.Visible = false;
+            this.lblMessage.Text = "Delete successfully";
+            this.lblMessage.ForeColor = Color.Green;
             BindList();
         }
 
@@ -101,6 +110,33 @@ namespace ByteCore.FerryBooking.Web
         {
             this.GV_ScheduleList.PageIndex = e.NewPageIndex;
             BindList();
+        }
+
+        protected void FV_Schedule_ItemCommand(object sender, FormViewCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "DoInsert":
+                    InsertSchedule();
+                    break;
+                case "DoUpdate":
+                    UpdateSchedule(Convert.ToInt32(e.CommandArgument));
+                    break;
+                case "DoCancel":
+                    this.FV_Schedule.Visible = false;
+                    BindList();
+                    break;
+            }
+        }
+
+        private void UpdateSchedule(int id)
+        {
+            return;
+        }
+
+        private void InsertSchedule()
+        {
+            return;
         }
     }
 }
