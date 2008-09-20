@@ -37,12 +37,16 @@ namespace ByteCore.FerryBooking.Core
              return new Fare().GetList(oql);
          }
 
-         public FareList GetFareList(int operatorId, int routeId, string startDate, string endDate)
+         public FareList GetFareList(int operatorId, int routeId, DateTime startDate, DateTime endDate)
          {
-             OQL oql = new OQL(typeof(Fare))
-               .AddAssociation("Routes", "r")
-               .AddCondition(Condition.Eq("r.OperatorId", operatorId))
-               .AddCondition(Condition.Eq(Fare.Properties.RoutesID, routeId));
+             OQL oql = new OQL(typeof(Fare));
+             if (operatorId != 0)
+                 oql.AddAssociation("Routes", "r")
+                     .AddCondition(Condition.Eq("r.OperatorId", operatorId));
+             if (routeId != 0)
+                 oql.AddCondition(Condition.Eq(Fare.Properties.RoutesID, routeId));
+             oql.AddCondition(Condition.Ge(Fare.Properties.StartDate, startDate));
+             oql.AddCondition(Condition.Le(Fare.Properties.EndDate, endDate));
             
              return new Fare().GetList(oql);
          }
@@ -54,6 +58,15 @@ namespace ByteCore.FerryBooking.Core
 
          public void DoUpdate(Fare fare)
          {
+             fare.Update();
+         }
+
+         public void DoUpdate(int ID, int routeId, DateTime startDate, DateTime endDate)
+         {
+             Fare fare = new Fare().GetById(ID, true);
+             fare.RoutesID = routeId;
+             fare.StartDate = startDate;
+             fare.EndDate = endDate;
              fare.Update();
          }
 

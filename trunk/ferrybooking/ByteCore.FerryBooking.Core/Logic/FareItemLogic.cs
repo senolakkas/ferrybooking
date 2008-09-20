@@ -30,5 +30,17 @@ namespace ByteCore.FerryBooking.Core
              else
                  return null;
          }
+
+         public FareItemList GetFareItemList(int categoryId, int fareId)
+         {
+             OQL oql = new OQL(typeof(FareItem));
+             if (categoryId != 0)
+                 oql.AddAssociation("FareType", "ft")
+                     .AddCondition(Condition.Eq("ft.CategoryId", categoryId));
+             if (fareId != 0)
+                 oql.AddCondition(Condition.Eq(FareItem.Properties.FareId, fareId));
+
+             return new FareItem().GetList(oql);
+         }
      }
 }
