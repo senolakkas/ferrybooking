@@ -14,8 +14,18 @@ namespace ByteCore.FerryBooking.Core
          {
              get
              {
-                 return this.DeparturePortId + " - " + this.ArriavlPortId + "(" + this.Operator.CompanyShortName + ")";
+                 return this.DeparturePort.PortName + " - " + this.ArriavlPort.PortName + "(" + this.Operator.CompanyShortName + ")";
              }
+         }
+
+         public RouteList GetAllList()
+         {
+             OQL oql = new OQL(typeof(Route));
+             oql.OrderBy(Route.Properties.OperatorId)
+                 .OrderBy(Route.Properties.DeparturePortId)
+                 .OrderBy(Route.Properties.ArriavlPortId);
+
+             return new Route().GetList(oql);
          }
 
          public RouteList GetRouteList(int operatorId)

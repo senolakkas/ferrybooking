@@ -22,5 +22,13 @@ namespace ByteCore.FerryBooking.Core
                  return null;
          }
 
+         public FareCategoryList GetAllList()
+         {
+             OQL oql = new OQL(typeof(FareCategory));
+             oql.OrderBy(FareCategory.Properties.CategoryName);
+
+             return new FareCategory().GetList(oql);
+         }
+
      }
 }
