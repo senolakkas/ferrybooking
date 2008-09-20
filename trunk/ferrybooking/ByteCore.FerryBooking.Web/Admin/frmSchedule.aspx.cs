@@ -18,6 +18,8 @@ namespace ByteCore.FerryBooking.Web
 {
     public partial class frmSchedule : BasePage
     {
+        private Schedule _schedule;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -101,11 +103,6 @@ namespace ByteCore.FerryBooking.Web
             BindList();
         }
 
-        protected void ddlVessel_SelectedIndexChanged1(object sender, EventArgs e)
-        {
-
-        }
-
         protected void GV_ScheduleList_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.GV_ScheduleList.PageIndex = e.NewPageIndex;
@@ -131,12 +128,83 @@ namespace ByteCore.FerryBooking.Web
 
         private void UpdateSchedule(int id)
         {
-            return;
+            int vesselId;
+            int fareId;
+            DateTime sailingTime;
+            DateTime arrivalTime;
+
+            DropDownList ddlVessel = (DropDownList)this.FV_Schedule.FindControl("ddlVessel");
+            DropDownList ddlFare = (DropDownList)this.FV_Schedule.FindControl("ddlFare");
+            TextBox txtSailingTime = (TextBox)this.FV_Schedule.FindControl("txtSailingTime");
+            TextBox txtArrivalTime = (TextBox)this.FV_Schedule.FindControl("txtArrivalTime");
+
+            vesselId = (ddlVessel == null) ? 0 : Convert.ToInt32(ddlVessel.SelectedValue);
+            fareId = (ddlFare == null) ? 0 : Convert.ToInt32(ddlFare.SelectedValue);
+
+            if (DateTime.TryParse(txtSailingTime.Text.Trim(), out sailingTime)
+                && DateTime.TryParse(txtArrivalTime.Text.Trim(), out arrivalTime)
+                && vesselId != 0 && fareId != 0)
+            {
+                Schedule schedule = new Schedule();
+                schedule.DoUpdate(id, vesselId, fareId, sailingTime, arrivalTime);
+                BindList();
+
+                if (ddlVessel != null)
+                    ddlVessel.SelectedIndex = 0;
+                if (ddlFare != null)
+                    ddlFare.SelectedIndex = 0;
+
+                this.lblMessage.Text = "Update successfully";
+                this.lblMessage.ForeColor = Color.Green;
+            }
+            else
+            {
+                this.lblMessage.Text = "Update failed";
+                this.lblMessage.ForeColor = Color.Red;
+            }
         }
 
         private void InsertSchedule()
         {
-            return;
+            int vesselId;
+            int fareId;
+            DateTime sailingTime;
+            DateTime arrivalTime;
+
+            DropDownList ddlVessel = (DropDownList)this.FV_Schedule.FindControl("ddlVessel");
+            DropDownList ddlFare = (DropDownList)this.FV_Schedule.FindControl("ddlFare");
+            TextBox txtSailingTime = (TextBox)this.FV_Schedule.FindControl("txtSailingTime");
+            TextBox txtArrivalTime = (TextBox)this.FV_Schedule.FindControl("txtArrivalTime");
+
+            vesselId = (ddlVessel == null) ? 0 : Convert.ToInt32(ddlVessel.SelectedValue);
+            fareId = (ddlFare == null) ? 0 : Convert.ToInt32(ddlFare.SelectedValue);
+
+            if (DateTime.TryParse(txtSailingTime.Text.Trim(), out sailingTime)
+                && DateTime.TryParse(txtArrivalTime.Text.Trim(), out arrivalTime)
+                && vesselId != 0 && fareId != 0)
+            {
+                _schedule = new Schedule();
+                _schedule.VesselId = vesselId;
+                _schedule.FareId = fareId;
+                _schedule.SailingTime = sailingTime;
+                _schedule.ArrivalTime = arrivalTime;
+                Schedule.DoInsert(_schedule);
+
+                BindList();
+
+                if (ddlVessel != null)
+                    ddlVessel.SelectedIndex = 0;
+                if (ddlFare != null)
+                    ddlFare.SelectedIndex = 0;
+
+                this.lblMessage.Text = "Insert successfully";
+                this.lblMessage.ForeColor = Color.Green;
+            }
+            else
+            {
+                this.lblMessage.Text = "Insert failed";
+                this.lblMessage.ForeColor = Color.Red;
+            }
         }
     }
 }
