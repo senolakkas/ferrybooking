@@ -7,8 +7,7 @@
                 <asp:ScriptManager ID="ScriptManager1" runat="server">
                 </asp:ScriptManager>
                 <asp:Label ID="lblOperator" runat="server" Text="Vessel:"></asp:Label>
-                &nbsp;<asp:DropDownList ID="ddlVessel" runat="server" 
-                    onselectedindexchanged="ddlVessel_SelectedIndexChanged1" Width="300px">
+                &nbsp;<asp:DropDownList ID="ddlVessel" runat="server" Width="300px">
                 </asp:DropDownList>
 &nbsp;
                 <br />
@@ -91,14 +90,22 @@
                                 <td>
                                     Vessel:</td>
                                 <td>
-                                    <asp:DropDownList ID="ddlVessel" runat="server" Width="300px"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlVessel" runat="server" Width="300px" DataSourceID="ODS_Vessel" 
+                                        DataTextField="FullName" DataValueField="ID"></asp:DropDownList>
+                                    <asp:ObjectDataSource ID="ODS_Vessel" runat="server" 
+                                        SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Vessel">
+                                    </asp:ObjectDataSource>
                                 </td>
                             </tr>  
                             <tr class="FormTable">
                                 <td>
                                     Fare:</td>
                                 <td>
-                                    <asp:DropDownList ID="ddlFare" runat="server" Width="300px"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlFare" runat="server" Width="300px" DataSourceID="ODS_Fare" 
+                                        DataTextField="FullName" DataValueField="ID"></asp:DropDownList>
+                                    <asp:ObjectDataSource ID="ODS_Fare" runat="server" 
+                                        SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Fare">
+                                    </asp:ObjectDataSource>
                                     </td>
                             </tr>                              
                             <tr class="FormTable">
@@ -137,30 +144,40 @@
                                 <td>
                                     Vessel:</td>
                                 <td>
-                                    <asp:DropDownList ID="ddlVessel" runat="server" Width="300px" >
+                                    <asp:DropDownList ID="ddlVessel" runat="server" Width="300px" 
+                                    SelectedValue='<%# Eval("VesselId") %>' DataSourceID="ODS_Vessel" 
+                                        DataTextField="FullName" DataValueField="ID" >
                                     </asp:DropDownList>
+                                    <asp:ObjectDataSource ID="ODS_Vessel" runat="server" 
+                                        SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Vessel">
+                                    </asp:ObjectDataSource>
                                 </td>
                             </tr>
                             <tr class="FormTable">
                                 <td>
                                     Fare:</td>
                                 <td>
-                                    <asp:DropDownList ID="ddlFare" runat="server" Width="300px" >
+                                    <asp:DropDownList ID="ddlFare" runat="server" Width="300px" 
+                                    SelectedValue='<%# Eval("FareId") %>' DataSourceID="ODS_Fare" 
+                                        DataTextField="FullName" DataValueField="ID">
                                     </asp:DropDownList>
+                                    <asp:ObjectDataSource ID="ODS_Fare" runat="server" 
+                                        SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Fare">
+                                    </asp:ObjectDataSource>
                                 </td>
                             </tr>
                             <tr class="FormTable">
                                 <td>
                                     Sailing Time:</td>
                                 <td>
-                                    <asp:TextBox ID="txtSailingTime" runat="server" Width="150px"></asp:TextBox>
+                                    <asp:TextBox ID="txtSailingTime" Text='<%# Eval("SailingTime","{0:yyyy/MM/dd HH:mm:ss}") %>' runat="server" Width="150px" ></asp:TextBox>
                                     &nbsp;(i.e. 2008/09/18 14:30:00)</td>
                             </tr>
                             <tr class="FormTable">
                                 <td>
                                     Arrival Time:</td>
                                 <td>
-                                    <asp:TextBox ID="txtArrivalTime" runat="server" Width="150px"></asp:TextBox>
+                                    <asp:TextBox ID="txtArrivalTime" Text='<%# Eval("ArrivalTime","{0:yyyy/MM/dd HH:mm:ss}") %>' runat="server" Width="150px"></asp:TextBox>
                                     &nbsp;(i.e. 2008/09/19 18:30:00)</td>
                             </tr>
                             <tr class="FormTable">
