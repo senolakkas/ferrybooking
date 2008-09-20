@@ -8,11 +8,6 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Schedule
      {
-         public static void DoInsert(Schedule schedule)
-         {
-             schedule.Create();
-         }
-
          public ScheduleList GetAllList()
          {
              OQL oql = new OQL(typeof(Schedule));
@@ -35,9 +30,24 @@ namespace ByteCore.FerryBooking.Core
              return new Schedule().GetList(oql);
          }
 
+         public static void DoInsert(Schedule schedule)
+         {
+             schedule.Create();
+         }
+
+         public void DoUpdate(int ID, int vesselId, int fareId, DateTime sailingTime, DateTime arrivalTime)
+         {
+             Schedule schedule = new Schedule().GetById(ID, true);
+             schedule.VesselId = vesselId;
+             schedule.FareId = fareId;
+             schedule.SailingTime = sailingTime;
+             schedule.ArrivalTime = arrivalTime;
+             schedule.Update();
+         }
+
          public void DoDelete(int ID)
          {
-             Schedule schedule = new Schedule().GetById(ID, false);
+             Schedule schedule = new Schedule().GetById(ID, true);
              schedule.Delete();
          }
 
