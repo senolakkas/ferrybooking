@@ -8,6 +8,14 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class FareType
      {
+         public string FullName
+         {
+             get
+             {
+                 return this.Category.CategoryName + " - " + this.FareTypeName + "(" + this.FareTypeDescription + ")";
+             }
+         }
+
          public FareTypeList GetFareTypeList(int operatorId, int fareCategoryId)
          {
              OQL oql = new OQL(typeof(FareType));

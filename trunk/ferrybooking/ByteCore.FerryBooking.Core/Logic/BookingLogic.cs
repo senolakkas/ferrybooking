@@ -8,11 +8,11 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Booking
      {
-         public BookingList GetBookingList(int status, DateTime startDate, DateTime endDate)
+         public BookingList GetBookingList(int statusId, DateTime startDate, DateTime endDate)
          {
              OQL oql = new OQL(typeof(Booking));
-             if (status != -1)
-                 oql.AddCondition(Condition.Eq(Booking.Properties.Status, status));
+             if (statusId != 0)
+                 oql.AddCondition(Condition.Eq(Booking.Properties.Status, statusId));
 
              oql.AddCondition(Condition.Ge(Booking.Properties.BookingDate, startDate));
              oql.AddCondition(Condition.Le(Booking.Properties.BookingDate, endDate));
