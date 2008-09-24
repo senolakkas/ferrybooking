@@ -19,6 +19,7 @@ namespace ByteCore.FerryBooking.Web
     public partial class frmFare : BasePage
     {
         private Fare _fare;
+        private int _fareId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,6 +28,7 @@ namespace ByteCore.FerryBooking.Web
                 BindOperator();
                 BindRoute();
                 BindList();
+                this.pnlFareItems.Visible = false;
             }
         }
 
@@ -87,21 +89,24 @@ namespace ByteCore.FerryBooking.Web
         {
             this.FV_Fare.ChangeMode(FormViewMode.Insert);
             this.FV_Fare.Visible = true;
+            this.pnlFareItems.Visible = false;
             BindList();
         }
 
         protected void GV_FareList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.ODS_FareEdit.SelectParameters["id"].DefaultValue = this.GV_FareList.SelectedValue.ToString();
-            this.FV_Fare.DataBind();
-            this.FV_Fare.ChangeMode(FormViewMode.Edit);
-            this.FV_Fare.Visible = true;
-            BindList();
+            _fareId = Convert.ToInt32(this.GV_FareList.SelectedValue);
+            Fare currentFare = new Fare().GetById(_fareId, false);
+            BindFareCategory();
+            BindItemList(_fareId);
+            this.pnlFareItems.Visible = true;
+            this.FV_Fare.Visible = false;
         }
 
         protected void GV_FareList_RowDeleted(object sender, GridViewDeletedEventArgs e)
         {
             this.FV_Fare.Visible = false;
+            this.pnlFareItems.Visible = false;
             this.lblMessage.Text = "Delete successfully";
             this.lblMessage.ForeColor = Color.Green;
             BindList();
@@ -208,13 +213,14 @@ namespace ByteCore.FerryBooking.Web
             }
         }
 
-        protected void lbtnEditItems_Command(object sender, CommandEventArgs e)
+        protected void lbtnEditFare_Command(object sender, CommandEventArgs e)
         {
-            int fareId = Int32.Parse(e.CommandArgument.ToString());
-            Fare currentFare = new Fare().GetById(fareId, false);
-            BindFareCategory();
-            BindItemList(fareId);
-            this.pnlFareItems.Visible = true;
+            this.ODS_FareEdit.SelectParameters["id"].DefaultValue = e.CommandArgument.ToString();
+            this.FV_Fare.DataBind();
+            this.FV_Fare.ChangeMode(FormViewMode.Edit);
+            this.FV_Fare.Visible = true;
+            this.pnlFareItems.Visible = false;
+            BindList();
         }
 
         private void BindFareCategory()
@@ -235,39 +241,97 @@ namespace ByteCore.FerryBooking.Web
             if (this.ddlFareCategory.SelectedIndex != -1)
                 int.TryParse(this.ddlFareCategory.SelectedValue, out categoryId);
             FareItemList list = fareItem.GetFareItemList(categoryId, fareId);
-            this.GV_FareItem.DataSource = list;
-            this.GV_FareItem.DataBind();
+            this.GV_FareItemList.DataSource = list;
+            this.GV_FareItemList.DataBind();
             this.lblSubMessage.Text = "";
         }
 
         protected void btnSubSearch_Click(object sender, EventArgs e)
         {
-
+            BindItemList(_fareId);
         }
 
         protected void GV_FareItemList_RowDeleted(object sender, GridViewDeletedEventArgs e)
         {
-
+            this.FV_FareItem.Visible = false;
+            this.lblSubMessage.Text = "Delete successfully";
+            this.lblSubMessage.ForeColor = Color.Green;
+            BindItemList(_fareId);
         }
 
         protected void GV_FareItemList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            this.ODS_FareItemEdit.SelectParameters["id"].DefaultValue = this.GV_FareItemList.SelectedValue.ToString();
+            this.FV_FareItem.DataBind();
+            this.FV_FareItem.ChangeMode(FormViewMode.Edit);
+            this.FV_FareItem.Visible = true;
+            BindItemList(_fareId);
         }
 
         protected void GV_FareItemList_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            this.GV_FareItemList.PageIndex = e.NewPageIndex;
+            BindItemList(_fareId);
         }
 
         protected void btnAddItem_Click(object sender, EventArgs e)
         {
-
+            this.FV_FareItem.ChangeMode(FormViewMode.Insert);
+            this.FV_FareItem.Visible = true;
+            BindItemList(_fareId);
         }
 
         protected void FV_FareItem_ItemCommand(object sender, FormViewCommandEventArgs e)
         {
+            switch (e.CommandName)
+            {
+                case "DoInsert":
+                    InsertFareItem();
+                    break;
+                case "DoUpdate":
+                    UpdateFareItem(Convert.ToInt32(e.CommandArgument));
+                    break;
+                case "DoCancel":
+                    this.FV_FareItem.Visible = false;
+                    BindItemList(_fareId);
+                    break;
+            }
+        }
 
+        private void UpdateFareItem(int p)
+        {
+            return;
+        }
+
+        private void InsertFareItem()
+        {
+            return;
+        }
+
+        protected void FV_FareItem_PreRender(object sender, EventArgs e)
+        {
+            BindFareType();
+        }
+
+        private void BindFareType()
+        {
+            DropDownList ddlFareType = (DropDownList)this.FV_FareItem.FindControl("ddlFareType");            
+            if (ddlFareType != null)
+            {
+                if (_fareId == 0)
+                    _fareId = Convert.ToInt32(this.GV_FareItemList.SelectedValue);
+                Fare fare = new Fare().GetById(_fareId, false);
+                if (fare != null)
+                {
+                    int operatorId = fare.Routes.OperatorId.GetValueOrDefault(0);
+                    FareType ft = new FareType();
+                    FareTypeList list = ft.GetFareTypeList(operatorId, 0);
+                    ddlFareType.DataSource = list;
+                    ddlFareType.DataTextField = "FullName";
+                    ddlFareType.DataValueField = "ID";
+                    ddlFareType.DataBind();
+                }
+            }
         }
     }
 }

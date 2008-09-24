@@ -185,13 +185,13 @@ namespace ByteCore.FerryBooking.Web {
         protected global::System.Web.UI.WebControls.Button btnSubSearch;
         
         /// <summary>
-        /// GV_FareItem control.
+        /// GV_FareItemList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GV_FareItem;
+        protected global::System.Web.UI.WebControls.GridView GV_FareItemList;
         
         /// <summary>
         /// btnAddFareItem control.

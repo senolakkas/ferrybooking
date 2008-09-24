@@ -41,8 +41,8 @@ namespace ByteCore.FerryBooking.Web
             //this.ddlStatus.DataTextField = "value";
             //this.ddlStatus.DataValueField = "key";
             //this.ddlStatus.DataBind();
-
-            this.ddlStatus.SelectedIndex = -1;
+            this.ddlStatus.Items.Insert(0, new ListItem("-- Show All --", "0"));
+            this.ddlStatus.SelectedIndex = 0;
         }
 
         //Another way to bind enum to dropdownlist
@@ -61,9 +61,9 @@ namespace ByteCore.FerryBooking.Web
         private void BindList()
         {
             Booking b = new Booking();
-            int status = -1;
+            int statusId = 0;
             if (this.ddlStatus.SelectedIndex != -1)
-                status = int.Parse(this.ddlStatus.SelectedValue);
+                int.TryParse(this.ddlStatus.SelectedValue, out statusId);
             DateTime startDate = new DateTime(1900, 1, 1);
             DateTime endDate = DateTime.MaxValue;
             DateTime.TryParse(this.txtStartDate.Text, out startDate);
@@ -72,7 +72,7 @@ namespace ByteCore.FerryBooking.Web
                 startDate = new DateTime(1900, 1, 1);
             if (endDate == DateTime.MinValue)
                 endDate = DateTime.MaxValue;
-            BookingList list = b.GetBookingList(status, startDate, endDate);
+            BookingList list = b.GetBookingList(statusId, startDate, endDate);
             this.GV_BookingList.DataSource = list;
             this.GV_BookingList.DataBind();
             this.lblMessage.Text = "";
@@ -85,7 +85,8 @@ namespace ByteCore.FerryBooking.Web
 
         protected void GV_BookingList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindList();
+            string bookingId = this.GV_BookingList.SelectedValue.ToString();
+            Response.Redirect("frmBookingDetails.aspx?bId=" + bookingId);
         }
 
         protected void GV_BookingList_PageIndexChanging(object sender, GridViewPageEventArgs e)
