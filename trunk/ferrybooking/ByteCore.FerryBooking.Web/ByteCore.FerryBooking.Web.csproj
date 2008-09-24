@@ -103,6 +103,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\frmBookingDetails.aspx.cs">
+      <DependentUpon>frmBookingDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\frmBookingDetails.aspx.designer.cs">
+      <DependentUpon>frmBookingDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\frmBooking.aspx.cs">
       <DependentUpon>frmBooking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -210,6 +217,7 @@
     <Content Include="MasterPage\Admin.master" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\frmBookingDetails.aspx" />
     <Content Include="Admin\frmBooking.aspx" />
     <Content Include="Admin\frmSchedule.aspx" />
     <Content Include="Admin\frmFare.aspx" />
