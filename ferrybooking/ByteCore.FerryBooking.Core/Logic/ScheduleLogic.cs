@@ -67,5 +67,15 @@ namespace ByteCore.FerryBooking.Core
              else
                  return null;
          }
+
+         public ScheduleList GetScheduleListForRoute(int routeId,DateTime startdate)
+         {
+             OQL oql = new OQL(typeof(Schedule))
+               .AddAssociation("Fare","Fare")
+               .AddCondition(Condition.Eq("Fare."+ Fare.Properties.RoutesID, routeId))
+               .AddCondition(Condition.Ge(Schedule.Properties.SailingTime,startdate));
+               
+             return new Schedule().GetList(oql);
+         }
      }
 }
