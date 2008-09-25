@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage/Admin.master" AutoEventWireup="true"
+<%@ Page Language="C#" MasterPageFile="~/MasterPage/Admin.master" AutoEventWireup="true"
     CodeBehind="frmBookingDetails.aspx.cs" Inherits="ByteCore.FerryBooking.Web.frmBookingDetails"
     Title="Booking Details" %>
 
@@ -55,17 +55,46 @@
         <tr>
             <td>
                 <br />
-                <div class="GrdOutline">
-                    <asp:GridView ID="GV_PassengersList" runat="server" AutoGenerateColumns="False" Width="100%"
-                        DataKeyNames="ID">
-                        <Columns>
-                            <asp:TemplateField></asp:TemplateField>
-                        </Columns>
-                        <RowStyle CssClass="DataTableCell" />
-                        <SelectedRowStyle CssClass="DataTableSelCell" />
-                        <HeaderStyle CssClass="DataTableHeader" />
-                    </asp:GridView>
-                </div>
+                    <asp:Repeater ID="Rpt_PassengerList" runat="server" 
+                        onitemdatabound="Rpt_PassengerList_ItemDataBound">
+                        <ItemTemplate>
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td colspan="4">
+                                        Passenger
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        First Name: 
+                                    </td>
+                                    <td>
+                                        &nbsp;<asp:Label ID="lblFirstName" runat="server" Text='<%#Eval("FirstName2")%>'></asp:Label>
+                                    </td>
+                                    <td>
+                                        Last Name: 
+                                    </td>
+                                     <td>
+                                        &nbsp;<asp:Label ID="Label1" runat="server" Text='<%#Eval("LastName2")%>'></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                     <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                        </ItemTemplate>
+                    </asp:Repeater>
             </td>
         </tr>
         <tr>
