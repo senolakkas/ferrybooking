@@ -42,7 +42,11 @@ namespace ByteCore.FerryBooking.Web
 
         private void BindPassengers()
         {
-            return;
+            int bookingId = Convert.ToInt32(_bookingId);
+            RouteOrderPassengerDetail p = new RouteOrderPassengerDetail();
+            RouteOrderPassengerDetailList list = p.GetPassengerList(bookingId);
+            this.Rpt_PassengerList.DataSource = list;
+            this.Rpt_PassengerList.DataBind();
         }
 
         private void BindBooking()
@@ -103,6 +107,11 @@ namespace ByteCore.FerryBooking.Web
             //this.GV_BookingList.DataSource = list;
             //this.GV_BookingList.DataBind();
             //this.lblMessage.Text = "";
+        }
+
+        protected void Rpt_PassengerList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+
         }
     }
 }
