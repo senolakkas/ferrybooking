@@ -23,6 +23,15 @@ namespace ByteCore.FerryBooking.Web {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        
+        /// <summary>
         /// rbSingle control.
         /// </summary>
         /// <remarks>
@@ -59,6 +68,15 @@ namespace ByteCore.FerryBooking.Web {
         protected global::System.Web.UI.WebControls.DropDownList ddlRoute1;
         
         /// <summary>
+        /// validRout1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator validRout1;
+        
+        /// <summary>
         /// ddlRoute2 control.
         /// </summary>
         /// <remarks>
@@ -86,21 +104,39 @@ namespace ByteCore.FerryBooking.Web {
         protected global::System.Web.UI.WebControls.DropDownList ddlRoute4;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// ddlPassengers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPassengers;
         
         /// <summary>
-        /// upRouteSelection control.
+        /// validPassenger control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upRouteSelection;
+        protected global::System.Web.UI.WebControls.CustomValidator validPassenger;
+        
+        /// <summary>
+        /// ddlVehicles control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVehicles;
+        
+        /// <summary>
+        /// btnGetPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGetPrice;
     }
 }

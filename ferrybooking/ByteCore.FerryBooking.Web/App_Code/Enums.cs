@@ -24,4 +24,12 @@ namespace ByteCore.FerryBooking.Web
         Pending=2,
         Fail=3
     }
+
+    public enum RouteSelectionMode
+    {
+        Single = 1,
+        Return = 2,
+        Multi =3
+    }
+   
 }

@@ -19,3 +19,12 @@ E:\Dev\ByteCore.FerryBooking\ByteCore.FerryBooking\GreenTea\bin\Debug\log4net.dl
 E:\Dev\ByteCore.FerryBooking\ByteCore.FerryBooking\GreenTea\bin\Debug\NHibernate.dll
 E:\Dev\ByteCore.FerryBooking\ByteCore.FerryBooking\GreenTea\bin\Debug\Iesi.Collections.dll
 E:\Dev\ByteCore.FerryBooking\ByteCore.FerryBooking\GreenTea\obj\Debug\GreenTea.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\GreenTea\bin\Debug\GreenTea.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\GreenTea\bin\Debug\GreenTea.pdb
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\GreenTea\bin\Debug\Castle.DynamicProxy.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\GreenTea\bin\Debug\log4net.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\GreenTea\bin\Debug\NHibernate.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\GreenTea\bin\Debug\Iesi.Collections.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\GreenTea\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\GreenTea\obj\Debug\GreenTea.dll
+C:\Documents and Settings\Roger\Desktop\Ferry\source\ferrybooking\GreenTea\obj\Debug\GreenTea.pdb
