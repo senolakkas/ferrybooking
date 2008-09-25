@@ -47,6 +47,7 @@ namespace ByteCore.FerryBooking.Core
              oql.AddAssociation("DeparturePort");
              oql.AddAssociation("ArriavlPort");
              oql.SelectProperty(Route.Properties.ID);
+             oql.SelectProperty("Operator." + Company.Properties.ID);
              oql.SelectProperty("Operator." + Company.Properties.CompanyShortName);
              oql.SelectProperty("DeparturePort." + Port.Properties.PortName);
              oql.SelectProperty("ArriavlPort." + Port.Properties.PortName);
@@ -60,23 +61,24 @@ namespace ByteCore.FerryBooking.Core
              return dt;
          }
 
-         public List<KeyValuePair<int, string>> GetKeyValueList()
+         public List<KeyValuePair<string, string>> GetKeyValueList()
          {
              DataTable dt = this.GetRouteTable();
-             List<KeyValuePair<int, string>> routeList = new List<KeyValuePair<int, string>>();
+             List<KeyValuePair<string, string>> routeList = new List<KeyValuePair<string, string>>();
              Hashtable ht = new Hashtable();
              for (int i = 0; i < dt.Rows.Count; i++)
              {
+                 string key = dt.Rows[i]["ID"].ToString() + "_" + dt.Rows[i]["Operator_ID"].ToString();
                  string value = dt.Rows[i]["DeparturePort_PortName"].ToString() + " - " + dt.Rows[i]["ArriavlPort_PortName"].ToString();
-                 KeyValuePair<int, string> kv;
+                 KeyValuePair<string, string> kv;
                  if (!ht.ContainsKey(value))
                  {
-                     kv = new KeyValuePair<int, string>(Convert.ToInt32(dt.Rows[i]["ID"]), value);
+                     kv = new KeyValuePair<string, string>(key, value);
                      ht.Add(value, value);
                  }
                  else
                  {
-                     kv = new KeyValuePair<int, string>(Convert.ToInt32(dt.Rows[i]["ID"]),value + " (" + dt.Rows[i]["Operator_CompanyShortName"].ToString() + ")");
+                     kv = new KeyValuePair<string, string>(key,value + " (" + dt.Rows[i]["Operator_CompanyShortName"].ToString() + ")");
                  }
                  
                  routeList.Add(kv);
