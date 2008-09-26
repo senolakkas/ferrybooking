@@ -22,5 +22,21 @@ namespace ByteCore.FerryBooking.Core
              return new Booking().GetList(oql);
          }
 
+         public decimal TotalAmount
+         {
+             get 
+             {
+                 decimal total = 0.0m;
+                 foreach (RouteOrder routes in this.RouteOrders)
+                 {
+                     foreach (RouteOrderDetail details in routes.RouteOrderDetails)
+                     {
+                         total += details.Amount.GetValueOrDefault(0.0m);
+                     }
+                 }
+
+                 return total;
+             }
+         }
      }
 }
