@@ -19,6 +19,9 @@ namespace ByteCore.FerryBooking.Web
     public partial class frmBookingDetails : BasePage
     {
         private string _bookingId;
+        private RouteOrderPassengerDetailList _pList;
+        private RouteOrderList _roList;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -37,15 +40,19 @@ namespace ByteCore.FerryBooking.Web
 
         private void BindRoutes()
         {
-            return;
+            int bookingId = Convert.ToInt32(_bookingId);
+            RouteOrder ro = new RouteOrder();
+            _roList = ro.GetRouteOrderList(bookingId);
+            this.Rpt_RouteList.DataSource = _roList;
+            this.Rpt_RouteList.DataBind();
         }
 
         private void BindPassengers()
         {
             int bookingId = Convert.ToInt32(_bookingId);
             RouteOrderPassengerDetail p = new RouteOrderPassengerDetail();
-            RouteOrderPassengerDetailList list = p.GetPassengerList(bookingId);
-            this.Rpt_PassengerList.DataSource = list;
+            _pList = p.GetPassengerList(bookingId);
+            this.Rpt_PassengerList.DataSource = _pList;
             this.Rpt_PassengerList.DataBind();
         }
 
@@ -55,6 +62,7 @@ namespace ByteCore.FerryBooking.Web
             this.lblBookingId.Text = b.ID.ToString();
             this.lblBookingDate.Text = b.BookingDate.HasValue ? b.BookingDate.Value.ToShortDateString() : "";
             this.txtComments.Text = b.Comment.Trim();
+            this.lblTotalAmount.Text = b.TotalAmount.ToString("C");
             //this.ddlStatus.sle            
         }
 
@@ -110,8 +118,40 @@ namespace ByteCore.FerryBooking.Web
         }
 
         protected void Rpt_PassengerList_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
+        {            
+            if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem)
+                return;
+            RouteOrderPassengerDetail p = (RouteOrderPassengerDetail)e.Item.DataItem;
+            Label lblPassengerTitle = (Label)e.Item.FindControl("lblPassengerTitle");
+            bool isLeader = p.IsLeader2.GetValueOrDefault(false);
+            if (isLeader)
+                lblPassengerTitle.Text = " Primary Passenger " + e.Item.ItemIndex.ToString() + " (" + p.RouteOrder.Schedule.Fare.Routes.DeparturePort.PortName + " - " +
+                    p.RouteOrder.Schedule.Fare.Routes.ArriavlPort.PortName + ")";
+            else
+                lblPassengerTitle.Text = "Accompany Passenger " + e.Item.ItemIndex.ToString() + " (" + p.RouteOrder.Schedule.Fare.Routes.DeparturePort.PortName + " - " +
+                    p.RouteOrder.Schedule.Fare.Routes.ArriavlPort.PortName + ")";
 
+        }
+
+        protected void Rpt_RouteList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem)
+                return;
+            RouteOrder ro = (RouteOrder)e.Item.DataItem;
+            Label lblRouteTitle = (Label)e.Item.FindControl("lblRouteTitle");
+            lblRouteTitle.Text = " Route " + e.Item.ItemIndex.ToString() + " (" + ro.Schedule.Fare.Routes.DeparturePort.PortName + " - " +
+                    ro.Schedule.Fare.Routes.ArriavlPort.PortName + ")";
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            int bookingId = Convert.ToInt32(this.lblBookingId.Text.Trim());
+            Booking b = new Booking().GetById(bookingId, true);
+            b.Comment = this.txtComments.Text.Trim();
+            if (this.ddlStatus.SelectedIndex != -1)
+                b.Status = Convert.ToInt32(this.ddlStatus.SelectedValue);
+            b.Update();
+            this.lblMessage.Text = "Update successfully";
         }
     }
 }
