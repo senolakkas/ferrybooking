@@ -15,7 +15,8 @@ namespace ByteCore.FerryBooking.Core
              if (bookingId != 0)
                  oql.AddAssociation("RouteOrder", "ro")
                      .AddCondition(Condition.Eq("ro.BookingID", bookingId));
-
+             oql.OrderBy(RouteOrderPassengerDetail.Properties.RouteOrderID);
+             oql.OrderBy(RouteOrderPassengerDetail.Properties.IsLeader2);
              return new RouteOrderPassengerDetail().GetList(oql);
          }
      }
