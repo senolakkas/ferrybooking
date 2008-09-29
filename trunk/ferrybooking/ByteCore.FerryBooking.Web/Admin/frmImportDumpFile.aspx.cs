@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using ByteCore.FerryBooking.Core;
+using System.Text;
 
 namespace ByteCore.FerryBooking.Web
 {
@@ -25,7 +26,19 @@ namespace ByteCore.FerryBooking.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Label lblPageTitle = this.Master.Page.Form.FindControl("lblPageTitle") as Label;
+                if (lblPageTitle != null)
+                    lblPageTitle.Text = "Import Dump File";
 
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Instruction:<br />");
+                sb.Append("1. Convert Excel file to CSV format;<br />");
+                sb.Append("2. Import process may take very long time (3-4 hours), please do not close browser and just let it running;<br />");
+                sb.Append("<br />");
+                this.litInstruction.Text = sb.ToString();
+            }
         }
 
         protected void rdoImportType_SelectedIndexChanged(object sender, EventArgs e)

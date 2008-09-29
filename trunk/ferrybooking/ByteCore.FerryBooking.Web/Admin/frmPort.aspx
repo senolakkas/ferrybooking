@@ -4,7 +4,9 @@
         <tr>
             <td>
                 <asp:Label ID="lblOperatorName" runat="server" Text="Port Name:"></asp:Label>
+                &nbsp;
                 <asp:TextBox ID="txtPortName" runat="server"></asp:TextBox>
+                &nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" 
                     Text="Search" CausesValidation="False" />
             </td>

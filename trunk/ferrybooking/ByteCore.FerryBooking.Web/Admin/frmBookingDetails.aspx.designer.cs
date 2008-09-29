@@ -77,15 +77,6 @@ namespace ByteCore.FerryBooking.Web {
         protected global::System.Web.UI.WebControls.Label lblMessage;
         
         /// <summary>
-        /// Rpt_PassengerList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Rpt_PassengerList;
-        
-        /// <summary>
         /// Rpt_RouteList control.
         /// </summary>
         /// <remarks>

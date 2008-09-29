@@ -22,6 +22,10 @@ namespace ByteCore.FerryBooking.Web
         {
             if (!IsPostBack)
             {
+                Label lblPageTitle = this.Master.Page.Form.FindControl("lblPageTitle") as Label;
+                if (lblPageTitle != null)
+                    lblPageTitle.Text = "Booking";
+
                 BindStatus();
                 BindList();
             }
