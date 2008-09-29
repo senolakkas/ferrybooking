@@ -28,7 +28,7 @@
                                 <td width="205">
                                     <img id="imgLogo" width="189" height="41" hspace="0" vspace="2" runat="server" />
                                 </td>
-                                <td>&nbsp;</td>
+                                <td class="SiteTitle">ByteCore Ferry Booking Management System</td>
                                 <td width="250" nowrap="nowrap">
                                     <div align="right">
                                         <asp:LinkButton ID="lbtnLogout" runat="server" CssClass="TopMenuLink" CausesValidation="False"
