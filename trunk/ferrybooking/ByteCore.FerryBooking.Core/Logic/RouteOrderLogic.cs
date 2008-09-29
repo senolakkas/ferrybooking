@@ -16,5 +16,27 @@ namespace ByteCore.FerryBooking.Core
              oql.OrderBy(RouteOrder.Properties.ID);
              return new RouteOrder().GetList(oql);
          }
+
+         public decimal RouteTotalAmount
+         {
+             get
+             {
+                 decimal total = 0.0m;
+                 foreach (RouteOrderDetail item in this.RouteOrderDetails)
+                 {
+                     total += item.Amount.GetValueOrDefault(0m); 
+                 }
+                 return total;
+             }
+         }
+
+         public RouteOrderDetailList GetListByRoute(int categoryId)
+         {
+             OQL oql = new OQL(typeof(RouteOrderDetail));
+             oql.AddAssociation("FareType", "ft")
+                 .AddCondition(Condition.Eq("ft.CategoryId", categoryId));
+             oql.AddCondition(Condition.Eq(RouteOrderDetail.Properties.RouteOrderID, this.ID));
+             return new RouteOrderDetail().GetList(oql);
+         }
      }
 }
