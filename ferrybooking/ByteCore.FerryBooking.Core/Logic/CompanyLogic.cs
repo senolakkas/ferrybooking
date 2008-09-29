@@ -12,7 +12,7 @@ namespace ByteCore.FerryBooking.Core
          {
              get
              {
-                 return this.CompanyName + "(" + this.CompanyShortName + ")";
+                 return this.CompanyName + " (" + this.CompanyShortName + ")";
              }
          }
 
@@ -43,7 +43,7 @@ namespace ByteCore.FerryBooking.Core
                  company.CurrencyId = currencyId;
              company.LogoImage = logoImage;
              company.Terms = terms;
-             company.IsActive = IsActive;
+             company.IsActive = isActive;
              company.Create();
          }
 
@@ -56,7 +56,7 @@ namespace ByteCore.FerryBooking.Core
                  company.CurrencyId = currencyId;
              company.LogoImage = logoImage;
              company.Terms = terms;
-             company.IsActive = IsActive;
+             company.IsActive = isActive;
              company.Update();
          }
 
