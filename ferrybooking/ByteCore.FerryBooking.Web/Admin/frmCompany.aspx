@@ -4,7 +4,8 @@
         <tr>
             <td>
                 <asp:Label ID="lblOperatorName" runat="server" Text="Operator Name:"></asp:Label>
-                <asp:TextBox ID="txtOperatorName" runat="server"></asp:TextBox>
+                &nbsp;<asp:TextBox ID="txtOperatorName" runat="server"></asp:TextBox>
+                &nbsp;&nbsp;&nbsp;
                 <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" 
                     Text="Search" CausesValidation="False" />
             </td>
@@ -32,6 +33,8 @@
                                 <asp:Label ID="Label1" runat="server" Text='<%# Eval("Currency.CurrencySymbol") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:BoundField DataField="IsActive" HeaderText="IsActive" />
+                        <asp:BoundField DataField="LogoImage" HeaderText="Logo Image" />
                     </Columns>
                     <RowStyle CssClass="DataTableCell" />
                     <SelectedRowStyle CssClass="DataTableSelCell" />
@@ -110,6 +113,10 @@
                                     Logo:</td>
                                 <td>
                                     <asp:FileUpload ID="FU_Logo" runat="server" />
+                                    <asp:RegularExpressionValidator ID="FileUpLoadValidator" runat="server" 
+                                        ControlToValidate="FU_Logo" Display="Dynamic" 
+                                        ErrorMessage="Upload Jpegs and Gifs only." 
+                                        ValidationExpression="^.+(.jpg|.JPG|.gif|.GIF)$"></asp:RegularExpressionValidator>
                                 </td>
                             </tr>
                             <tr class="FormTable">
@@ -140,7 +147,8 @@
                                 <td>
                                     Name:</td>
                                 <td>
-                                    <asp:TextBox ID="txtName" runat="server" Text='<%# Eval("CompanyName") %>' Width="300px"></asp:TextBox>
+                                    <asp:TextBox ID="txtName" runat="server" Text='<%# Eval("CompanyName") %>' Width="300px">&lt;%# 
+                                    Eval(&quot;CompanyName&quot;) %&gt;</asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtName"
                                         Display="Dynamic" ErrorMessage="*"></asp:RequiredFieldValidator></td>
                             </tr>
@@ -148,7 +156,8 @@
                                 <td>
                                     Short Name:</td>
                                 <td>
-                                    <asp:TextBox ID="txtShortName" runat="server" Text='<%# Eval("CompanyShortName") %>'></asp:TextBox>
+                                    <asp:TextBox ID="txtShortName" runat="server" Text='<%# Eval("CompanyShortName") %>'>&lt;%# 
+                                    Eval(&quot;CompanyShortName&quot;) %&gt;</asp:TextBox>
                                 </td>
                             </tr>
                             <tr class="FormTable">
@@ -175,13 +184,19 @@
                                 <td>
                                     Logo:</td>
                                 <td>
-                                <asp:FileUpload ID="FU_Logo" runat="server" /></td>
+                                <asp:FileUpload ID="FU_Logo" runat="server" />
+                                    <asp:RegularExpressionValidator ID="FileUpLoadValidator" runat="server" 
+                                        ControlToValidate="FU_Logo" Display="Dynamic" 
+                                        ErrorMessage="Upload Jpegs and Gifs only." 
+                                        ValidationExpression="^.+(.jpg|.JPG|.gif|.GIF)$"></asp:RegularExpressionValidator>
+                                </td>
                             </tr>
                             <tr class="FormTable">
                                 <td>
                                     Terms:</td>
                                 <td>
-                                    <asp:TextBox ID="txtTerms" runat="server" TextMode="MultiLine" Width="300px" Text='<%# Eval("Terms") %>'></asp:TextBox></td>
+                                    <asp:TextBox ID="txtTerms" runat="server" TextMode="MultiLine" Width="300px" Text='<%# Eval("Terms") %>'>&lt;%# 
+                                    Eval(&quot;Terms&quot;) %&gt;</asp:TextBox></td>
                             </tr>
                             <tr class="FormTable">
                                 <td>

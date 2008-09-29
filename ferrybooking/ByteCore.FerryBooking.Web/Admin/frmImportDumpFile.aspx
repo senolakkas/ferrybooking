@@ -18,6 +18,11 @@
         </tr>
         <tr>
             <td>
+                <asp:Literal ID="litInstruction" runat="server" EnableViewState="False"></asp:Literal>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <asp:Panel ID="pnlFareDump" runat="server" Visible="False">
                     <asp:Label ID="lblFare" runat="server" Text="Please select an Excel file to import:"></asp:Label>
                     &nbsp;

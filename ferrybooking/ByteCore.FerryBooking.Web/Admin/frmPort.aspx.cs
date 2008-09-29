@@ -21,6 +21,10 @@ namespace ByteCore.FerryBooking.Web
         {            
             if (!IsPostBack)
             {
+                Label lblPageTitle = this.Master.Page.Form.FindControl("lblPageTitle") as Label;
+                if (lblPageTitle != null)
+                    lblPageTitle.Text = "Port";
+
                 this.FV_Port.Visible = false;
             }
         }
@@ -92,20 +96,29 @@ namespace ByteCore.FerryBooking.Web
             TextBox txtPortCode = (TextBox)this.FV_Port.FindControl("txtPortCode");
             TextBox txtPortName = (TextBox)this.FV_Port.FindControl("txtPortName");
 
-            portCode = (txtPortCode == null) ? "" : (string.IsNullOrEmpty(txtPortCode.Text) ? "" : txtPortCode.Text);
-            portName = (txtPortName == null) ? "" : (string.IsNullOrEmpty(txtPortName.Text) ? "" : txtPortName.Text);
-            
-            Port port = new Port();
-            port.DoInsert(portCode, portName);
-            BindList();
+            portCode = (txtPortCode == null) ? "" : (string.IsNullOrEmpty(txtPortCode.Text) ? "" : txtPortCode.Text.Trim());
+            portName = (txtPortName == null) ? "" : (string.IsNullOrEmpty(txtPortName.Text) ? "" : txtPortName.Text.Trim());
+
+            Port existingPort = new Port().GetById(portCode, false);
+            if (existingPort == null)
+            {
+                Port port = new Port();
+                port.DoInsert(portCode, portName);
+                BindList();
+
+                this.lblMessage.Text = "Insert successfully";
+                this.lblMessage.ForeColor = Color.Green;
+            }
+            else
+            {
+                this.lblMessage.Text = "Deplicate Port Code found, please try another one.";
+                this.lblMessage.ForeColor = Color.Red;
+            }
 
             if (txtPortCode != null)
                 txtPortCode.Text = string.Empty;
             if (txtPortName != null)
                 txtPortName.Text = string.Empty;
-
-            this.lblMessage.Text = "Insert successfully";
-            this.lblMessage.ForeColor = Color.Green;
         }
 
         protected void GV_PortList_RowDeleted(object sender, GridViewDeletedEventArgs e)

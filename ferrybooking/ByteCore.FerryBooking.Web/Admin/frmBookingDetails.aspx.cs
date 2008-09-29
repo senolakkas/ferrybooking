@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using ByteCore.FerryBooking.Core;
 using System.Drawing;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ByteCore.FerryBooking.Web
 {
@@ -20,20 +21,26 @@ namespace ByteCore.FerryBooking.Web
     {
         private string _bookingId;
         private RouteOrderPassengerDetailList _pList;
+        private RouteOrderVehicleDetailList _vList;
         private RouteOrderList _roList;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
+            {       
                 if (string.IsNullOrEmpty(Request.QueryString["bId"]))
                     Response.Redirect("frmBooking.aspx");
                 else
                     _bookingId = Request.QueryString["bId"];
+
+                Label lblPageTitle = this.Master.Page.Form.FindControl("lblPageTitle") as Label;
+                if (lblPageTitle != null)
+                    lblPageTitle.Text = "Booking Details";
+
                 BindStatus();
                 BindBooking();
                 BindList();
-                BindPassengers();
+                //BindPassengers();
                 BindRoutes();
             }
         }
@@ -49,11 +56,11 @@ namespace ByteCore.FerryBooking.Web
 
         private void BindPassengers()
         {
-            int bookingId = Convert.ToInt32(_bookingId);
-            RouteOrderPassengerDetail p = new RouteOrderPassengerDetail();
-            _pList = p.GetPassengerList(bookingId);
-            this.Rpt_PassengerList.DataSource = _pList;
-            this.Rpt_PassengerList.DataBind();
+            //int bookingId = Convert.ToInt32(_bookingId);
+            //RouteOrderPassengerDetail p = new RouteOrderPassengerDetail();
+            //_pList = p.GetPassengerList(bookingId);
+            //this.Rpt_PassengerList.DataSource = _pList;
+            //this.Rpt_PassengerList.DataBind();
         }
 
         private void BindBooking()
@@ -121,18 +128,32 @@ namespace ByteCore.FerryBooking.Web
         {            
             if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem)
                 return;
-            RouteOrderPassengerDetail p = (RouteOrderPassengerDetail)e.Item.DataItem;
+            RouteOrderPassengerDetail p = (RouteOrderPassengerDetail)e.Item.DataItem;   
             Label lblPassengerTitle = (Label)e.Item.FindControl("lblPassengerTitle");
+            Panel pnlPassengerAdditionalInfo = (Panel)e.Item.FindControl("pnlPassengerAdditionalInfo");
             bool isLeader = p.IsLeader2.GetValueOrDefault(false);
             if (isLeader)
-                lblPassengerTitle.Text = " Primary Passenger " + e.Item.ItemIndex.ToString() + " (" + p.RouteOrder.Schedule.Fare.Routes.DeparturePort.PortName + " - " +
+            {
+                lblPassengerTitle.Text = "Primary Passenger " + e.Item.ItemIndex.ToString() + " (" + p.RouteOrder.Schedule.Fare.Routes.DeparturePort.PortName + " - " +
                     p.RouteOrder.Schedule.Fare.Routes.ArriavlPort.PortName + ")";
+                pnlPassengerAdditionalInfo.Visible = true;
+            }
             else
+            {
                 lblPassengerTitle.Text = "Accompany Passenger " + e.Item.ItemIndex.ToString() + " (" + p.RouteOrder.Schedule.Fare.Routes.DeparturePort.PortName + " - " +
                     p.RouteOrder.Schedule.Fare.Routes.ArriavlPort.PortName + ")";
+                pnlPassengerAdditionalInfo.Visible = false;
+            }
+        }
+        protected void Rpt_VehicleList_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem)
+                return;
+            RouteOrderVehicleDetail v = (RouteOrderVehicleDetail)e.Item.DataItem;
+            Label lblVehicleTitle = (Label)e.Item.FindControl("lblVehicleTitle");
+            lblVehicleTitle.Text = "Vehicle " + e.Item.ItemIndex.ToString();
 
         }
-
         protected void Rpt_RouteList_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem)
@@ -141,6 +162,39 @@ namespace ByteCore.FerryBooking.Web
             Label lblRouteTitle = (Label)e.Item.FindControl("lblRouteTitle");
             lblRouteTitle.Text = " Route " + e.Item.ItemIndex.ToString() + " (" + ro.Schedule.Fare.Routes.DeparturePort.PortName + " - " +
                     ro.Schedule.Fare.Routes.ArriavlPort.PortName + ")";
+
+            Label lblRouteTotalAmount = (Label)e.Item.FindControl("lblRouteTotalAmount");
+            lblRouteTotalAmount.Text = ro.RouteTotalAmount.ToString("C");
+            //Bind Passengers;
+            Repeater rptPassengers = (Repeater)e.Item.FindControl("Rpt_PassengerList");
+            RouteOrderPassengerDetail p = new RouteOrderPassengerDetail();
+            _pList = p.GetPassengerListByRoute(ro.ID);
+            rptPassengers.DataSource = _pList;
+            rptPassengers.DataBind();
+            //Bind Vehicles
+            Repeater rptVehicleList = (Repeater)e.Item.FindControl("Rpt_VehicleList");
+            RouteOrderVehicleDetail v = new RouteOrderVehicleDetail();
+            _vList = v.GetVehicleListByRoute(ro.ID);
+            rptVehicleList.DataSource = _vList;
+            rptVehicleList.DataBind();
+            Label lblCabinInfo = (Label)e.Item.FindControl("lblCabinInfo");
+            RouteOrderDetailList cabinList = ro.GetListByRoute(1);
+            StringBuilder sb = new StringBuilder();
+            foreach (RouteOrderDetail item in cabinList)
+            {
+                sb.Append(item.FareType.FullFareTypeName);
+                sb.Append("<br />");
+            }
+            lblCabinInfo.Text = sb.ToString();
+            Label lblAddonInfo = (Label)e.Item.FindControl("lblAddonInfo");
+            RouteOrderDetailList addonList = ro.GetListByRoute(4);
+            StringBuilder sb1 = new StringBuilder();
+            foreach (RouteOrderDetail item in addonList)
+            {
+                sb1.Append(item.FareType.FullFareTypeName);
+                sb1.Append("<br />");
+            }
+            lblAddonInfo.Text = sb1.ToString();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)

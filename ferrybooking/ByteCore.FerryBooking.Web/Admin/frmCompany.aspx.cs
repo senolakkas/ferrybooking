@@ -21,6 +21,10 @@ namespace ByteCore.FerryBooking.Web
         {            
             if (!IsPostBack)
             {
+                Label lblPageTitle = this.Master.Page.Form.FindControl("lblPageTitle") as Label;
+                if (lblPageTitle != null)
+                    lblPageTitle.Text = "Operator";
+
                 this.FV_Operator.Visible = false;
             }
         }
@@ -102,23 +106,37 @@ namespace ByteCore.FerryBooking.Web
             logoImageUrl = (fuLogoImage == null) ? "" : (string.IsNullOrEmpty(fuLogoImage.FileName) ? "" : fuLogoImage.FileName);
             terms = (txtTerms == null) ? "" : (string.IsNullOrEmpty(txtTerms.Text) ? "" : txtTerms.Text);
             isActive = (chkIsActiive == null) ? false : chkIsActiive.Checked;
-
+            if (fuLogoImage.HasFile)
+            {
+                try
+                {
+                    string filePath = GetUploadPath();
+                    string phyFilePath = Server.MapPath(filePath) + fuLogoImage.FileName;
+                    fuLogoImage.SaveAs(phyFilePath);
+                }
+                catch (Exception e)
+                {
+                    this.lblMessage.Text = "Upload logo error, please try later.";
+                    this.lblMessage.ForeColor = Color.Red;
+                    return;
+                }
+            }
             Company company = new Company();
             company.DoUpdate(id,operatorName, operatorShortName, currencyId, logoImageUrl, terms, isActive);
             BindList();
 
-            if (txtName != null)
-                txtName.Text = string.Empty;
-            if (txtShortName != null)
-                txtShortName.Text = string.Empty;
-            if (ddlCurrency != null)
-                ddlCurrency.SelectedIndex = 0;
-            //if (fuLogoImage != null)
-            //    fuLogoImage. = string.Empty;
-            if (txtTerms != null)
-                txtTerms.Text = string.Empty;
-            if (chkIsActiive != null)
-                chkIsActiive.Checked = true;
+            //if (txtName != null)
+            //    txtName.Text = string.Empty;
+            //if (txtShortName != null)
+            //    txtShortName.Text = string.Empty;
+            //if (ddlCurrency != null)
+            //    ddlCurrency.SelectedIndex = 0;
+            ////if (fuLogoImage != null)
+            ////    fuLogoImage. = string.Empty;
+            //if (txtTerms != null)
+            //    txtTerms.Text = string.Empty;
+            //if (chkIsActiive != null)
+            //    chkIsActiive.Checked = true;
 
             this.lblMessage.Text = "Update successfully";
             this.lblMessage.ForeColor = Color.Green;
@@ -146,7 +164,21 @@ namespace ByteCore.FerryBooking.Web
             logoImageUrl = (fuLogoImage == null) ? "" : (string.IsNullOrEmpty(fuLogoImage.FileName) ? "" : fuLogoImage.FileName);
             terms = (txtTerms == null) ? "" : (string.IsNullOrEmpty(txtTerms.Text) ? "" : txtTerms.Text);
             isActive = (chkIsActiive == null) ? false : chkIsActiive.Checked;
-
+            if (fuLogoImage.HasFile)
+            {
+                try
+                {
+                    string filePath = GetUploadPath();
+                    string phyFilePath = Server.MapPath(filePath) + fuLogoImage.FileName;
+                    fuLogoImage.SaveAs(phyFilePath);
+                }
+                catch (Exception e)
+                {
+                    this.lblMessage.Text = "Upload logo error, please try later.";
+                    this.lblMessage.ForeColor = Color.Red;
+                    return;
+                }
+            }
             Company company = new Company();
             company.DoInsert(operatorName, operatorShortName, currencyId, logoImageUrl, terms, isActive);
             BindList();
@@ -167,7 +199,15 @@ namespace ByteCore.FerryBooking.Web
             this.lblMessage.Text = "Insert successfully";
             this.lblMessage.ForeColor = Color.Green;
         }
-
+        private string GetUploadPath()
+        {
+            string uploadPath = ConfigurationManager.AppSettings["UploadLogoPath"];
+            if (uploadPath == null || uploadPath == "")
+                uploadPath = "~/";
+            if (!uploadPath.EndsWith("/"))
+                uploadPath += "/";
+            return uploadPath;
+        }
         protected void GV_OperatorList_RowDeleted(object sender, GridViewDeletedEventArgs e)
         {
             //this.FV_Operator.ChangeMode(FormViewMode.ReadOnly);

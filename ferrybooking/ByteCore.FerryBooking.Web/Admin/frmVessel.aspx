@@ -4,13 +4,14 @@
         <tr>
             <td>
                 <asp:Label ID="lblVesselName" runat="server" Text="Vessel Code:"></asp:Label>
-                &nbsp;<asp:TextBox ID="txtVesselCode" runat="server"></asp:TextBox>
-                &nbsp;
+                &nbsp;&nbsp;<asp:TextBox ID="txtVesselCode" runat="server"></asp:TextBox>
+                &nbsp;&nbsp;&nbsp;
                 <asp:Label ID="lblOperator" runat="server" Text="Operator:"></asp:Label>
-                &nbsp;<asp:DropDownList ID="ddlOperator" runat="server" 
-                    DataSourceID="ODS_OperatorList" DataTextField="CompanyShortName" 
-                    DataValueField="ID">
+                &nbsp;&nbsp;<asp:DropDownList ID="ddlOperator" runat="server" 
+                    DataSourceID="ODS_OperatorList" DataTextField="FullName" 
+                    DataValueField="ID" Width="200px">
                 </asp:DropDownList>
+&nbsp;
 &nbsp;
                 <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" 
                     Text="Search" CausesValidation="False" />
@@ -115,7 +116,7 @@
                                 <td>
                                     Cabinet:</td>
                                 <td>
-                                    <asp:Panel ID="pnlCabinet" runat="server">
+                                    <asp:Panel ID="pnlCabinet"  runat="server">
                                     </asp:Panel>
                                 </td>
                             </tr>

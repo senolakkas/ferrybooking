@@ -25,6 +25,10 @@ namespace ByteCore.FerryBooking.Web
         {            
             if (!IsPostBack)
             {
+                Label lblPageTitle = this.Master.Page.Form.FindControl("lblPageTitle") as Label;
+                if (lblPageTitle != null)
+                    lblPageTitle.Text = "Vessel";
+
                 this.FV_Vessel.Visible = false;
             }
         }
@@ -104,7 +108,7 @@ namespace ByteCore.FerryBooking.Web
             _vessel.VesselName = vesselName;
             _vessel.OperatorId = operatorId;
 
-            IterateControls(this);
+            IterateControls(pnlCabinet);
             //_fareTypeList.Clear();
             //_vessel.FareTypes = _fareTypeList;
             Vessel.DoInsert(_vessel);
@@ -140,12 +144,12 @@ namespace ByteCore.FerryBooking.Web
             vessel.DoUpdate(id, vesselCode, vesselName, operatorId);
             BindList();
 
-            if (txtVesselCode != null)
-                txtVesselCode.Text = string.Empty;
-            if (txtVesselName != null)
-                txtVesselName.Text = string.Empty;
-            if (ddlOperator != null)
-                ddlOperator.SelectedIndex = 0;
+            //if (txtVesselCode != null)
+            //    txtVesselCode.Text = string.Empty;
+            //if (txtVesselName != null)
+            //    txtVesselName.Text = string.Empty;
+            //if (ddlOperator != null)
+            //    ddlOperator.SelectedIndex = 0;
 
             this.lblMessage.Text = "Update successfully";
             this.lblMessage.ForeColor = Color.Green;
@@ -156,7 +160,7 @@ namespace ByteCore.FerryBooking.Web
             foreach (Control child in parent.Controls)
             {
                 if (child.GetType().ToString().Equals("System.Web.UI.WebControls.CheckBox")
-                      && child.ID.IndexOf("chk_Cabinet_") == 0)
+                      && child.ID.IndexOf("chk_Cabinet_") >= 0)
                 {
                     CheckBox cb = (CheckBox)child;
                     if (cb.Checked)
