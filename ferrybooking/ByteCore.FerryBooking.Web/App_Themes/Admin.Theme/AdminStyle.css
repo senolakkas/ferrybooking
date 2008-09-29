@@ -103,7 +103,17 @@ a
 	background-color: #FFFFFF;
 	display: block;
 }
-
+.SiteTitle 
+{
+	border: 0px;
+	font-size: 24px;
+	font-weight: bold;
+	color: #000000;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 6px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
 
 .FormTableHeader 
 {
