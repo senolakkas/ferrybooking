@@ -8,17 +8,31 @@
             <td>
                 <asp:ScriptManager ID="ScriptManager1" runat="server">
                 </asp:ScriptManager>
+                <table cellpadding="2" style="width: 100%">
+                    <tr>
+                        <td style="width: 58px">
                 <asp:Label ID="lblOperator" runat="server" Text="Operator:"></asp:Label>
-                &nbsp;<asp:DropDownList ID="ddlOperator" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlOperator_SelectedIndexChanged"
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlOperator" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlOperator_SelectedIndexChanged"
                     Width="200px">
                 </asp:DropDownList>
-                &nbsp;
-                <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 58px">
                 Route:
+                        </td>
+                        <td>
                 <asp:DropDownList ID="ddlRoute" runat="server" Width="300px">
                 </asp:DropDownList>
-                <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 58px">
                 Date:
+                        </td>
+                        <td>
                 <asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>
                 <asp:Image ID="imgStartDate" runat="server" ImageUrl="~/Images/calendar.gif" />
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtStartDate"
@@ -30,9 +44,17 @@
                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtEndDate"
                     PopupButtonID="imgEndDate">
                 </cc1:CalendarExtender>
-                <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 58px">
+                            &nbsp;</td>
+                        <td>
                 <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" Text="Search"
                     CausesValidation="False" />
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
         <tr>
@@ -63,8 +85,12 @@
                             </asp:TemplateField>
                             <asp:BoundField DataField="StartDate" HeaderText="Start Date" DataFormatString="{0:MMM dd, yyyy}" HtmlEncode="false" />
                             <asp:BoundField DataField="EndDate" HeaderText="End Date" DataFormatString="{0:MMM dd, yyyy}" HtmlEncode="false" />
+                            <asp:BoundField DataField="ID" HeaderText="ID" />
                         </Columns>
                         <RowStyle CssClass="DataTableCell" />
+                        <EmptyDataTemplate>
+                            No result.
+                        </EmptyDataTemplate>
                         <SelectedRowStyle CssClass="DataTableSelCell" />
                         <HeaderStyle CssClass="DataTableHeader" />
                     </asp:GridView>
@@ -109,6 +135,8 @@
                                 <td>
                                     <asp:TextBox ID="txtStartDate" runat="server" Width="150px"></asp:TextBox>
                                     &nbsp;(i.e. 2008/05/01)
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                        ControlToValidate="txtStartDate" ErrorMessage="*"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr class="FormTable">
@@ -118,6 +146,8 @@
                                 <td>
                                     <asp:TextBox ID="txtEndDate" runat="server" Width="150px"></asp:TextBox>
                                     &nbsp;(i.e. 2008/09/30)
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                                        ControlToValidate="txtEndDate" ErrorMessage="*"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr class="FormTable">
@@ -160,6 +190,8 @@
                                     <asp:TextBox ID="txtStartDate" Text='<%# Eval("StartDate","{0:yyyy/MM/dd}") %>' runat="server"
                                         Width="150px"></asp:TextBox>
                                     &nbsp;(i.e. 2008/05/01)
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+                                        ControlToValidate="txtStartDate" ErrorMessage="*"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr class="FormTable">
@@ -170,6 +202,8 @@
                                     <asp:TextBox ID="txtEndDate" Text='<%# Eval("EndDate","{0:yyyy/MM/dd}") %>' runat="server"
                                         Width="150px"></asp:TextBox>
                                     &nbsp;(i.e. 2008/09/30)
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                                        ControlToValidate="txtEndDate" ErrorMessage="*"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr class="FormTable">
@@ -242,6 +276,7 @@
                                             <asp:BoundField DataField="RangeStart" HeaderText="Range Start" />
                                             <asp:BoundField DataField="RangeEnd" HeaderText="Range End" />
                                             <asp:BoundField DataField="ByFootAmount" HeaderText="By Foot Amount" DataFormatString="{0:C}" HtmlEncode="false" />
+                                            <asp:BoundField DataField="ID" HeaderText="ID" />
                                         </Columns>
                                         <RowStyle CssClass="DataTableCell" />
                                         <SelectedRowStyle CssClass="DataTableSelCell" />
@@ -262,7 +297,7 @@
                             <td>
                                 <asp:FormView ID="FV_FareItem" runat="server" Width="500px" OnItemCommand="FV_FareItem_ItemCommand"
                                     DataSourceID="ODS_FareItemEdit" DataKeyNames="ID" 
-                                    onprerender="FV_FareItem_PreRender">
+                                    onprerender="FV_FareItem_PreRender" ondatabound="FV_FareItem_DataBound">
                                     <InsertItemTemplate>
                                         <table class="FormCellLabel" width="500px" border="0" cellpadding="2" cellspacing="0">
                                             <tr>
@@ -293,6 +328,8 @@
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtRangeStart" runat="server" Width="150px"></asp:TextBox>                                                    
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                                                        ControlToValidate="txtRangeStart" ErrorMessage="*"></asp:RequiredFieldValidator>
                                                 </td>
                                             </tr>
                                             <tr class="FormTable">
@@ -301,6 +338,8 @@
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtRangeEnd" runat="server" Width="150px"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                                                        ControlToValidate="txtRangeEnd" ErrorMessage="*"></asp:RequiredFieldValidator>
                                                 </td>
                                             </tr>
                                             <tr class="FormTable">
@@ -309,6 +348,8 @@
                                                 </td>
                                                 <td>
                                                     <asp:TextBox ID="txtAmount" runat="server" Width="150px"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
+                                                        ControlToValidate="txtAmount" ErrorMessage="*"></asp:RequiredFieldValidator>
                                                 </td>
                                             </tr>
                                             <tr class="FormTable">
@@ -344,7 +385,8 @@
                                                     Fare:
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="lblFare" runat="server" Width="150px" Enabled="false" Text='<%# Eval("FareId") %>'></asp:TextBox>
+                                                    <asp:TextBox ID="lblFare" runat="server" Width="150px" Enabled="false" Text='<%# Eval("FareId") %>'>&lt;%# 
+                                                    Eval(&quot;FareId&quot;) %&gt;</asp:TextBox>
                                                 </td>
                                             </tr>
                                             <tr class="FormTable">
@@ -361,7 +403,10 @@
                                                     Range Start:
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtRangeStart" runat="server" Width="150px" Text='<%# Eval("RangeStart") %>'></asp:TextBox>
+                                                    <asp:TextBox ID="txtRangeStart" runat="server" Width="150px" Text='<%# Eval("RangeStart") %>'>&lt;%# 
+                                                    Eval(&quot;RangeStart&quot;) %&gt;</asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+                                                        ControlToValidate="txtRangeStart" ErrorMessage="*"></asp:RequiredFieldValidator>
                                                 </td>
                                             </tr>
                                             <tr class="FormTable">
@@ -369,7 +414,10 @@
                                                     Range End:
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtRangeEnd" runat="server" Width="150px" Text='<%# Eval("RangeEnd") %>'></asp:TextBox>
+                                                    <asp:TextBox ID="txtRangeEnd" runat="server" Width="150px" Text='<%# Eval("RangeEnd") %>'>&lt;%# 
+                                                    Eval(&quot;RangeEnd&quot;) %&gt;</asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+                                                        ControlToValidate="txtRangeEnd" ErrorMessage="*"></asp:RequiredFieldValidator>
                                                 </td>
                                             </tr>
                                             <tr class="FormTable">
@@ -377,7 +425,10 @@
                                                     Amount:
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtAmount" runat="server" Width="150px" Text='<%# Eval("Amount") %>'></asp:TextBox>
+                                                    <asp:TextBox ID="txtAmount" runat="server" Width="150px" Text='<%# Eval("Amount") %>'>&lt;%# 
+                                                    Eval(&quot;Amount&quot;) %&gt;</asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
+                                                        ControlToValidate="txtAmount" ErrorMessage="*"></asp:RequiredFieldValidator>
                                                 </td>
                                             </tr>
                                             <tr class="FormTable">
@@ -385,7 +436,8 @@
                                                     By Foot Amount:
                                                 </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtByFootAmount" runat="server" Width="150px" Text='<%# Eval("ByFootAmount") %>'></asp:TextBox>
+                                                    <asp:TextBox ID="txtByFootAmount" runat="server" Width="150px" Text='<%# Eval("ByFootAmount") %>'>&lt;%# 
+                                                    Eval(&quot;ByFootAmount&quot;) %&gt;</asp:TextBox>
                                                 </td>
                                             </tr>
                                             <tr class="FormTable">

@@ -18,7 +18,10 @@
         </tr>
         <tr>
             <td>
-                <asp:Literal ID="litInstruction" runat="server" EnableViewState="False"></asp:Literal>
+                Instruction:<br />
+                1. Convert Excel file to CSV format;<br />
+                2. Import process may take very long time (3-4 hours), please do not close browser and just let it running;<br />
+                <br />
             </td>
         </tr>
         <tr>

@@ -40,7 +40,7 @@
                         <asp:BoundField DataField="VesselName" HeaderText="Vessel Name" />
                         <asp:TemplateField HeaderText="Operator">
                             <ItemTemplate>
-                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Operator.CompanyShortName") %>'></asp:Label>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("Operator.FullName") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -105,8 +105,8 @@
                                     Operator:</td>
                                 <td>
                                     <asp:DropDownList ID="ddlOperator" runat="server" DataSourceID="ODS_Operator" 
-                                        DataTextField="CompanyShortName" DataValueField="ID" AutoPostBack="True" 
-                                        onselectedindexchanged="ddlOperator_SelectedIndexChanged"></asp:DropDownList>
+                                        DataTextField="FullName" DataValueField="ID" AutoPostBack="True" 
+                                        onselectedindexchanged="ddlOperator_SelectedIndexChanged" Width="200px"></asp:DropDownList>
                                     <asp:ObjectDataSource ID="ODS_Operator" runat="server" 
                                         SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Company">
                                     </asp:ObjectDataSource>
@@ -116,8 +116,8 @@
                                 <td>
                                     Cabinet:</td>
                                 <td>
-                                    <asp:Panel ID="pnlCabinet"  runat="server">
-                                    </asp:Panel>
+                                    <asp:CheckBoxList ID="chklstAccommodation" runat="server">
+                                    </asp:CheckBoxList>
                                 </td>
                             </tr>
                             <tr class="FormTable">
@@ -159,8 +159,8 @@
                                 <td>
                                     <asp:DropDownList ID="ddlOperator" runat="server" 
                                         SelectedValue='<%# Eval("OperatorId") %>' DataSourceID="ODS_Operator" 
-                                        DataTextField="CompanyShortName" DataValueField="ID" AutoPostBack="True" 
-                                        onselectedindexchanged="ddlOperator_SelectedIndexChanged">
+                                        DataTextField="FullName" DataValueField="ID" AutoPostBack="True" 
+                                        onselectedindexchanged="ddlOperator_SelectedIndexChanged" Width="200px">
                                     </asp:DropDownList>
                                     <asp:ObjectDataSource ID="ODS_Operator" runat="server" 
                                         SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Company">
@@ -171,8 +171,8 @@
                                 <td>
                                     Cabinet:</td>
                                 <td>
-                                    <asp:Panel ID="pnlCabinet" runat="server">
-                                    </asp:Panel>
+                                    <asp:CheckBoxList ID="chklstAccommodation" runat="server">
+                                    </asp:CheckBoxList>
                                 </td>
                             </tr>
                             <tr class="FormTable">

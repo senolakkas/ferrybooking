@@ -98,5 +98,20 @@ namespace ByteCore.FerryBooking.Web
             this.GV_BookingList.PageIndex = e.NewPageIndex;
             BindList();
         }
+
+        protected void GV_BookingList_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Booking b = (Booking)e.Row.DataItem;
+                RouteOrderPassengerDetail passenger = new RouteOrderPassengerDetail().GetPrimaryPassenger(b.ID);
+                if (passenger != null)
+                {
+                    e.Row.Cells[2].Text = passenger.Telephone2;
+                    e.Row.Cells[3].Text = passenger.Email2;
+                    e.Row.Cells[4].Text = passenger.FirstName2 + " " + passenger.LastName2;
+                }
+            }
+        }
     }
 }

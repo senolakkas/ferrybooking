@@ -6,29 +6,47 @@
             <td>
                 <asp:ScriptManager ID="ScriptManager1" runat="server">
                 </asp:ScriptManager>
+                <table cellpadding="2" style="width: 100%">
+                    <tr>
+                        <td style="width: 47px">
                 <asp:Label ID="lblOperator" runat="server" Text="Vessel:"></asp:Label>
-                &nbsp;<asp:DropDownList ID="ddlVessel" runat="server" Width="300px">
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlVessel" runat="server" Width="300px">
                 </asp:DropDownList>
-&nbsp;
-                <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 47px">
                 <asp:Label ID="lblOperator0" runat="server" Text="Fare:"></asp:Label>
+                        </td>
+                        <td>
                 <asp:DropDownList ID="ddlFare" runat="server" Width="300px">
                 </asp:DropDownList>
-                <br />
-                Date:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 47px">
+                Date:</td>
+                        <td>
                 <asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>
                 <asp:Image ID="imgStartDate" runat="server" ImageUrl="~/Images/calendar.gif" />
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtStartDate" PopupButtonID="imgStartDate">
                 </cc1:CalendarExtender>
-                
-                &nbsp;to
+                            to
                 <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
                 <asp:Image ID="imgEndDate" runat="server" ImageUrl="~/Images/calendar.gif" />
                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtEndDate" PopupButtonID="imgEndDate">
                 </cc1:CalendarExtender>
-                <br />
-                <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" 
-                    Text="Search" CausesValidation="False" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 47px">
+                            &nbsp;</td>
+                        <td><asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" 
+                    Text="Search" CausesValidation="False" /></td>
+                    </tr>
+                </table>                
             </td>
         </tr>
         <tr>
@@ -58,8 +76,8 @@
                                 <asp:Label ID="lblFare" runat="server" Text='<%# Eval("Fare.FullName") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="SailingTime" HeaderText="Start Date" />
-                        <asp:BoundField DataField="ArrivalTime" HeaderText="End Date" />
+                        <asp:BoundField DataField="SailingTime" HeaderText="Start Date" DataFormatString="{0: MMM dd, yyyy HH:mm}" HtmlEncode="false" />
+                        <asp:BoundField DataField="ArrivalTime" HeaderText="End Date" DataFormatString="{0: MMM dd, yyyy HH:mm}" HtmlEncode="false" />
                     </Columns>
                     <RowStyle CssClass="DataTableCell" />
                     <SelectedRowStyle CssClass="DataTableSelCell" />
@@ -113,14 +131,20 @@
                                     Sailing Time:</td>
                                 <td>
                                     <asp:TextBox ID="txtSailingTime" runat="server" Width="150px"></asp:TextBox>
-                                    &nbsp;(i.e. 2008/09/18 14:30:00)</td>
+                                    &nbsp;(i.e. 2008/09/18 14:30:00)<asp:RequiredFieldValidator 
+                                        ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtSailingTime" 
+                                        ErrorMessage="*"></asp:RequiredFieldValidator>
+                                </td>
                             </tr>
                             <tr class="FormTable">
                                 <td>
                                     Arrival Time:</td>
                                 <td>
                                     <asp:TextBox ID="txtArrivalTime" runat="server" Width="150px"></asp:TextBox>
-                                    &nbsp;(i.e. 2008/09/19 18:30:00)</td>
+                                    &nbsp;(i.e. 2008/09/19 18:30:00)<asp:RequiredFieldValidator 
+                                        ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtArrivalTime" 
+                                        ErrorMessage="*"></asp:RequiredFieldValidator>
+                                </td>
                             </tr>
                             <tr class="FormTable">
                                 <td>
@@ -171,14 +195,20 @@
                                     Sailing Time:</td>
                                 <td>
                                     <asp:TextBox ID="txtSailingTime" Text='<%# Eval("SailingTime","{0:yyyy/MM/dd HH:mm:ss}") %>' runat="server" Width="150px" ></asp:TextBox>
-                                    &nbsp;(i.e. 2008/09/18 14:30:00)</td>
+                                    &nbsp;(i.e. 2008/09/18 14:30:00)<asp:RequiredFieldValidator 
+                                        ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtSailingTime" 
+                                        ErrorMessage="*"></asp:RequiredFieldValidator>
+                                </td>
                             </tr>
                             <tr class="FormTable">
                                 <td>
                                     Arrival Time:</td>
                                 <td>
                                     <asp:TextBox ID="txtArrivalTime" Text='<%# Eval("ArrivalTime","{0:yyyy/MM/dd HH:mm:ss}") %>' runat="server" Width="150px"></asp:TextBox>
-                                    &nbsp;(i.e. 2008/09/19 18:30:00)</td>
+                                    &nbsp;(i.e. 2008/09/19 18:30:00)<asp:RequiredFieldValidator 
+                                        ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtSailingTime" 
+                                        ErrorMessage="*"></asp:RequiredFieldValidator>
+                                </td>
                             </tr>
                             <tr class="FormTable">
                                 <td>

@@ -19,7 +19,7 @@ namespace ByteCore.FerryBooking.Web
     public partial class frmFare : BasePage
     {
         private Fare _fare;
-        private int _fareId;
+        //private int _fareId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -99,10 +99,10 @@ namespace ByteCore.FerryBooking.Web
 
         protected void GV_FareList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _fareId = Convert.ToInt32(this.GV_FareList.SelectedValue);
-            Fare currentFare = new Fare().GetById(_fareId, false);
+            //_fareId = Convert.ToInt32(this.GV_FareList.SelectedValue);
+            Fare currentFare = new Fare().GetById(Convert.ToInt32(this.GV_FareList.SelectedValue), false);
             BindFareCategory();
-            BindItemList(_fareId);
+            BindItemList(Convert.ToInt32(this.GV_FareList.SelectedValue));
             this.pnlFareItems.Visible = true;
             this.FV_Fare.Visible = false;
         }
@@ -252,7 +252,7 @@ namespace ByteCore.FerryBooking.Web
 
         protected void btnSubSearch_Click(object sender, EventArgs e)
         {
-            BindItemList(_fareId);
+            BindItemList(Convert.ToInt32(this.GV_FareList.SelectedValue));
         }
 
         protected void GV_FareItemList_RowDeleted(object sender, GridViewDeletedEventArgs e)
@@ -260,7 +260,7 @@ namespace ByteCore.FerryBooking.Web
             this.FV_FareItem.Visible = false;
             this.lblSubMessage.Text = "Delete successfully";
             this.lblSubMessage.ForeColor = Color.Green;
-            BindItemList(_fareId);
+            BindItemList(Convert.ToInt32(this.GV_FareList.SelectedValue));
         }
 
         protected void GV_FareItemList_SelectedIndexChanged(object sender, EventArgs e)
@@ -269,20 +269,21 @@ namespace ByteCore.FerryBooking.Web
             this.FV_FareItem.DataBind();
             this.FV_FareItem.ChangeMode(FormViewMode.Edit);
             this.FV_FareItem.Visible = true;
-            BindItemList(_fareId);
+            BindItemList(Convert.ToInt32(this.GV_FareList.SelectedValue));
         }
 
         protected void GV_FareItemList_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.GV_FareItemList.PageIndex = e.NewPageIndex;
-            BindItemList(_fareId);
+            BindItemList(Convert.ToInt32(this.GV_FareList.SelectedValue));
         }
 
         protected void btnAddItem_Click(object sender, EventArgs e)
         {
             this.FV_FareItem.ChangeMode(FormViewMode.Insert);
             this.FV_FareItem.Visible = true;
-            BindItemList(_fareId);
+            this.FV_FareItem.DataBind();
+            BindItemList(Convert.ToInt32(this.GV_FareList.SelectedValue));
         }
 
         protected void FV_FareItem_ItemCommand(object sender, FormViewCommandEventArgs e)
@@ -297,19 +298,91 @@ namespace ByteCore.FerryBooking.Web
                     break;
                 case "DoCancel":
                     this.FV_FareItem.Visible = false;
-                    BindItemList(_fareId);
+                    BindItemList(Convert.ToInt32(this.GV_FareList.SelectedValue));
                     break;
             }
         }
 
-        private void UpdateFareItem(int p)
+        private void UpdateFareItem(int id)
         {
-            return;
+            int fareId;
+            int fareTypeId;
+            int rangeStart;
+            int rangeEnd;
+            decimal amount;
+            decimal byFootAmount;
+
+            TextBox lblFare = (TextBox)this.FV_FareItem.FindControl("lblFare");
+            DropDownList ddlFareType = (DropDownList)this.FV_FareItem.FindControl("ddlFareType");
+            TextBox txtRangeStart = (TextBox)this.FV_FareItem.FindControl("txtRangeStart");
+            TextBox txtRangeEnd = (TextBox)this.FV_FareItem.FindControl("txtRangeEnd");
+            TextBox txtAmount = (TextBox)this.FV_FareItem.FindControl("txtAmount");
+            TextBox txtByFootAmount = (TextBox)this.FV_FareItem.FindControl("txtByFootAmount");
+
+            fareId = (lblFare == null) ? 0 : (string.IsNullOrEmpty(lblFare.Text) ? 0 : Convert.ToInt32(lblFare.Text));
+            fareTypeId = (ddlFareType == null) ? 0 : Convert.ToInt32(ddlFareType.SelectedValue);
+            rangeStart = (txtRangeStart == null) ? 0 : (string.IsNullOrEmpty(txtRangeStart.Text) ? 0 : Convert.ToInt32(txtRangeStart.Text));
+            rangeEnd = (txtRangeEnd == null) ? 0 : (string.IsNullOrEmpty(txtRangeEnd.Text) ? 0 : Convert.ToInt32(txtRangeEnd.Text));
+            amount = (txtAmount == null) ? 0m : (string.IsNullOrEmpty(txtAmount.Text) ? 0m : Convert.ToDecimal(txtAmount.Text));
+            byFootAmount = (txtByFootAmount == null) ? 0m : (string.IsNullOrEmpty(txtByFootAmount.Text) ? 0m : Convert.ToDecimal(txtByFootAmount.Text));
+
+            FareItem updateItem = new FareItem();
+            updateItem.DoUpdate(id, fareTypeId, rangeStart, rangeEnd, amount, byFootAmount);
+
+            BindItemList(Convert.ToInt32(this.GV_FareList.SelectedValue));
+
+            this.lblSubMessage.Text = "Update FareItem successfully";
+            this.lblSubMessage.ForeColor = Color.Green;
         }
 
         private void InsertFareItem()
         {
-            return;
+            int fareId;
+            int fareTypeId;
+            int rangeStart;
+            int rangeEnd;
+            decimal amount;
+            decimal byFootAmount;
+
+            TextBox lblFare = (TextBox)this.FV_FareItem.FindControl("lblFare");
+            DropDownList ddlFareType = (DropDownList)this.FV_FareItem.FindControl("ddlFareType");
+            TextBox txtRangeStart = (TextBox)this.FV_FareItem.FindControl("txtRangeStart");
+            TextBox txtRangeEnd = (TextBox)this.FV_FareItem.FindControl("txtRangeEnd");
+            TextBox txtAmount = (TextBox)this.FV_FareItem.FindControl("txtAmount");
+            TextBox txtByFootAmount = (TextBox)this.FV_FareItem.FindControl("txtByFootAmount");
+
+            fareId = (lblFare == null) ? 0 : (string.IsNullOrEmpty(lblFare.Text) ? 0 : Convert.ToInt32(lblFare.Text));
+            fareTypeId = (ddlFareType == null) ? 0 : Convert.ToInt32(ddlFareType.SelectedValue);
+            rangeStart = (txtRangeStart == null) ? 0 : (string.IsNullOrEmpty(txtRangeStart.Text) ? 0 : Convert.ToInt32(txtRangeStart.Text));
+            rangeEnd = (txtRangeEnd == null) ? 0 : (string.IsNullOrEmpty(txtRangeEnd.Text) ? 0 : Convert.ToInt32(txtRangeEnd.Text));
+            amount = (txtAmount == null) ? 0m : (string.IsNullOrEmpty(txtAmount.Text) ? 0m : Convert.ToDecimal(txtAmount.Text));
+            byFootAmount = (txtByFootAmount == null) ? 0m : (string.IsNullOrEmpty(txtByFootAmount.Text) ? 0m : Convert.ToDecimal(txtByFootAmount.Text));
+
+            FareItem item = new FareItem();
+            item.FareId = fareId;
+            item.FareTypeId = fareTypeId;
+            item.RangeStart = rangeStart;
+            item.RangeEnd = rangeEnd;
+            item.Amount = amount;
+            item.ByFootAmount = byFootAmount;
+
+            FareItem.DoInsert(item);
+
+            BindItemList(Convert.ToInt32(this.GV_FareList.SelectedValue));
+
+            if (txtRangeStart != null)
+                txtRangeStart.Text = string.Empty;
+            if (txtRangeEnd != null)
+                txtRangeEnd.Text = string.Empty;
+            if (ddlFareType != null)
+                ddlFareType.SelectedIndex = 0;
+            if (txtAmount != null)
+                txtAmount.Text = string.Empty;
+            if (txtByFootAmount != null)
+                txtByFootAmount.Text = string.Empty;
+
+            this.lblSubMessage.Text = "Insert FareItem successfully";
+            this.lblSubMessage.ForeColor = Color.Green;
         }
 
         protected void FV_FareItem_PreRender(object sender, EventArgs e)
@@ -322,9 +395,9 @@ namespace ByteCore.FerryBooking.Web
             DropDownList ddlFareType = (DropDownList)this.FV_FareItem.FindControl("ddlFareType");            
             if (ddlFareType != null)
             {
-                if (_fareId == 0)
-                    _fareId = Convert.ToInt32(this.GV_FareItemList.SelectedValue);
-                Fare fare = new Fare().GetById(_fareId, false);
+                //if (_fareId == 0)
+                //    _fareId = Convert.ToInt32(this.GV_FareItemList.SelectedValue);
+                Fare fare = new Fare().GetById(Convert.ToInt32(this.GV_FareList.SelectedValue), false);
                 if (fare != null)
                 {
                     int operatorId = fare.Routes.OperatorId.GetValueOrDefault(0);
@@ -335,6 +408,16 @@ namespace ByteCore.FerryBooking.Web
                     ddlFareType.DataValueField = "ID";
                     ddlFareType.DataBind();
                 }
+            }
+        }
+
+        protected void FV_FareItem_DataBound(object sender, EventArgs e)
+        {
+            if (this.FV_FareItem.CurrentMode == FormViewMode.Insert)
+            {
+                TextBox tb = (TextBox)this.FV_FareItem.FindControl("lblFare");
+                if (tb != null)
+                    tb.Text = this.GV_FareList.SelectedValue.ToString();
             }
         }
     }
