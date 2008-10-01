@@ -8,6 +8,13 @@ namespace ByteCore.FerryBooking.Core
 {
      partial class Port
      {
+         public string FullName
+         {
+             get
+             {
+                 return this.ID + " (" + this.PortName + ")";
+             }
+         }
          public PortList GetAllList()
          {
              OQL oql = new OQL(typeof(Port));

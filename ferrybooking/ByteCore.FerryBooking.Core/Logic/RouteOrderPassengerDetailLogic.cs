@@ -20,6 +20,26 @@ namespace ByteCore.FerryBooking.Core
              return new RouteOrderPassengerDetail().GetList(oql);
          }
 
+         public RouteOrderPassengerDetail GetPrimaryPassenger(int bookingId)
+         {
+             OQL oql = new OQL(typeof(RouteOrderPassengerDetail));
+             if (bookingId != 0)
+             {
+                 oql.AddAssociation("RouteOrder", "ro")
+                     .AddCondition(Condition.Eq("ro.BookingID", bookingId));
+                 oql.AddCondition(Condition.Eq(RouteOrderPassengerDetail.Properties.IsLeader2, true));
+             }
+             else
+             {
+                 return null;
+             }
+             RouteOrderPassengerDetailList list = new RouteOrderPassengerDetail().GetList(oql);
+             if (list.Count >= 1)
+                 return list[0];
+
+             return null;
+         }
+
          public RouteOrderPassengerDetailList GetPassengerListByRoute(int routeOrderId)
          {
              //RouteOrderPassengerDetail r = new RouteOrderPassengerDetail();
