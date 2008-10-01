@@ -16,7 +16,17 @@ namespace ByteCore.FerryBooking.Core
              oql.OrderBy(RouteOrder.Properties.ID);
              return new RouteOrder().GetList(oql);
          }
-
+         public RouteOrder GetPrimaryRouteOrder(int bookingId)
+         {
+             OQL oql = new OQL(typeof(RouteOrder));
+             oql.AddCondition(Condition.Eq(RouteOrder.Properties.BookingID, bookingId));
+             oql.AddCondition(Condition.Eq(RouteOrder.Properties.IsPrimary, true));
+             RouteOrderList list = new RouteOrder().GetList(oql);
+             if (list.Count >= 1)
+                 return list[0];
+             else
+                 return null;
+         }
          public decimal RouteTotalAmount
          {
              get

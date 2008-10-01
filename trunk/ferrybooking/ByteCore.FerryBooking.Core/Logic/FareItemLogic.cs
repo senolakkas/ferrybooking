@@ -13,6 +13,23 @@ namespace ByteCore.FerryBooking.Core
              fareItem.Create();
          }
 
+         public void DoUpdate(int ID, int fareTypeId, int rangeStart, int rangeEnd, decimal amount, decimal byFootAmount)
+         {
+             FareItem fareItem = new FareItem().GetById(ID, true);
+             fareItem.FareTypeId = fareTypeId;
+             fareItem.RangeStart = rangeStart;
+             fareItem.RangeEnd = rangeEnd;
+             fareItem.Amount = amount;
+             fareItem.ByFootAmount = byFootAmount;
+             fareItem.Update();
+         }
+
+         public void DoDelete(int ID)
+         {
+             FareItem fareItem = new FareItem().GetById(ID, false);
+             fareItem.Delete();
+         }
+
          public static FareItem GetFareItemByValues(int fareTypeId, int fareId, int rangeStart, int rangeEnd, decimal amount)
          {
              OQL oql = new OQL(typeof(FareItem));

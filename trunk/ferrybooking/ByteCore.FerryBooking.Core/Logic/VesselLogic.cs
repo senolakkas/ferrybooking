@@ -46,13 +46,17 @@ namespace ByteCore.FerryBooking.Core
              //vessel.FareTypes
          }
 
-         public void DoUpdate(int ID, string vesselCode, string vesselName, int operatorId)
+         public void DoUpdate(int ID, string vesselCode, string vesselName, int operatorId, IList<FareType> ftList)
          {
              Vessel vessel = new Vessel().GetById(ID, true);
              vessel.VesselCode = vesselCode;
              vessel.VesselName = vesselName;
              vessel.OperatorId = operatorId;
+             vessel.FareTypes.Clear();
              vessel.Update();
+             vessel.FareTypes = ftList;
+             vessel.Update();
+             
          }
 
          public void DoDelete(int ID)
