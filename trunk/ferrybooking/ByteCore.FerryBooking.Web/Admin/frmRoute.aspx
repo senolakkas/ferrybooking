@@ -5,8 +5,8 @@
             <td>
                 &nbsp;<asp:Label ID="lblOperator" runat="server" Text="Operator:"></asp:Label>
                 &nbsp;<asp:DropDownList ID="ddlOperator" runat="server" 
-                    DataSourceID="ODS_OperatorList" DataTextField="CompanyShortName" 
-                    DataValueField="ID">
+                    DataSourceID="ODS_OperatorList" DataTextField="FullName" 
+                    DataValueField="ID" Width="200px">
                 </asp:DropDownList>
 &nbsp;
                 <asp:Button ID="btnSearch" runat="server" OnClick="btnSearch_Click" 
@@ -34,7 +34,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Operator">
                             <ItemTemplate>
-                                <asp:Label ID="lblOperator" runat="server" Text='<%# Eval("Operator.CompanyShortName") %>'></asp:Label>
+                                <asp:Label ID="lblOperator" runat="server" Text='<%# Eval("Operator.FullName") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Departure Port">
@@ -93,7 +93,7 @@
                                     Operator:</td>
                                 <td>
                                     <asp:DropDownList ID="ddlOperator" runat="server" DataSourceID="ODS_Operator" 
-                                        DataTextField="CompanyShortName" DataValueField="ID"></asp:DropDownList>
+                                        DataTextField="FullName" DataValueField="ID" Width="200px"></asp:DropDownList>
                                     <asp:ObjectDataSource ID="ODS_Operator" runat="server" 
                                         SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Company">
                                     </asp:ObjectDataSource>
@@ -104,7 +104,7 @@
                                     Departure Port:</td>
                                 <td>
                                     <asp:DropDownList ID="ddlDeparturePort" runat="server" DataSourceID="ODS_DeparturePort" 
-                                        DataTextField="PortName" DataValueField="ID"></asp:DropDownList>
+                                        DataTextField="FullName" DataValueField="ID" Width="200px"></asp:DropDownList>
                                     <asp:ObjectDataSource ID="ODS_DeparturePort" runat="server" 
                                         SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Port">
                                     </asp:ObjectDataSource>
@@ -115,7 +115,7 @@
                                     Arrival Port:</td>
                                 <td>
                                     <asp:DropDownList ID="ddlArrivalPort" runat="server" DataSourceID="ODS_ArrivalPort" 
-                                        DataTextField="PortName" DataValueField="ID"></asp:DropDownList>
+                                        DataTextField="FullName" DataValueField="ID" Width="200px"></asp:DropDownList>
                                     <asp:ObjectDataSource ID="ODS_ArrivalPort" runat="server" 
                                         SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Port">
                                     </asp:ObjectDataSource>
@@ -152,7 +152,7 @@
                                 <td>
                                     <asp:DropDownList ID="ddlOperator" runat="server" 
                                         SelectedValue='<%# Eval("OperatorId") %>' DataSourceID="ODS_Operator" 
-                                        DataTextField="CompanyShortName" DataValueField="ID">
+                                        DataTextField="FullName" DataValueField="ID" Width="200px">
                                     </asp:DropDownList>
                                     <asp:ObjectDataSource ID="ODS_Operator" runat="server" 
                                         SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Company">
@@ -164,7 +164,8 @@
                                     Departure Port:</td>
                                 <td>
                                     <asp:DropDownList ID="ddlDeparturePort" runat="server" DataSourceID="ODS_DeparturePort" 
-                                        SelectedValue='<%# Eval("DeparturePortId") %>' DataTextField="PortName" DataValueField="ID">
+                                        SelectedValue='<%# Eval("DeparturePortId") %>' DataTextField="FullName" 
+                                        DataValueField="ID" Width="200px">
                                     </asp:DropDownList>
                                     <asp:ObjectDataSource ID="ODS_DeparturePort" runat="server" 
                                         SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Port">
@@ -176,7 +177,8 @@
                                     Arrival Port:</td>
                                 <td>                                    
                                     <asp:DropDownList ID="ddlArrivalPort" runat="server" DataSourceID="ODS_ArrivalPort" 
-                                        SelectedValue='<%# Eval("ArriavlPortId") %>' DataTextField="PortName" DataValueField="ID">
+                                        SelectedValue='<%# Eval("ArriavlPortId") %>' DataTextField="FullName" 
+                                        DataValueField="ID" Width="200px">
                                     </asp:DropDownList>
                                     <asp:ObjectDataSource ID="ODS_ArrivalPort" runat="server" 
                                         SelectMethod="GetAllList" TypeName="ByteCore.FerryBooking.Core.Port">

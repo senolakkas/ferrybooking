@@ -57,7 +57,7 @@ namespace ByteCore.FerryBooking.Web
             this.FV_Vessel.Visible = true;
             _fareTypeList = new List<FareType>();
             BindList();
-            BindVesselCabinet();
+            BindVesselCabinet(0);
         }
 
         protected void GV_VesselList_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,7 +67,7 @@ namespace ByteCore.FerryBooking.Web
             this.FV_Vessel.ChangeMode(FormViewMode.Edit);
             this.FV_Vessel.Visible = true;
             BindList();
-            BindVesselCabinet();
+            BindVesselCabinet(Convert.ToInt32(this.GV_VesselList.SelectedValue));
         }
 
         protected void FV_Vessel_ItemCommand(object sender, FormViewCommandEventArgs e)
@@ -97,8 +97,8 @@ namespace ByteCore.FerryBooking.Web
             TextBox txtVesselCode = (TextBox)this.FV_Vessel.FindControl("txtVesselCode");
             TextBox txtVesselName = (TextBox)this.FV_Vessel.FindControl("txtVesselName");
             DropDownList ddlOperator = (DropDownList)this.FV_Vessel.FindControl("ddlOperator");
-            Panel pnlCabinet = (Panel)this.FV_Vessel.FindControl("pnlCabinet");
-
+            CheckBoxList chklstAccommodation = (CheckBoxList)this.FV_Vessel.FindControl("chklstAccommodation");
+            
             vesselCode = (txtVesselCode == null) ? "" : (string.IsNullOrEmpty(txtVesselCode.Text) ? "" : txtVesselCode.Text);
             vesselName = (txtVesselName == null) ? "" : (string.IsNullOrEmpty(txtVesselName.Text) ? "" : txtVesselName.Text);
             operatorId = (ddlOperator == null) ? 0 : Convert.ToInt32(ddlOperator.SelectedValue);
@@ -108,9 +108,16 @@ namespace ByteCore.FerryBooking.Web
             _vessel.VesselName = vesselName;
             _vessel.OperatorId = operatorId;
 
-            IterateControls(pnlCabinet);
-            //_fareTypeList.Clear();
-            //_vessel.FareTypes = _fareTypeList;
+            for (int i = 0; i < chklstAccommodation.Items.Count; i++)
+            {
+                if (chklstAccommodation.Items[i].Selected)
+                {
+                    int ftId = Convert.ToInt32(chklstAccommodation.Items[i].Value);
+                    FareType ft = new FareType().GetById(ftId, false);
+                    _vessel.FareTypes.Add(ft);
+                }
+            }           
+
             Vessel.DoInsert(_vessel);
 
             BindList();
@@ -135,50 +142,29 @@ namespace ByteCore.FerryBooking.Web
             TextBox txtVesselCode = (TextBox)this.FV_Vessel.FindControl("txtVesselCode");
             TextBox txtVesselName = (TextBox)this.FV_Vessel.FindControl("txtVesselName");
             DropDownList ddlOperator = (DropDownList)this.FV_Vessel.FindControl("ddlOperator");
-
+            CheckBoxList chklstAccommodation = (CheckBoxList)this.FV_Vessel.FindControl("chklstAccommodation");
+            
             vesselCode = (txtVesselCode == null) ? "" : (string.IsNullOrEmpty(txtVesselCode.Text) ? "" : txtVesselCode.Text);
             vesselName = (txtVesselName == null) ? "" : (string.IsNullOrEmpty(txtVesselName.Text) ? "" : txtVesselName.Text);
             operatorId = (ddlOperator == null) ? 0 : Convert.ToInt32(ddlOperator.SelectedValue);
-
+            
             Vessel vessel = new Vessel();
-            vessel.DoUpdate(id, vesselCode, vesselName, operatorId);
+            IList<FareType> ftList = new List<FareType>();
+            
+            for (int i = 0; i < chklstAccommodation.Items.Count; i++)
+            {
+                if (chklstAccommodation.Items[i].Selected)
+                {
+                    int ftId = Convert.ToInt32(chklstAccommodation.Items[i].Value);
+                    FareType ft = new FareType().GetById(ftId, false);
+                    ftList.Add(ft);
+                }
+            }
+            vessel.DoUpdate(id, vesselCode, vesselName, operatorId, ftList);
             BindList();
-
-            //if (txtVesselCode != null)
-            //    txtVesselCode.Text = string.Empty;
-            //if (txtVesselName != null)
-            //    txtVesselName.Text = string.Empty;
-            //if (ddlOperator != null)
-            //    ddlOperator.SelectedIndex = 0;
 
             this.lblMessage.Text = "Update successfully";
             this.lblMessage.ForeColor = Color.Green;
-        }
-
-        private void IterateControls(Control parent)
-        {
-            foreach (Control child in parent.Controls)
-            {
-                if (child.GetType().ToString().Equals("System.Web.UI.WebControls.CheckBox")
-                      && child.ID.IndexOf("chk_Cabinet_") >= 0)
-                {
-                    CheckBox cb = (CheckBox)child;
-                    if (cb.Checked)
-                    {
-                        string[] s = child.ID.Split('_');
-                        if (s.Length != 3)
-                            continue;
-                        int ftId = Convert.ToInt32(s[2]);
-                        FareType ft = new FareType().GetById(ftId, false);
-                        _vessel.FareTypes.Add(ft);
-                    }
-                }
-
-                if (child.Controls.Count > 0)
-                {
-                    IterateControls(child);
-                }
-            }
         }
 
         protected void GV_VesselList_RowDeleted(object sender, GridViewDeletedEventArgs e)
@@ -192,45 +178,39 @@ namespace ByteCore.FerryBooking.Web
 
         protected void ddlOperator_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindVesselCabinet();
+            BindVesselCabinet(Convert.ToInt32(this.GV_VesselList.SelectedValue));
         }
 
-        private void BindVesselCabinet()
+        private void BindVesselCabinet(int vesselId)
         {
             int operatorId;
-            Panel pnlCabinet = (Panel)this.FV_Vessel.FindControl("pnlCabinet");
+            CheckBoxList chklstAccommodation = (CheckBoxList)this.FV_Vessel.FindControl("chklstAccommodation");
             DropDownList ddlOperator = (DropDownList)this.FV_Vessel.FindControl("ddlOperator");
-            if (pnlCabinet == null || ddlOperator == null)
+            if (ddlOperator == null)
                 return;
 
             operatorId = Convert.ToInt32(ddlOperator.SelectedValue);
             FareType fareType = new FareType();
             FareTypeList list = fareType.GetFareTypeList(operatorId, 1);
-
-            foreach (FareType ft in list)
+            chklstAccommodation.DataSource = list;
+            chklstAccommodation.DataTextField = "FullName";
+            chklstAccommodation.DataValueField = "ID";
+            chklstAccommodation.DataBind();
+            if (vesselId != 0)
             {
-                CheckBox cb = new CheckBox();
-                cb.ID = "chk_Cabinet_" + ft.ID;
-                cb.Text = ft.FullFareTypeName;
-                //cb.AutoPostBack = true;
-                //cb.CheckedChanged += new EventHandler(chk_Cabinet_CheckedChanged);
-                pnlCabinet.Controls.Add(cb);
-                pnlCabinet.Controls.Add(new LiteralControl("<br />"));
+                Vessel v = new Vessel().GetById(vesselId, false);
+                foreach (FareType ft in v.FareTypes)
+                {
+                    for (int i = 0; i < chklstAccommodation.Items.Count; i++)
+                    {
+                        if (chklstAccommodation.Items[i].Value == ft.ID.ToString())
+                        {
+                            chklstAccommodation.Items[i].Selected = true;
+                            break;
+                        }
+                    }
+                }
             }
-        }
-
-        private void chk_Cabinet_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckBox cb = (CheckBox)sender;
-            string[] s = cb.ID.Split('_');
-            if (s.Length != 3)
-                return;
-            int ftId = Convert.ToInt32(s[2]);
-            FareType ft = new FareType().GetById(ftId, false);
-            if (cb.Checked)
-                _fareTypeList.Add(ft);
-            else
-                _fareTypeList.Remove(ft);
         }
     }
 }
