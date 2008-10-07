@@ -96,8 +96,8 @@ namespace ByteCore.FerryBooking.Web
                     dayList[s.SailingTime.Value.ToString("ddd dd")] = new Dictionary<string, object>();
 
                 Dictionary<string, object> timeList = (Dictionary<string, object>)dayList[s.SailingTime.Value.ToString("ddd dd")];
-                if (!timeList.ContainsKey(s.SailingTime.Value.ToString("hh:mm")))
-                    timeList.Add(s.SailingTime.Value.ToString("hh:mm"), s.ID);
+                if (!timeList.ContainsKey(s.SailingTime.Value.ToString("HH:mm")))
+                    timeList.Add(s.SailingTime.Value.ToString("HH:mm"), s.ID);
             }
 
             return routeSchedules;
@@ -126,7 +126,7 @@ namespace ByteCore.FerryBooking.Web
                 Dictionary<string, object> routeSchedules = (Dictionary<string, object>)(htSchedulePreLoad[r.ID.ToString()]);
                 foreach (string key in routeSchedules.Keys)
                 {
-                    ddlYear.Items.Add(new ListItem(key, r.ID.ToString()));
+                    ddlYear.Items.Add(new ListItem(key, r.ID.ToString()+"_"+key));
                 }
 
             }
@@ -156,7 +156,7 @@ namespace ByteCore.FerryBooking.Web
             DropDownList ddlTime = (DropDownList)(((DropDownList)sender).Parent.FindControl("ddlTime"));
             Label labArrivalDate = (Label)(((DropDownList)sender).Parent.FindControl("labArrivalDate"));
 
-            string routeIdStr = ddlYear.SelectedValue;
+            string routeIdStr = ddlYear.SelectedValue.Split('_')[0];
 
             Hashtable htSchedulePreLoad = (Hashtable)(Session[SessionVariable.RouteSchedules]);
             Dictionary<string, object> routeSchedules = (Dictionary<string, object>)(htSchedulePreLoad[routeIdStr]);
@@ -185,7 +185,7 @@ namespace ByteCore.FerryBooking.Web
             Dictionary<string, object> monthList = (Dictionary<string, object>)(routeSchedules[ddlYear.SelectedItem.Text]);
             foreach (string key in monthList.Keys)
             {
-                ddlMonth.Items.Add(new ListItem(key, routeIdStr));
+                ddlMonth.Items.Add(new ListItem(key, routeIdStr + "_" + key));
             }
             ddlMonth.Enabled = true;
 
@@ -199,7 +199,7 @@ namespace ByteCore.FerryBooking.Web
             DropDownList ddlTime = (DropDownList)(((DropDownList)sender).Parent.FindControl("ddlTime"));
             Label labArrivalDate = (Label)(((DropDownList)sender).Parent.FindControl("labArrivalDate"));
 
-            string routeIdStr = ddlYear.SelectedValue;
+            string routeIdStr = ddlYear.SelectedValue.Split('_')[0];
 
             Hashtable htSchedulePreLoad = (Hashtable)(Session[SessionVariable.RouteSchedules]);
             Dictionary<string, object> routeSchedules = (Dictionary<string, object>)(htSchedulePreLoad[routeIdStr]);
@@ -226,7 +226,7 @@ namespace ByteCore.FerryBooking.Web
             Dictionary<string, object> dayList = (Dictionary<string, object>)(monthList[ddlMonth.SelectedItem.Text]);
             foreach (string key in dayList.Keys)
             {
-                ddlDay.Items.Add( new ListItem(key, routeIdStr));
+                ddlDay.Items.Add(new ListItem(key, routeIdStr + "_" + key));
             }
             ddlDay.Enabled = true;
         }
@@ -239,7 +239,7 @@ namespace ByteCore.FerryBooking.Web
             DropDownList ddlTime = (DropDownList)(((DropDownList)sender).Parent.FindControl("ddlTime"));
             Label labArrivalDate = (Label)(((DropDownList)sender).Parent.FindControl("labArrivalDate"));
 
-            string routeIdStr = ddlYear.SelectedValue;
+            string routeIdStr = ddlYear.SelectedValue.Split('_')[0];
 
             Hashtable htSchedulePreLoad = (Hashtable)(Session[SessionVariable.RouteSchedules]);
             Dictionary<string, object> routeSchedules = (Dictionary<string, object>)(htSchedulePreLoad[routeIdStr]);
@@ -277,7 +277,7 @@ namespace ByteCore.FerryBooking.Web
                 int scheduleId = Convert.ToInt32(ddlTime.SelectedValue);
                 Schedule schedule = new Schedule().GetById(scheduleId, false);
 
-                labArrivalDate.Text = "Arrival date:" + schedule.ArrivalTime.Value.ToString("ddd dd MMMM yyyy, hh:mm");
+                labArrivalDate.Text = "Arrival date:" + schedule.ArrivalTime.Value.ToString("ddd dd MMMM yyyy, HH:mm");
             }
             else
                 labArrivalDate.Text = "";
