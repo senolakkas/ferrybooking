@@ -32,66 +32,30 @@ namespace ByteCore.FerryBooking.Web {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// pnlRout1 control.
+        /// lvSchedule control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel pnlRout1;
+        protected global::System.Web.UI.WebControls.ListView lvSchedule;
         
         /// <summary>
-        /// labRouteName1 control.
+        /// lvPassenger control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labRouteName1;
+        protected global::System.Web.UI.WebControls.ListView lvPassenger;
         
         /// <summary>
-        /// ddlYear1 control.
+        /// btnContinue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlYear1;
-        
-        /// <summary>
-        /// ddlMonth1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMonth1;
-        
-        /// <summary>
-        /// ddlDay1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDay1;
-        
-        /// <summary>
-        /// ddlTime1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTime1;
-        
-        /// <summary>
-        /// labArrivalDate1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labArrivalDate1;
+        protected global::System.Web.UI.WebControls.Button btnContinue;
     }
 }

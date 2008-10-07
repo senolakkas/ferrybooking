@@ -11,11 +11,13 @@ using System.Web.UI.HtmlControls;
 /// <summary>
 /// Summary description for SessionVariable
 /// </summary>
+
 namespace ByteCore.FerryBooking.Web
 {
     public class SessionVariable
     {
-        public static readonly string Step1UserInput;
-        public static readonly string Route1Schedules;
+        public static readonly string Step1UserInput = "Step1UserInput";
+        public static readonly string RouteSchedules = "RouteSchedules";
+        public static readonly string BookingInstance = "BookingInstance";
     }
 }

@@ -11,17 +11,57 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div>
-        <asp:UpdatePanel ID="pnlRout1" runat="server" ChildrenAsTriggers="true">
-            <ContentTemplate>
-                <asp:Label ID="labRouteName1" runat="server"></asp:Label>
-                <asp:DropDownList ID="ddlYear1" runat="server" AutoPostBack="true" 
-                    onselectedindexchanged="ddlYear1_SelectedIndexChanged"></asp:DropDownList>
-                <asp:DropDownList ID="ddlMonth1" runat="server" AutoPostBack="true" Enabled="false"></asp:DropDownList>
-                <asp:DropDownList ID="ddlDay1" runat="server" AutoPostBack="true" Enabled="false"></asp:DropDownList>
-                <asp:DropDownList ID="ddlTime1" runat="server" AutoPostBack="true" Enabled="false"></asp:DropDownList>
-                <asp:Label ID="labArrivalDate1" runat="server"></asp:Label>
-            </ContentTemplate>
-        </asp:UpdatePanel>
+        <asp:ListView ID="lvSchedule" runat="server" 
+            onitemdatabound="lvSchedule_ItemDataBound" >
+            <LayoutTemplate>
+                <table>
+                    <tr><td><b>Schedule:</b></td></tr>
+                    <tr runat="server" id="itemPlaceholder" />
+                </table>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        <asp:UpdatePanel ID="pnlRout" runat="server" ChildrenAsTriggers="true">
+                            <ContentTemplate>
+                                <asp:Label ID="labRouteName" runat="server"></asp:Label> 
+                                <asp:DropDownList ID="ddlYear" runat="server" AutoPostBack="true" 
+                                    onselectedindexchanged="ddlYear_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlMonth" runat="server" AutoPostBack="true" 
+                                    Enabled="false" onselectedindexchanged="ddlMonth_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlDay" runat="server" AutoPostBack="true" 
+                                    Enabled="false" onselectedindexchanged="ddlDay_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlTime" runat="server" AutoPostBack="true" onselectedindexchanged="ddlTime_SelectedIndexChanged" Enabled="false"></asp:DropDownList>
+                                <asp:Label ID="labArrivalDate" runat="server"></asp:Label>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </td>
+                </tr>
+            </ItemTemplate>
+        </asp:ListView>
+    
+        <asp:ListView ID="lvPassenger" runat="server" onitemdatabound="lvPassenger_ItemDataBound" >
+            <LayoutTemplate>
+                <table>
+                    <tr><td><b>Passenger Ages:</b></td></tr>
+                    <tr runat="server" id="itemPlaceholder" />
+                </table>
+            </LayoutTemplate>
+            <ItemTemplate>
+                <tr>
+                    <td>
+                        Passenger
+                        <asp:Label ID="labPassengerNo" runat="server"></asp:Label> 
+                        &nbsp;&nbsp;Age:
+                        <asp:TextBox ID="txtPassengerAge" runat="server"></asp:TextBox>
+                        Please enter age <font color="red">at time of travel.</font>
+                    </td>
+                </tr>
+            </ItemTemplate>
+        </asp:ListView>
+        
+        <asp:Button ID="btnContinue" runat="server" Text="Continue" 
+                onclick="btnContinue_Click" />
         
     </div>
     </form>

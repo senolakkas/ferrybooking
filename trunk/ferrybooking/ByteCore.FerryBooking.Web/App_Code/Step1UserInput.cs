@@ -60,7 +60,7 @@ namespace ByteCore.FerryBooking.Web
             set 
             { 
                 _route1Value = value;
-                if (value.IndexOf("_") != -1)
+                if (!string.IsNullOrEmpty(value) && value.IndexOf("_") != -1)
                     _route1Id = Convert.ToInt32(value.Split('_')[0]);
             }
         }
@@ -71,7 +71,7 @@ namespace ByteCore.FerryBooking.Web
             set 
             { 
                 _route2Value = value;
-                if (value.IndexOf("_") != -1)
+                if (!string.IsNullOrEmpty(value) && value.IndexOf("_") != -1)
                     _route2Id = Convert.ToInt32(value.Split('_')[0]);
             }
         }
@@ -82,7 +82,7 @@ namespace ByteCore.FerryBooking.Web
             set 
             { 
                 _route3Value = value;
-                if (value.IndexOf("_") != -1)
+                if (!string.IsNullOrEmpty(value) && value.IndexOf("_") != -1)
                     _route3Id = Convert.ToInt32(value.Split('_')[0]);
             }
         }
@@ -93,7 +93,7 @@ namespace ByteCore.FerryBooking.Web
             set 
             { 
                 _route4Value = value;
-                if (value.IndexOf('_') != -1)
+                if (!string.IsNullOrEmpty(value) && value.IndexOf('_') != -1)
                     _route4Id = Convert.ToInt32(value.Split('_')[0]);
             }
         }
