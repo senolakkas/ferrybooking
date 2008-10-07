@@ -73,7 +73,8 @@ namespace ByteCore.FerryBooking.Core
              OQL oql = new OQL(typeof(Schedule))
                .AddAssociation("Fare","Fare")
                .AddCondition(Condition.Eq("Fare."+ Fare.Properties.RoutesID, routeId))
-               .AddCondition(Condition.Ge(Schedule.Properties.SailingTime,startdate));
+               .AddCondition(Condition.Ge(Schedule.Properties.SailingTime,startdate))
+               .OrderBy(Schedule.Properties.SailingTime);
                
              return new Schedule().GetList(oql);
          }

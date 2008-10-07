@@ -161,9 +161,9 @@ namespace ByteCore.FerryBooking.Web
                 step1.RouteSelectionMode = RouteSelectionMode.Multi;
 
             step1.Route1Value = ddlRoute1.SelectedValue;
-            step1.Route2Value = ddlRoute2.SelectedValue;
-            step1.Route3Value = ddlRoute3.SelectedValue;
-            step1.Route4Value = ddlRoute4.SelectedValue;
+            step1.Route2Value = Request.Params[ddlRoute2.ClientID];
+            step1.Route3Value = Request.Params[ddlRoute3.ClientID];
+            step1.Route4Value = Request.Params[ddlRoute4.ClientID];
             step1.PassengersCount = Convert.ToInt32(ddlPassengers.SelectedValue);
             step1.VehiclesCount = Convert.ToInt32(ddlVehicles.SelectedValue);
             Session[SessionVariable.Step1UserInput] = step1;

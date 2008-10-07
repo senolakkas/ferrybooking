@@ -26,4 +26,3 @@ GreenTea.Utils package
                 .GroupBy("FirstName").GroupBy("LastName")
                 .OrderBy("FirstName").OrderBy("LastName");
 		
-	+ TODO: Get single value from OQL
