@@ -67,6 +67,9 @@ namespace ByteCore.FerryBooking.Web
 
                 lvPassenger.DataSource = passengerList;
                 lvPassenger.DataBind();
+
+                lvTravelMethod.DataSource = routelist;
+                lvTravelMethod.DataBind();
             }
         }
 
@@ -109,8 +112,11 @@ namespace ByteCore.FerryBooking.Web
             {
                 ListViewDataItem dataItem = (ListViewDataItem)e.Item;
                 Route r = (Route)(dataItem.DataItem);
+                Label labRouteNo = (Label)(dataItem.FindControl("labRouteNo"));
+                labRouteNo.Text = (dataItem.DisplayIndex + 1).ToString();
+
                 Label labRouteName = (Label)(dataItem.FindControl("labRouteName"));
-                labRouteName.Text = "1 : " + r.ArriavlPort.PortName + " - " + r.DeparturePort.PortName;
+                labRouteName.Text = " : " + r.ArriavlPort.PortName + " - " + r.DeparturePort.PortName;
 
                 
 
@@ -140,7 +146,7 @@ namespace ByteCore.FerryBooking.Web
 
                 RouteOrderPassengerDetail pd = (RouteOrderPassengerDetail)(dataItem.DataItem);
                 Label labPassengerNo = (Label)(dataItem.FindControl("labPassengerNo"));
-                labPassengerNo.Text = dataItem.DisplayIndex.ToString();
+                labPassengerNo.Text = (dataItem.DisplayIndex+1).ToString();
 
                 TextBox txtPassengerAge = (TextBox)(dataItem.FindControl("txtPassengerAge"));
                 txtPassengerAge.Text = pd.Age.ToString();
@@ -272,6 +278,8 @@ namespace ByteCore.FerryBooking.Web
         {
             DropDownList ddlTime =(DropDownList)sender;
             Label labArrivalDate = (Label)(ddlTime.Parent.FindControl("labArrivalDate"));
+            Label labRouteNo = (Label)(ddlTime.Parent.FindControl("labRouteNo"));
+            int rowIdx = Convert.ToInt32(labRouteNo.Text);
             if (ddlTime.SelectedIndex > 0)
             {
                 int scheduleId = Convert.ToInt32(ddlTime.SelectedValue);
@@ -316,8 +324,42 @@ namespace ByteCore.FerryBooking.Web
             }
         }
 
+        protected void lvTravelMethod_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                ListViewDataItem dataItem = (ListViewDataItem)e.Item;
 
-        
+                Label labRouteNo = (Label)(dataItem.FindControl("labRouteNo"));
+                labRouteNo.Text = "Route " + (dataItem.DisplayIndex+1).ToString();
+
+                ListView lvVehicle = (ListView)(dataItem.FindControl("lvVehicle"));
+                RouteOrderVehicleDetailList vehicleList = new RouteOrderVehicleDetailList();
+                Step1UserInput step1 = (Step1UserInput)Session[SessionVariable.Step1UserInput];
+                for (int i = 0; i < step1.VehiclesCount; i++)
+                {
+                    vehicleList.Add(new RouteOrderVehicleDetail());
+                }
+
+                lvVehicle.DataSource = vehicleList;
+                lvVehicle.DataBind();
+
+            }
+        }
+
+        protected void lvVehicle_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListViewItemType.DataItem)
+            {
+                ListViewDataItem dataItem = (ListViewDataItem)e.Item;
+
+                Label labVehicleNo = (Label)(dataItem.FindControl("labVehicleNo"));
+                labVehicleNo.Text = "Vehicle " + (dataItem.DisplayIndex + 1).ToString();
+
+
+
+            }
+        }
 
        
     }
