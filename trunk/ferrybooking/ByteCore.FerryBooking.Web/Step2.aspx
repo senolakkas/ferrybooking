@@ -22,7 +22,7 @@
             <ItemTemplate>
                 <tr>
                     <td>
-                        <asp:UpdatePanel ID="pnlRout" runat="server" ChildrenAsTriggers="true">
+                        <asp:UpdatePanel ID="pnlRout" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <asp:Label ID="labRouteNo" runat="server"></asp:Label>
                                 <asp:Label ID="labRouteName" runat="server"></asp:Label> 
@@ -35,6 +35,12 @@
                                 <asp:DropDownList ID="ddlTime" runat="server" AutoPostBack="true" onselectedindexchanged="ddlTime_SelectedIndexChanged" Enabled="false"></asp:DropDownList>
                                 <asp:Label ID="labArrivalDate" runat="server"></asp:Label>
                             </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="ddlYear" EventName="SelectedIndexChanged" />
+                                <asp:AsyncPostBackTrigger ControlID="ddlMonth" EventName="SelectedIndexChanged" />
+                                <asp:AsyncPostBackTrigger ControlID="ddlDay" EventName="SelectedIndexChanged" />
+                                <asp:AsyncPostBackTrigger ControlID="ddlTime" EventName="SelectedIndexChanged" />
+                            </Triggers>
                         </asp:UpdatePanel>
                     </td>
                 </tr>
@@ -74,7 +80,7 @@
                         <asp:Label ID="labRouteNo" runat="server" Text=""></asp:Label>
                     </td>
                     <td>
-                        <asp:UpdatePanel ID="upnlVehicle" runat="server">
+                        <asp:UpdatePanel ID="upnlVehicle" runat="server" UpdateMode="Conditional">
                             <ContentTemplate>
                                 <asp:ListView ID="lvVehicle" runat="server" onitemdatabound="lvVehicle_ItemDataBound" Enabled="false" >
                                     <LayoutTemplate>

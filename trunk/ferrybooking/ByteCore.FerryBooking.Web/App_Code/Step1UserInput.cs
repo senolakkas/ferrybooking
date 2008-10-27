@@ -27,6 +27,8 @@ namespace ByteCore.FerryBooking.Web
         private int _route3Id;
         private int _route4Id;
 
+        private int _companyId;
+
 
         public RouteSelectionMode RouteSelectionMode
         {
@@ -61,7 +63,10 @@ namespace ByteCore.FerryBooking.Web
             { 
                 _route1Value = value;
                 if (!string.IsNullOrEmpty(value) && value.IndexOf("_") != -1)
+                {
                     _route1Id = Convert.ToInt32(value.Split('_')[0]);
+                    _companyId = Convert.ToInt32(value.Split('_')[1]);
+                }
             }
         }
 
@@ -108,6 +113,11 @@ namespace ByteCore.FerryBooking.Web
         {
             get { return _vehiclesCount; }
             set { _vehiclesCount = value; }
+        }
+
+        public int CompanyId
+        {
+            get { return _companyId; }
         }
     }
 }
