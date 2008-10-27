@@ -279,50 +279,59 @@ namespace ByteCore.FerryBooking.Web
             DropDownList ddlTime =(DropDownList)sender;
             Label labArrivalDate = (Label)(ddlTime.Parent.FindControl("labArrivalDate"));
             Label labRouteNo = (Label)(ddlTime.Parent.FindControl("labRouteNo"));
-            int rowIdx = Convert.ToInt32(labRouteNo.Text);
+            int rowIdx = Convert.ToInt32(labRouteNo.Text) - 1;
+            ListView lvVehicle = (ListView)(this.lvTravelMethod.Items[rowIdx].FindControl("lvVehicle"));
+            UpdatePanel upnlVehicle = (UpdatePanel)(this.lvTravelMethod.Items[rowIdx].FindControl("upnlVehicle"));
             if (ddlTime.SelectedIndex > 0)
             {
                 int scheduleId = Convert.ToInt32(ddlTime.SelectedValue);
                 Schedule schedule = new Schedule().GetById(scheduleId, false);
 
                 labArrivalDate.Text = "Arrival date:" + schedule.ArrivalTime.Value.ToString("ddd dd MMMM yyyy, HH:mm");
-            }
-            else
-                labArrivalDate.Text = "";
-        }
-
-        protected void btnContinue_Click(object sender, EventArgs e)
-        {
-            //todo: validation
-            
-            if (Session[SessionVariable.BookingInstance] is Booking)
-            {
-                //update booking instance already exists in session
-            }
-            else
-            {
-                //create new booking instance to store the booking information
-                Booking newBookingInstace = new Booking();
-
-                foreach (ListViewDataItem item in lvSchedule.Items)
-	            {
-                    DropDownList ddlTime = (DropDownList)(item.FindControl("ddlTime"));
-                    RouteOrder routeOrder = new RouteOrder();
-                    routeOrder.ScheduleId = Convert.ToInt32(ddlTime.SelectedValue);
-                    newBookingInstace.RouteOrders.Add(routeOrder);
-	            }
-
-                foreach (ListViewDataItem item in lvPassenger.Items)
+                lvVehicle.Enabled = true;
+                SortedList<string,string> types = new SortedList<string,string>();
+                types.Add("", "--select--");
+                foreach (FareItem fi in schedule.Fare.FareItems)
                 {
-                    TextBox txtPassengerAge = (TextBox)(item.FindControl("txtPassengerAge"));
-                    RouteOrderPassengerDetail passengerDetail = new RouteOrderPassengerDetail();
-                    passengerDetail.Age = Convert.ToInt32(txtPassengerAge.Text);
-                    newBookingInstace.RouteOrders[0].RouteOrderDetails.Add(passengerDetail);
+                    if (fi.FareType is VehicleType && 
+                        ((VehicleType)fi.FareType).MinLegth.HasValue && 
+                        ((VehicleType)fi.FareType).MinLegth.Value>0)
+                        if (!types.ContainsKey(fi.FareType.FareTypeName))
+                            types.Add(fi.FareType.FareTypeName, fi.FareType.FareTypeName);
                 }
 
-                Session[SessionVariable.BookingInstance] = newBookingInstace;
+                foreach (ListViewDataItem item in lvVehicle.Items)
+                {
+                    DropDownList ddlType = (DropDownList)(item.FindControl("ddlType"));
+                    ddlType.DataSource = types;
+                    ddlType.DataValueField = "Key";
+                    ddlType.DataTextField = "Value";
+                    ddlType.DataBind();
+                }
             }
+            else
+            {
+                labArrivalDate.Text = "";
+
+                foreach (ListViewDataItem item in lvVehicle.Items)
+                {
+                    DropDownList ddlType = (DropDownList)(item.FindControl("ddlType"));
+                    ddlType.SelectedIndex = 0;
+                    DropDownList ddlHeight = (DropDownList)(item.FindControl("ddlHeight"));
+                    ddlHeight.SelectedIndex = 0;
+                    DropDownList ddlWidth = (DropDownList)(item.FindControl("ddlWidth"));
+                    ddlWidth.SelectedIndex = 0;
+                    TextBox txtLength = (TextBox)(item.FindControl("txtLength"));
+                    txtLength.Text = "";
+
+                }
+
+                lvVehicle.Enabled = false;
+            }
+            upnlVehicle.Update();
         }
+
+        
 
         protected void lvTravelMethod_ItemDataBound(object sender, ListViewItemEventArgs e)
         {
@@ -356,11 +365,72 @@ namespace ByteCore.FerryBooking.Web
                 Label labVehicleNo = (Label)(dataItem.FindControl("labVehicleNo"));
                 labVehicleNo.Text = "Vehicle " + (dataItem.DisplayIndex + 1).ToString();
 
+                Step1UserInput step1 = (Step1UserInput)Session[SessionVariable.Step1UserInput];
+                DropDownList ddlHeight = (DropDownList)(dataItem.FindControl("ddlHeight"));
+                ddlHeight.DataSource = new VehicleAdditionPriceSetting().GetList(step1.CompanyId, VehicleAdditionPriceSetting.AdditionPriceType.Height);
+                ddlHeight.DataValueField = VehicleAdditionPriceSetting.Properties.ID;
+                ddlHeight.DataValueField = VehicleAdditionPriceSetting.Properties.VAPSettingName;
+                ddlHeight.DataBind();
+                ddlHeight.Items.Insert(0,new ListItem("--select--","0" ));
 
+                DropDownList ddlWidth = (DropDownList)(dataItem.FindControl("ddlWidth"));
+                ddlWidth.DataSource = new VehicleAdditionPriceSetting().GetList(step1.CompanyId, VehicleAdditionPriceSetting.AdditionPriceType.Width);
+                ddlWidth.DataValueField = VehicleAdditionPriceSetting.Properties.ID;
+                ddlWidth.DataValueField = VehicleAdditionPriceSetting.Properties.VAPSettingName;
+                ddlWidth.DataBind();
+                ddlWidth.Items.Insert(0, new ListItem("--select--","0" ));
 
             }
         }
 
-       
+        protected void btnContinue_Click(object sender, EventArgs e)
+        {
+            //todo: validation
+
+            if (Session[SessionVariable.BookingInstance] is Booking)
+            {
+                //update booking instance already exists in session
+            }
+            else
+            {
+                //create new booking instance to store the booking information
+                Booking newBookingInstace = new Booking();
+                int rowIdx = 0;
+                foreach (ListViewDataItem item in lvSchedule.Items)
+                {
+                    DropDownList ddlTime = (DropDownList)(item.FindControl("ddlTime"));
+                    RouteOrder routeOrder = new RouteOrder();
+                    routeOrder.ScheduleId = Convert.ToInt32(ddlTime.SelectedValue);
+                    newBookingInstace.RouteOrders.Add(routeOrder);
+
+                    ListView lvVehicle = (ListView)(this.lvTravelMethod.Items[rowIdx].FindControl("lvVehicle"));
+                    foreach (ListViewDataItem vItem in lvVehicle.Items)
+                    {
+                        RouteOrderVehicleDetail rovd = new RouteOrderVehicleDetail();
+                        //todo: need add column to store the type user seleced
+                        //DropDownList ddlType = (DropDownList)(vItem.FindControl("ddlType"));
+                       
+                        DropDownList ddlHeight = (DropDownList)(vItem.FindControl("ddlHeight"));
+                        DropDownList ddlWidth = (DropDownList)(vItem.FindControl("ddlWidth"));
+                        TextBox txtLength = (TextBox)(vItem.FindControl("txtLength"));
+                        rovd.VAPSettingID = Convert.ToInt32(ddlHeight.SelectedValue);
+                        rovd.VehVAPSettingID = Convert.ToInt32(ddlWidth.SelectedValue);
+                        rovd.Length = Convert.ToInt32(txtLength.Text);
+                        //todo: add vehicleDetail to the routeorder, but need change the table schema, the vehicleDetail should be inherited from routeOrderDetail.
+                    }
+                    rowIdx++;
+                }
+
+                foreach (ListViewDataItem item in lvPassenger.Items)
+                {
+                    TextBox txtPassengerAge = (TextBox)(item.FindControl("txtPassengerAge"));
+                    RouteOrderPassengerDetail passengerDetail = new RouteOrderPassengerDetail();
+                    passengerDetail.Age = Convert.ToInt32(txtPassengerAge.Text);
+                    newBookingInstace.RouteOrders[0].RouteOrderDetails.Add(passengerDetail);
+                }
+
+                Session[SessionVariable.BookingInstance] = newBookingInstace;
+            }
+        }
     }
 }
