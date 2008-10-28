@@ -125,19 +125,6 @@ namespace ByteCore.FerryBooking.Web
             company.DoUpdate(id,operatorName, operatorShortName, currencyId, logoImageUrl, terms, isActive);
             BindList();
 
-            //if (txtName != null)
-            //    txtName.Text = string.Empty;
-            //if (txtShortName != null)
-            //    txtShortName.Text = string.Empty;
-            //if (ddlCurrency != null)
-            //    ddlCurrency.SelectedIndex = 0;
-            ////if (fuLogoImage != null)
-            ////    fuLogoImage. = string.Empty;
-            //if (txtTerms != null)
-            //    txtTerms.Text = string.Empty;
-            //if (chkIsActiive != null)
-            //    chkIsActiive.Checked = true;
-
             this.lblMessage.Text = "Update successfully";
             this.lblMessage.ForeColor = Color.Green;
         }

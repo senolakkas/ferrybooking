@@ -107,9 +107,9 @@ namespace ByteCore.FerryBooking.Web
                 RouteOrderPassengerDetail passenger = new RouteOrderPassengerDetail().GetPrimaryPassenger(b.ID);
                 if (passenger != null)
                 {
-                    e.Row.Cells[2].Text = passenger.Telephone2;
-                    e.Row.Cells[3].Text = passenger.Email2;
-                    e.Row.Cells[4].Text = passenger.FirstName2 + " " + passenger.LastName2;
+                    e.Row.Cells[2].Text = passenger.Telephone;
+                    e.Row.Cells[3].Text = passenger.Email;
+                    e.Row.Cells[4].Text = passenger.FirstName + " " + passenger.LastName;
                 }
             }
         }

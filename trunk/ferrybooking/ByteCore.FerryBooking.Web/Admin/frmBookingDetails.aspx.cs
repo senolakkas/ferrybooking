@@ -131,7 +131,7 @@ namespace ByteCore.FerryBooking.Web
             RouteOrderPassengerDetail p = (RouteOrderPassengerDetail)e.Item.DataItem;   
             Label lblPassengerTitle = (Label)e.Item.FindControl("lblPassengerTitle");
             Panel pnlPassengerAdditionalInfo = (Panel)e.Item.FindControl("pnlPassengerAdditionalInfo");
-            bool isLeader = p.IsLeader2.GetValueOrDefault(false);
+            bool isLeader = p.IsLeader.GetValueOrDefault(false);
             if (isLeader)
             {
                 lblPassengerTitle.Text = "Primary Passenger " + e.Item.ItemIndex.ToString() + " (" + p.RouteOrder.Schedule.Fare.Routes.DeparturePort.PortName + " - " +
