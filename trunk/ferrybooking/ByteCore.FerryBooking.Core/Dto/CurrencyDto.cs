@@ -15,7 +15,7 @@ namespace ByteCore.FerryBooking.Core
         public CurrencyDto()
         {
         }
-        public CurrencyDto(Currency currency)
+        public CurrencyDto(Currency currency)  
         {
             _CurrencyId = currency.ID;
             _CurrencySymbol = currency.CurrencySymbol;

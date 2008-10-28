@@ -17,7 +17,7 @@ namespace ByteCore.FerryBooking.Core
         public PaymentDto()
         {
         }
-        public PaymentDto(Payment payment)
+        public PaymentDto(Payment payment)  
         {
             _PaymentID = payment.ID;
             _BookingID = payment.BookingID;

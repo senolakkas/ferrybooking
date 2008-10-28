@@ -17,7 +17,7 @@ namespace ByteCore.FerryBooking.Core
         public FareDto()
         {
         }
-        public FareDto(Fare fare)
+        public FareDto(Fare fare)  
         {
             _FareId = fare.ID;
             _RoutesID = fare.RoutesID;

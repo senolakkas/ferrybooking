@@ -15,7 +15,7 @@ namespace ByteCore.FerryBooking.Core
         public PaymentTypeDto()
         {
         }
-        public PaymentTypeDto(PaymentType paymentType)
+        public PaymentTypeDto(PaymentType paymentType)  
         {
             _PaymentTypeId = paymentType.ID;
             _PaymentTypeName = paymentType.PaymentTypeName;

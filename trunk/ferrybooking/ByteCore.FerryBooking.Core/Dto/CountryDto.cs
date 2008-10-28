@@ -15,7 +15,7 @@ namespace ByteCore.FerryBooking.Core
         public CountryDto()
         {
         }
-        public CountryDto(Country country)
+        public CountryDto(Country country)  
         {
             _CountryID = country.ID;
             _CountryName = country.CountryName;

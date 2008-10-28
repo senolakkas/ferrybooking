@@ -15,8 +15,7 @@ namespace ByteCore.FerryBooking.Core
         public PassengerTypeDto()
         {
         }
-        public PassengerTypeDto(PassengerType passengerType)
-            : base(passengerType)
+        public PassengerTypeDto(PassengerType passengerType) :base(passengerType) 
         {
             _MinAge = passengerType.MinAge;
             _MaxAge = passengerType.MaxAge;

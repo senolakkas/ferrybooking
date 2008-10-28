@@ -15,7 +15,7 @@ namespace ByteCore.FerryBooking.Core
         public FareCategoryDto()
         {
         }
-        public FareCategoryDto(FareCategory fareCategory)
+        public FareCategoryDto(FareCategory fareCategory)  
         {
             _CategoryId = fareCategory.ID;
             _CategoryName = fareCategory.CategoryName;

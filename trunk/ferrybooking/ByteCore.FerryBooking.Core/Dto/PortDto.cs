@@ -15,7 +15,7 @@ namespace ByteCore.FerryBooking.Core
         public PortDto()
         {
         }
-        public PortDto(Port port)
+        public PortDto(Port port)  
         {
             _PortId = port.ID;
             _PortName = port.PortName;

@@ -15,7 +15,7 @@ namespace ByteCore.FerryBooking.Core
         public SpecialRequirementDto()
         {
         }
-        public SpecialRequirementDto(SpecialRequirement specialRequirement)
+        public SpecialRequirementDto(SpecialRequirement specialRequirement)  
         {
             _RequirementID = specialRequirement.ID;
             _RequirementDesc = specialRequirement.RequirementDesc;

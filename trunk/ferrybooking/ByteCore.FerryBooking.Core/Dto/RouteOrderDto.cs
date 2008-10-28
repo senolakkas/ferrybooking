@@ -17,7 +17,7 @@ namespace ByteCore.FerryBooking.Core
         public RouteOrderDto()
         {
         }
-        public RouteOrderDto(RouteOrder routeOrder)
+        public RouteOrderDto(RouteOrder routeOrder)  
         {
             _RouteOrderID = routeOrder.ID;
             _ScheduleId = routeOrder.ScheduleId;

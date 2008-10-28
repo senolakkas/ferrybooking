@@ -18,7 +18,7 @@ namespace ByteCore.FerryBooking.Core
         public ScheduleDto()
         {
         }
-        public ScheduleDto(Schedule schedule)
+        public ScheduleDto(Schedule schedule)  
         {
             _ScheduleId = schedule.ID;
             _VesselId = schedule.VesselId;

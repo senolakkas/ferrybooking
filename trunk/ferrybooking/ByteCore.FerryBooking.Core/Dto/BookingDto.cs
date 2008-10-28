@@ -17,7 +17,7 @@ namespace ByteCore.FerryBooking.Core
         public BookingDto()
         {
         }
-        public BookingDto(Booking booking)
+        public BookingDto(Booking booking)  
         {
             _BookingID = booking.ID;
             _BookingDate = booking.BookingDate;

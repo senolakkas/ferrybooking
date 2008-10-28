@@ -19,7 +19,7 @@ namespace ByteCore.FerryBooking.Core
         public SeasonDto()
         {
         }
-        public SeasonDto(Season season)
+        public SeasonDto(Season season)  
         {
             _SeasonID = season.ID;
             _OperatorId = season.OperatorId;
