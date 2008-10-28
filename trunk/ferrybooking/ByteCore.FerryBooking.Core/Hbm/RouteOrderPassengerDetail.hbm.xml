@@ -5,23 +5,23 @@
     <property name="CountryID" column="CountryID" type="System.Int32" not-null="false" />
     <property name="RequirementID" column="RequirementID" type="System.Int32" not-null="false" />
     <property name="Age" column="Age" type="System.Int32" not-null="false" />
-    <property name="IsLeader2" column="IsLeader2" type="System.Boolean" not-null="false" />
-    <property name="FirstName2" column="FirstName2" type="System.String" not-null="false" length="50"/>
-    <property name="LastName2" column="LastName2" type="System.String" not-null="false" length="50"/>
-    <property name="MiddleName2" column="MiddleName2" type="System.String" not-null="false" length="50"/>
-    <property name="Title2" column="Title2" type="System.String" not-null="false" length="10"/>
-    <property name="Citizenship2" column="Citizenship2" type="System.String" not-null="false" length="50"/>
-    <property name="Passport2" column="Passport2" type="System.String" not-null="false" length="50"/>
-    <property name="Gender2" column="Gender2" type="System.String" not-null="false" length="1"/>
-    <property name="Brithday2" column="Brithday2" type="System.DateTime" not-null="false" />
-    <property name="Email2" column="Email2" type="System.String" not-null="false" length="100"/>
-    <property name="Address3" column="Address3" type="System.String" not-null="false" length="200"/>
-    <property name="Address4" column="Address4" type="System.String" not-null="false" length="200"/>
-    <property name="City2" column="City2" type="System.String" not-null="false" length="100"/>
-    <property name="Province2" column="Province2" type="System.String" not-null="false" length="50"/>
-    <property name="Postcode2" column="Postcode2" type="System.String" not-null="false" length="50"/>
-    <property name="Cellphone2" column="Cellphone2" type="System.String" not-null="false" length="50"/>
-    <property name="Telephone2" column="Telephone2" type="System.String" not-null="false" length="50"/>
-    <property name="Fax2" column="Fax2" type="System.String" not-null="false" length="50"/>
+    <property name="IsLeader" column="IsLeader" type="System.Boolean" not-null="false" />
+    <property name="FirstName" column="FirstName" type="System.String" not-null="false" length="50"/>
+    <property name="LastName" column="LastName" type="System.String" not-null="false" length="50"/>
+    <property name="MiddleName" column="MiddleName" type="System.String" not-null="false" length="50"/>
+    <property name="Title" column="Title" type="System.String" not-null="false" length="10"/>
+    <property name="Citizenship" column="Citizenship" type="System.String" not-null="false" length="50"/>
+    <property name="Passport" column="Passport" type="System.String" not-null="false" length="50"/>
+    <property name="Gender" column="Gender" type="System.String" not-null="false" length="1"/>
+    <property name="Brithday" column="Brithday" type="System.DateTime" not-null="false" />
+    <property name="Email" column="Email" type="System.String" not-null="false" length="100"/>
+    <property name="Address1" column="Address1" type="System.String" not-null="false" length="200"/>
+    <property name="Address2" column="Address2" type="System.String" not-null="false" length="200"/>
+    <property name="City" column="City" type="System.String" not-null="false" length="100"/>
+    <property name="Province" column="Province" type="System.String" not-null="false" length="50"/>
+    <property name="Postcode" column="Postcode" type="System.String" not-null="false" length="50"/>
+    <property name="Cellphone" column="Cellphone" type="System.String" not-null="false" length="50"/>
+    <property name="Telephone" column="Telephone" type="System.String" not-null="false" length="50"/>
+    <property name="Fax" column="Fax" type="System.String" not-null="false" length="50"/>
  </joined-subclass>
 </hibernate-mapping>
