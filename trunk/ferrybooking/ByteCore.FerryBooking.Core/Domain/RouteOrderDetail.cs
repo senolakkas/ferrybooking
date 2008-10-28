@@ -29,7 +29,6 @@ namespace ByteCore.FerryBooking.Core
         private System.Decimal? _Amount;
         private FareType _FareType;
         private RouteOrder _RouteOrder;
-        private IList<RouteOrderVehicleDetail> _RouteOrderVehicleDetails = new List<RouteOrderVehicleDetail>();
         #endregion
 
         #region Constructor
@@ -72,11 +71,6 @@ namespace ByteCore.FerryBooking.Core
          public virtual RouteOrder RouteOrder{
              get { return _RouteOrder; }
              set { _RouteOrder = value;}
-         }
-
-         public virtual IList<RouteOrderVehicleDetail> RouteOrderVehicleDetails{
-             get { return _RouteOrderVehicleDetails; }
-             set { _RouteOrderVehicleDetails = value; }
          }
 
         #endregion
