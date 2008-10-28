@@ -16,7 +16,7 @@ namespace ByteCore.FerryBooking.Core
                  oql.AddAssociation("RouteOrder", "ro")
                      .AddCondition(Condition.Eq("ro.BookingID", bookingId));
              oql.OrderBy(RouteOrderPassengerDetail.Properties.RouteOrderID);
-             oql.OrderBy(RouteOrderPassengerDetail.Properties.IsLeader2);
+             oql.OrderBy(RouteOrderPassengerDetail.Properties.IsLeader);
              return new RouteOrderPassengerDetail().GetList(oql);
          }
 
@@ -27,7 +27,7 @@ namespace ByteCore.FerryBooking.Core
              {
                  oql.AddAssociation("RouteOrder", "ro")
                      .AddCondition(Condition.Eq("ro.BookingID", bookingId));
-                 oql.AddCondition(Condition.Eq(RouteOrderPassengerDetail.Properties.IsLeader2, true));
+                 oql.AddCondition(Condition.Eq(RouteOrderPassengerDetail.Properties.IsLeader, true));
              }
              else
              {
@@ -50,7 +50,7 @@ namespace ByteCore.FerryBooking.Core
                      //.AddAssociation("Category", "c")
                      .AddCondition(Condition.Eq("ft.CategoryId", 3));
              oql.AddCondition(Condition.Eq(RouteOrderPassengerDetail.Properties.RouteOrderID, routeOrderId));
-             oql.OrderBy(RouteOrderPassengerDetail.Properties.IsLeader2, OrderByDirect.Desc);
+             oql.OrderBy(RouteOrderPassengerDetail.Properties.IsLeader, OrderByDirect.Desc);
              return new RouteOrderPassengerDetail().GetList(oql);
          }
      }
