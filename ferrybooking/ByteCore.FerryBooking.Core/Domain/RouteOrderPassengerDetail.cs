@@ -21,24 +21,24 @@ namespace ByteCore.FerryBooking.Core
             public static readonly string CountryID = "CountryID";
             public static readonly string RequirementID = "RequirementID";
             public static readonly string Age = "Age";
-            public static readonly string IsLeader2 = "IsLeader2";
-            public static readonly string FirstName2 = "FirstName2";
-            public static readonly string LastName2 = "LastName2";
-            public static readonly string MiddleName2 = "MiddleName2";
-            public static readonly string Title2 = "Title2";
-            public static readonly string Citizenship2 = "Citizenship2";
-            public static readonly string Passport2 = "Passport2";
-            public static readonly string Gender2 = "Gender2";
-            public static readonly string Brithday2 = "Brithday2";
-            public static readonly string Email2 = "Email2";
-            public static readonly string Address3 = "Address3";
-            public static readonly string Address4 = "Address4";
-            public static readonly string City2 = "City2";
-            public static readonly string Province2 = "Province2";
-            public static readonly string Postcode2 = "Postcode2";
-            public static readonly string Cellphone2 = "Cellphone2";
-            public static readonly string Telephone2 = "Telephone2";
-            public static readonly string Fax2 = "Fax2";
+            public static readonly string IsLeader = "IsLeader";
+            public static readonly string FirstName = "FirstName";
+            public static readonly string LastName = "LastName";
+            public static readonly string MiddleName = "MiddleName";
+            public static readonly string Title = "Title";
+            public static readonly string Citizenship = "Citizenship";
+            public static readonly string Passport = "Passport";
+            public static readonly string Gender = "Gender";
+            public static readonly string Brithday = "Brithday";
+            public static readonly string Email = "Email";
+            public static readonly string Address1 = "Address1";
+            public static readonly string Address2 = "Address2";
+            public static readonly string City = "City";
+            public static readonly string Province = "Province";
+            public static readonly string Postcode = "Postcode";
+            public static readonly string Cellphone = "Cellphone";
+            public static readonly string Telephone = "Telephone";
+            public static readonly string Fax = "Fax";
         }
         #endregion
 
@@ -47,24 +47,24 @@ namespace ByteCore.FerryBooking.Core
         private System.Int32? _CountryID;
         private System.Int32? _RequirementID;
         private System.Int32? _Age;
-        private System.Boolean? _IsLeader2;
-        private System.String _FirstName2;
-        private System.String _LastName2;
-        private System.String _MiddleName2;
-        private System.String _Title2;
-        private System.String _Citizenship2;
-        private System.String _Passport2;
-        private System.String _Gender2;
-        private System.DateTime? _Brithday2;
-        private System.String _Email2;
-        private System.String _Address3;
-        private System.String _Address4;
-        private System.String _City2;
-        private System.String _Province2;
-        private System.String _Postcode2;
-        private System.String _Cellphone2;
-        private System.String _Telephone2;
-        private System.String _Fax2;
+        private System.Boolean? _IsLeader;
+        private System.String _FirstName;
+        private System.String _LastName;
+        private System.String _MiddleName;
+        private System.String _Title;
+        private System.String _Citizenship;
+        private System.String _Passport;
+        private System.String _Gender;
+        private System.DateTime? _Brithday;
+        private System.String _Email;
+        private System.String _Address1;
+        private System.String _Address2;
+        private System.String _City;
+        private System.String _Province;
+        private System.String _Postcode;
+        private System.String _Cellphone;
+        private System.String _Telephone;
+        private System.String _Fax;
         #endregion
 
         #region Constructor
@@ -94,94 +94,94 @@ namespace ByteCore.FerryBooking.Core
              set { _Age = value;}
          }
 
-         public virtual System.Boolean? IsLeader2 {
-             get { return _IsLeader2; }
-             set { _IsLeader2 = value;}
+         public virtual System.Boolean? IsLeader {
+             get { return _IsLeader; }
+             set { _IsLeader = value;}
          }
 
-         public virtual System.String FirstName2 {
-             get { return _FirstName2; }
-             set { _FirstName2 = value;}
+         public virtual System.String FirstName {
+             get { return _FirstName; }
+             set { _FirstName = value;}
          }
 
-         public virtual System.String LastName2 {
-             get { return _LastName2; }
-             set { _LastName2 = value;}
+         public virtual System.String LastName {
+             get { return _LastName; }
+             set { _LastName = value;}
          }
 
-         public virtual System.String MiddleName2 {
-             get { return _MiddleName2; }
-             set { _MiddleName2 = value;}
+         public virtual System.String MiddleName {
+             get { return _MiddleName; }
+             set { _MiddleName = value;}
          }
 
-         public virtual System.String Title2 {
-             get { return _Title2; }
-             set { _Title2 = value;}
+         public virtual System.String Title {
+             get { return _Title; }
+             set { _Title = value;}
          }
 
-         public virtual System.String Citizenship2 {
-             get { return _Citizenship2; }
-             set { _Citizenship2 = value;}
+         public virtual System.String Citizenship {
+             get { return _Citizenship; }
+             set { _Citizenship = value;}
          }
 
-         public virtual System.String Passport2 {
-             get { return _Passport2; }
-             set { _Passport2 = value;}
+         public virtual System.String Passport {
+             get { return _Passport; }
+             set { _Passport = value;}
          }
 
-         public virtual System.String Gender2 {
-             get { return _Gender2; }
-             set { _Gender2 = value;}
+         public virtual System.String Gender {
+             get { return _Gender; }
+             set { _Gender = value;}
          }
 
-         public virtual System.DateTime? Brithday2 {
-             get { return _Brithday2; }
-             set { _Brithday2 = value;}
+         public virtual System.DateTime? Brithday {
+             get { return _Brithday; }
+             set { _Brithday = value;}
          }
 
-         public virtual System.String Email2 {
-             get { return _Email2; }
-             set { _Email2 = value;}
+         public virtual System.String Email {
+             get { return _Email; }
+             set { _Email = value;}
          }
 
-         public virtual System.String Address3 {
-             get { return _Address3; }
-             set { _Address3 = value;}
+         public virtual System.String Address1 {
+             get { return _Address1; }
+             set { _Address1 = value;}
          }
 
-         public virtual System.String Address4 {
-             get { return _Address4; }
-             set { _Address4 = value;}
+         public virtual System.String Address2 {
+             get { return _Address2; }
+             set { _Address2 = value;}
          }
 
-         public virtual System.String City2 {
-             get { return _City2; }
-             set { _City2 = value;}
+         public virtual System.String City {
+             get { return _City; }
+             set { _City = value;}
          }
 
-         public virtual System.String Province2 {
-             get { return _Province2; }
-             set { _Province2 = value;}
+         public virtual System.String Province {
+             get { return _Province; }
+             set { _Province = value;}
          }
 
-         public virtual System.String Postcode2 {
-             get { return _Postcode2; }
-             set { _Postcode2 = value;}
+         public virtual System.String Postcode {
+             get { return _Postcode; }
+             set { _Postcode = value;}
          }
 
-         public virtual System.String Cellphone2 {
-             get { return _Cellphone2; }
-             set { _Cellphone2 = value;}
+         public virtual System.String Cellphone {
+             get { return _Cellphone; }
+             set { _Cellphone = value;}
          }
 
-         public virtual System.String Telephone2 {
-             get { return _Telephone2; }
-             set { _Telephone2 = value;}
+         public virtual System.String Telephone {
+             get { return _Telephone; }
+             set { _Telephone = value;}
          }
 
-         public virtual System.String Fax2 {
-             get { return _Fax2; }
-             set { _Fax2 = value;}
+         public virtual System.String Fax {
+             get { return _Fax; }
+             set { _Fax = value;}
          }
 
         #endregion

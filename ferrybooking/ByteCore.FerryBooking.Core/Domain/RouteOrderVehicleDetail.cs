@@ -7,16 +7,20 @@ using GreenTea.DAO;
 namespace ByteCore.FerryBooking.Core
 {
     [Serializable]
-    public partial class RouteOrderVehicleDetail : DomainObject<System.Int32>
+    public partial class RouteOrderVehicleDetail : RouteOrderDetail
     {
 
         #region Columns Names nested class
         public class Properties
         {
             public static readonly string ID = "ID";
+            public static readonly string FareTypeId = "FareTypeId";
+            public static readonly string RouteOrderID = "RouteOrderID";
+            public static readonly string Quantity = "Quantity";
+            public static readonly string Amount = "Amount";
             public static readonly string VAPSettingID = "VAPSettingID";
             public static readonly string VehVAPSettingID = "VehVAPSettingID";
-            public static readonly string RouteOrderDetailId = "RouteOrderDetailId";
+            public static readonly string FareTypeName = "FareTypeName";
             public static readonly string Length = "Length";
             public static readonly string LicensePlate = "LicensePlate";
             public static readonly string MakeModel = "MakeModel";
@@ -27,13 +31,10 @@ namespace ByteCore.FerryBooking.Core
         private IRouteOrderVehicleDetailDao _dao;
         private System.Int32? _VAPSettingID;
         private System.Int32? _VehVAPSettingID;
-        private System.Int32? _RouteOrderDetailId;
+        private System.String _FareTypeName;
         private System.Int32? _Length;
         private System.String _LicensePlate;
         private System.String _MakeModel;
-        private RouteOrderDetail _RouteOrderDetail;
-        private VehicleAdditionPriceSetting _VAPSetting;
-        private VehicleAdditionPriceSetting _VehVAPSetting;
         #endregion
 
         #region Constructor
@@ -58,9 +59,9 @@ namespace ByteCore.FerryBooking.Core
              set { _VehVAPSettingID = value;}
          }
 
-         public virtual System.Int32? RouteOrderDetailId {
-             get { return _RouteOrderDetailId; }
-             set { _RouteOrderDetailId = value;}
+         public virtual System.String FareTypeName {
+             get { return _FareTypeName; }
+             set { _FareTypeName = value;}
          }
 
          public virtual System.Int32? Length {
@@ -76,21 +77,6 @@ namespace ByteCore.FerryBooking.Core
          public virtual System.String MakeModel {
              get { return _MakeModel; }
              set { _MakeModel = value;}
-         }
-
-         public virtual RouteOrderDetail RouteOrderDetail{
-             get { return _RouteOrderDetail; }
-             set { _RouteOrderDetail = value;}
-         }
-
-         public virtual VehicleAdditionPriceSetting VAPSetting{
-             get { return _VAPSetting; }
-             set { _VAPSetting = value;}
-         }
-
-         public virtual VehicleAdditionPriceSetting VehVAPSetting{
-             get { return _VehVAPSetting; }
-             set { _VehVAPSetting = value;}
          }
 
         #endregion
