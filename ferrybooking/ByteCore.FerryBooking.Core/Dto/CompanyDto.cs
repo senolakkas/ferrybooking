@@ -20,7 +20,7 @@ namespace ByteCore.FerryBooking.Core
         public CompanyDto()
         {
         }
-        public CompanyDto(Company company)
+        public CompanyDto(Company company)  
         {
             _CompanyId = company.ID;
             _CurrencyId = company.CurrencyId;

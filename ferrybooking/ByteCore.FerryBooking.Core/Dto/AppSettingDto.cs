@@ -15,7 +15,7 @@ namespace ByteCore.FerryBooking.Core
         public AppSettingDto()
         {
         }
-        public AppSettingDto(AppSetting appSetting)
+        public AppSettingDto(AppSetting appSetting)  
         {
             _SettingKey = appSetting.ID;
             _SettingValue = appSetting.SettingValue;

@@ -18,7 +18,7 @@ namespace ByteCore.FerryBooking.Core
         public VehicleAdditionPriceSettingDto()
         {
         }
-        public VehicleAdditionPriceSettingDto(VehicleAdditionPriceSetting vehicleAdditionPriceSetting)
+        public VehicleAdditionPriceSettingDto(VehicleAdditionPriceSetting vehicleAdditionPriceSetting)  
         {
             _VAPSettingID = vehicleAdditionPriceSetting.ID;
             _OperatorId = vehicleAdditionPriceSetting.OperatorId;

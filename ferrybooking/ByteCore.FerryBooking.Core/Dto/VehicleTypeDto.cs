@@ -16,8 +16,7 @@ namespace ByteCore.FerryBooking.Core
         public VehicleTypeDto()
         {
         }
-        public VehicleTypeDto(VehicleType vehicleType)
-            : base(vehicleType)
+        public VehicleTypeDto(VehicleType vehicleType) :base(vehicleType) 
         {
             _MinLegth = vehicleType.MinLegth;
             _MaxLegth = vehicleType.MaxLegth;
