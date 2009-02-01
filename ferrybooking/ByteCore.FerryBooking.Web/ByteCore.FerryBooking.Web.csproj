@@ -185,6 +185,13 @@
     <Compile Include="Accommodation.aspx.designer.cs">
       <DependentUpon>Accommodation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentVerify.aspx.cs">
+      <DependentUpon>PaymentVerify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentVerify.aspx.designer.cs">
+      <DependentUpon>PaymentVerify.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.Master.cs">
       <DependentUpon>Default.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -289,6 +296,7 @@
     <Content Include="App_Themes\Default.Theme\Default.skin" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="PaymentVerify.aspx" />
     <Content Include="Default.Master" />
   </ItemGroup>
   <ItemGroup>

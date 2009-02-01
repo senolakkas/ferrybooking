@@ -72,6 +72,11 @@ namespace ByteCore.FerryBooking.Web
             }
         }
 
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+
+        }
+
         protected void btnContinue_Click(object sender, EventArgs e)
         {
             Booking bookingInstance = (Booking)Session[SessionVariable.BookingInstance];
