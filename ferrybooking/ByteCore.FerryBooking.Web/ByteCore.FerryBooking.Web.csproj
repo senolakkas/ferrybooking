@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{5237121F-0915-48F3-904B-74BE380D4736}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -178,6 +178,27 @@
     <Compile Include="App_Code\ExportExcel.cs" />
     <Compile Include="App_Code\SessionVariable.cs" />
     <Compile Include="App_Code\Step1UserInput.cs" />
+    <Compile Include="Accommodation.aspx.cs">
+      <DependentUpon>Accommodation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accommodation.aspx.designer.cs">
+      <DependentUpon>Accommodation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.Master.cs">
+      <DependentUpon>Default.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.Master.designer.cs">
+      <DependentUpon>Default.Master</DependentUpon>
+    </Compile>
+    <Compile Include="QuoteSummary.aspx.cs">
+      <DependentUpon>QuoteSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuoteSummary.aspx.designer.cs">
+      <DependentUpon>QuoteSummary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -185,17 +206,31 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="MasterPage\Admin.master.cs">
+    <Compile Include="Admin.master.cs">
       <DependentUpon>Admin.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Step2.aspx.cs">
-      <DependentUpon>Step2.aspx</DependentUpon>
+    <Compile Include="PassengerDetail.aspx.cs">
+      <DependentUpon>PassengerDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Step2.aspx.designer.cs">
-      <DependentUpon>Step2.aspx</DependentUpon>
+    <Compile Include="PassengerDetail.aspx.designer.cs">
+      <DependentUpon>PassengerDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentProcess.aspx.cs">
+      <DependentUpon>PaymentProcess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentProcess.aspx.designer.cs">
+      <DependentUpon>PaymentProcess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuoteDetails.aspx.cs">
+      <DependentUpon>QuoteDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QuoteDetails.aspx.designer.cs">
+      <DependentUpon>QuoteDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Footer.ascx.cs">
       <DependentUpon>Footer.ascx</DependentUpon>
@@ -204,6 +239,10 @@
     <Compile Include="UserControls\LeftNavMenu.ascx.cs">
       <DependentUpon>LeftNavMenu.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AjaxService.asmx.cs">
+      <DependentUpon>AjaxService.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -223,7 +262,7 @@
   <ItemGroup>
     <Content Include="Admin\frmCompany.aspx" />
     <Content Include="App_Themes\Admin.Theme\AdminStyle.css" />
-    <Content Include="MasterPage\Admin.master" />
+    <Content Include="Admin.master" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\frmBookingDetails.aspx" />
@@ -235,14 +274,25 @@
     <Content Include="Admin\frmVessel.aspx" />
     <Content Include="Admin\frmPort.aspx" />
     <Content Include="App_Themes\Admin.Theme\AdminSkin.skin" />
+    <Content Include="Accommodation.aspx" />
+    <Content Include="QuoteSummary.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Lib\AjaxControlToolkit.dll" />
     <Content Include="Lib\Infragistics2.WebUI.WebDateChooser.v7.1.dll" />
-    <Content Include="Step2.aspx" />
+    <Content Include="PassengerDetail.aspx" />
+    <Content Include="PaymentProcess.aspx" />
+    <Content Include="QuoteDetails.aspx" />
+    <Content Include="AjaxService.asmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Default.Theme\Default.css" />
+    <Content Include="App_Themes\Default.Theme\Default.skin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.Master" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Pages\" />
     <Folder Include="UploadDumpFiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -265,6 +315,9 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
