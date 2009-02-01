@@ -78,5 +78,7 @@ namespace ByteCore.FerryBooking.Core
                
              return new Schedule().GetList(oql);
          }
+
+         
      }
 }
