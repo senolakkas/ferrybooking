@@ -93,14 +93,6 @@
                 </tr>
                 <tr>
                     <td>
-                        Middle Name *
-                    </td>
-                    <td>
-                        <asp:TextBox ID="txtMiddleName" runat="server"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         SurName *
                     </td>
                     <td>
@@ -145,12 +137,95 @@
                         <td>
                             <asp:TextBox ID="txtPassport" runat="server"></asp:TextBox>
                         </td>
-                    </tr><tr>
+                    </tr>
+                    <tr>
                         <td>
                             Email *
                         </td>
                         <td>
                             <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Address *
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtAddress" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Address 2 *
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtAddress2" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            City *
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtCity" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Province / State *
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtProvince" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Postcode *
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtPostcode" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Country *
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlCountry" runat="server">
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Cell / Mobile *
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtCellphone" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Telephone *
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtPhone" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Fax *
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtFax" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
+                            Special requirement *
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlSpecialRequirement" runat="server">
+                            </asp:DropDownList>
                         </td>
                     </tr>
                 </asp:Panel>
@@ -159,6 +234,7 @@
         </asp:ListView>
         <br />
         <br />
+        <asp:Button ID="btnBack" runat="server" Text="Back" OnClick="btnBack_Click" />
         <asp:Button ID="btnContinue" runat="server" Text="Continue" OnClick="btnContinue_Click" />
     </div>
     </form>
