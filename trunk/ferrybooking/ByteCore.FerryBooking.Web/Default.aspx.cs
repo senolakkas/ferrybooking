@@ -51,8 +51,6 @@ namespace ByteCore.FerryBooking.Web
                 ddlRoute4.DataBind();
                 ddlRoute4.SelectedIndex = 0;
 
-
-
                 List<KeyValuePair<int, string>> passengerList = new List<KeyValuePair<int,string>>();
                 passengerList.Add(new KeyValuePair<int, string>(0, "Select total passengers"));
                 for (int i = 1; i < 10; i++)
@@ -167,7 +165,7 @@ namespace ByteCore.FerryBooking.Web
             step1.PassengersCount = Convert.ToInt32(ddlPassengers.SelectedValue);
             step1.VehiclesCount = Convert.ToInt32(ddlVehicles.SelectedValue);
             Session[SessionVariable.Step1UserInput] = step1;
-            Response.Redirect("Step2.aspx");
+            Response.Redirect("QuoteDetails.aspx");
           
         }
 
