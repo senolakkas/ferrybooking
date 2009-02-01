@@ -27,6 +27,7 @@ namespace ByteCore.FerryBooking.Core
              return new FareType().GetList(oql);
          }
 
+
          public string FullFareTypeName
          {
              get 
@@ -58,6 +59,15 @@ namespace ByteCore.FerryBooking.Core
          public static void DoInsert(FareType fareType)
          {
              fareType.Create();
+         }
+
+         public IList<FareType> GetAccommodationTypeBySchedule(int scheduleId)
+         {
+             IList<FareType> ftList = new List<FareType>();
+             Schedule schedule = new Schedule().GetById(scheduleId, false);
+             Vessel vessel = new Vessel().GetById(schedule.VesselId.Value, false);
+             ftList = vessel.FareTypes;
+             return ftList;
          }
      }
 }

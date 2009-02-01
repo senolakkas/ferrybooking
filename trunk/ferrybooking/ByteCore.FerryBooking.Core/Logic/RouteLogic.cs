@@ -124,5 +124,13 @@ namespace ByteCore.FerryBooking.Core
              else
                  return null;
          }
+
+         public Route GetRouteBySchedule(int scheduleId)
+         {
+             Schedule schedule = new Schedule().GetById(scheduleId, false);
+             Fare fare = new Fare().GetById(schedule.FareId.Value, false);
+             Route route = new Route().GetById(fare.RoutesID.Value, false);
+             return route;
+         }
      }
 }
