@@ -32,6 +32,10 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=3.0.11119.25533, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
     <Reference Include="Castle.DynamicProxy2, Version=2.0.3.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL" />
+    <Reference Include="eSELECTplus_dotNet_API, Version=1.0.2536.26652, Culture=neutral, PublicKeyToken=8cb9cd598f87e276">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\eSELECTplus_dotNet_API.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -185,12 +189,19 @@
     <Compile Include="Accommodation.aspx.designer.cs">
       <DependentUpon>Accommodation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="PaymentVerify.aspx.cs">
-      <DependentUpon>PaymentVerify.aspx</DependentUpon>
+    <Compile Include="PaymentFailed.aspx.cs">
+      <DependentUpon>PaymentFailed.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="PaymentVerify.aspx.designer.cs">
-      <DependentUpon>PaymentVerify.aspx</DependentUpon>
+    <Compile Include="PaymentFailed.aspx.designer.cs">
+      <DependentUpon>PaymentFailed.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentSucceed.aspx.cs">
+      <DependentUpon>PaymentSucceed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentSucceed.aspx.designer.cs">
+      <DependentUpon>PaymentSucceed.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.Master.cs">
       <DependentUpon>Default.Master</DependentUpon>
@@ -296,7 +307,9 @@
     <Content Include="App_Themes\Default.Theme\Default.skin" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PaymentVerify.aspx" />
+    <Content Include="PaymentFailed.aspx" />
+    <Content Include="Lib\eSELECTplus_dotNet_API.dll" />
+    <Content Include="PaymentSucceed.aspx" />
     <Content Include="Default.Master" />
   </ItemGroup>
   <ItemGroup>

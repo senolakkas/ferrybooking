@@ -68,6 +68,37 @@ namespace ByteCore.FerryBooking.Web
 
         protected void btnContinue_Click(object sender, EventArgs e)
         {
+            if (Session[SessionVariable.BookingInstance] is Booking)
+            {
+                Booking bookingInstance = (Booking)Session[SessionVariable.BookingInstance];
+
+                for (int i = 0; i < this.lvAccommodation.Items.Count; i++)
+                {
+                    ListViewDataItem item = this.lvAccommodation.Items[i];
+                    RouteOrder r = (RouteOrder)(item.DataItem);
+                    GridView gvAccommodation = (GridView)(item.FindControl("gvAccommodation"));
+                    if (gvAccommodation != null)
+                    {
+                        for (int j = 0; j < gvAccommodation.Rows.Count; j++)
+                        {
+                            GridViewRow row = gvAccommodation.Rows[j];
+                            DropDownList ddlNumber = (DropDownList)row.FindControl("ddlNumber");
+                            if (ddlNumber != null && ddlNumber.SelectedValue != "0")
+                            {
+                                RouteOrderDetail detail = new RouteOrderDetail();
+                                detail.RouteOrderID = r.ID;
+                                detail.Quantity = Convert.ToInt32(ddlNumber.SelectedValue);
+                                detail.FareTypeId = ((FareType)row.DataItem).ID;
+                                //TODO: Calculate amount
+                                detail.Amount = 0m;
+                                r.RouteOrderDetails.Add(detail);
+                            }
+                        }
+                    }
+                }
+ 
+                //TODO: Fill in the total amount for booking
+            }
             Response.Redirect("QuoteSummary.aspx");
         }
     }

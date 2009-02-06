@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ByteCore.FerryBooking.Web.Default"  validateRequest="false" enableEventValidation="false" %>
 
-<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
@@ -107,9 +105,9 @@
             <tr>
                 <td>
                     <asp:RadioButton ID="rbSingle" runat="server" Checked="True"
-                        GroupName="Direction" Text="Single" />
+                        GroupName="Direction" Text="Single" AutoPostBack="True" />
                     <asp:RadioButton ID="rbReturn" runat="server"
-                        GroupName="Direction" Text="Return" />
+                        GroupName="Direction" Text="Return" AutoPostBack="True" />
                     <asp:RadioButton ID="rbMulti" runat="server" 
                         GroupName="Direction" Text="Multi" />
                 </td>
