@@ -23,9 +23,10 @@ namespace ByteCore.FerryBooking.Web
             {
                 Response.Redirect("Default.aspx");
             }
-            Booking bookingInstance = (Booking)Session[SessionVariable.BookingInstance];
+            
             if (!IsPostBack)
             {
+                Booking bookingInstance = (Booking)Session[SessionVariable.BookingInstance];
                 this.LV_RouteVehicle.DataSource = bookingInstance.RouteOrders;
                 this.LV_RouteVehicle.DataBind();
             }

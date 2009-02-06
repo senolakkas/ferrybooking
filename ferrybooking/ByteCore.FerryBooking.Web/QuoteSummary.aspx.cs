@@ -42,25 +42,44 @@ namespace ByteCore.FerryBooking.Web
             {
                 ListViewDataItem dataItem = (ListViewDataItem)e.Item;
                 RouteOrder r = (RouteOrder)(dataItem.DataItem);
+                
                 Label lblRouteTotal = (Label)(dataItem.FindControl("lblRouteTotal"));
                 lblRouteTotal.Text = r.RouteTotalAmount.ToString("c") + " USD";
+                
+                Label lblRouteName = (Label)(dataItem.FindControl("lblRouteName"));
+                Route route = new Route().GetRouteBySchedule(r.ScheduleId.Value);
+                lblRouteName.Text = route.DeparturePort.PortName + " - " + route.ArriavlPort.PortName;
+                
+                Schedule schedule = new Schedule().GetById(r.ScheduleId.Value, false);
+                Label lblVesselName = (Label)(dataItem.FindControl("lblVesselName"));
+                lblVesselName.Text = schedule.Vessel.VesselName;
 
-                foreach (RouteOrderDetail detail in r.RouteOrderDetails)
-                {
+                Vessel vessel = new Vessel().GetById(schedule.VesselId.Value, false);
+                Label lblCompanyName = (Label)(dataItem.FindControl("lblCompanyName"));
+                lblCompanyName.Text = vessel.Operator.CompanyName;
 
-                }
+                Label lblDepartureDatetime = (Label)(dataItem.FindControl("lblDepartureDatetime"));
+                lblDepartureDatetime.Text = schedule.SailingTime.HasValue ? schedule.SailingTime.Value.ToString() : string.Empty;
+
+                Label lblArrivalDatetime = (Label)(dataItem.FindControl("lblArrivalDatetime"));
+                lblArrivalDatetime.Text = schedule.ArrivalTime.HasValue ? schedule.ArrivalTime.Value.ToString() : string.Empty;
+
+                Label lblPassenger = (Label)(dataItem.FindControl("lblPassenger"));
+                Label lblTransport = (Label)(dataItem.FindControl("lblTransport"));
+                Label lblAccommodation = (Label)(dataItem.FindControl("lblAccommodation"));
+                
 
             }
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Accommodation.aspx");
         }
 
         protected void btnContinue_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("PassengerDetail.aspx");
         }
     }
 }

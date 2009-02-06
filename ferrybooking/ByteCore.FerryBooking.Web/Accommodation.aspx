@@ -23,7 +23,7 @@
                         <asp:Label ID="lblRoute" runat="server" Text=""></asp:Label>
                     </td>
                     <td>
-                        <asp:GridView ID="gvAccommodation" runat="server" AutoGenerateColumns="false" AllowPaging="false" AllowSorting="false" OnRowDataBound="gvAccommodation_ItemDataBound">
+                        <asp:GridView ID="gvAccommodation" DataKeyNames="FareTypeId" runat="server" AutoGenerateColumns="false" AllowPaging="false" AllowSorting="false" OnRowDataBound="gvAccommodation_ItemDataBound">
                             <Columns>
                                 <asp:TemplateField HeaderText="Accommodation Type">
                                     <ItemTemplate>
